@@ -9,4 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>FirstServlet</servlet-name>
+    <servlet-class>com.test.helloservlet.FirstServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FirstServlet</servlet-name>
+    <url-pattern>/HelloServlet/FirstServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetServlet</servlet-name>
+    <servlet-class>com.test.helloservlet.GetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetServlet</servlet-name>
+    <url-pattern>/HelloServlet/GetServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ReceiveCheckbox</servlet-name>
+    <servlet-class>com.test.helloservlet.ReceiveCheckbox</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReceiveCheckbox</servlet-name>
+    <url-pattern>/HelloServlet/ReceiveCheckbox</url-pattern>
+  </servlet-mapping>
 </web-app>
