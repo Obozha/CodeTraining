@@ -1,6 +1,13 @@
 # Servlet 表单数据
 
-[TOC]
+* [Servlet 表单数据](#servlet-%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE)
+  * [Get](#get)
+  * [Post](#post)
+  * [使用Servlet读取表单数据](#%E4%BD%BF%E7%94%A8servlet%E8%AF%BB%E5%8F%96%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE)
+  * [使用URL的GET方法实例](#%E4%BD%BF%E7%94%A8url%E7%9A%84get%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B)
+  * [使用表单的GET方法实例](#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E7%9A%84get%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B)
+  * [使用表单的POST方法实例](#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E7%9A%84post%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B)
+  * [将复选框数据传递到 Servlet 程序](#%E5%B0%86%E5%A4%8D%E9%80%89%E6%A1%86%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%E5%88%B0-servlet-%E7%A8%8B%E5%BA%8F)
 
 ## Get
 

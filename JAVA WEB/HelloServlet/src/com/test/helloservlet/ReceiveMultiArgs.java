@@ -42,10 +42,27 @@ public class ReceiveMultiArgs extends HttpServlet {
 				+ "<th>参数名称</th><th>参数值</th>\n" + "</tr>\n");
 
 		Enumeration paramNames = request.getParameterNames();
-		
+
 		while (paramNames.hasMoreElements()) {
-			String object = (String) paramNames.nextElement();
+			String paramName = (String) paramNames.nextElement();
 			out.print("<tr><td>" + paramName + "</td>\n");
+			String[] paramValues = request.getParameterValues(paramName);
+
+			if (paramValues.length == 1) {
+				String paramValue = paramValues[0];
+				if (paramValue.length() == 0)
+					out.println("<td><i>没有值</i></td>");
+				else
+					out.println("<td>" + paramValue + "</td>");
+			} else {
+				// 读取多个值的数据
+				out.println("<td><ul>");
+				for (int i = 0; i < paramValues.length; i++) {
+					out.println("<li>" + paramValues[i]);
+				}
+				out.println("</ul></td>");
+			}
+			out.println("\n</table>\n</body></html>");
 		}
 	}
 
