@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>用户注册</title>
+
+		<style type="text/css">
+			fieldset {
+				width: 300px;
+				margin: 0 auto;
+				margin-top: 300px;
+				padding: 15px;
+			}
+			
+			table {
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var arr_str = ["教师", "学生", "管理员"];
+			var sele_stat = [1, 0, 0];
+			var error_stat;
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+			function submit_data(){
+				console.log("上传");
+				var user=$("text_user").value;
+				var pwd=$("text_pwd").value;
+				for(var i=0;i<3;i++){
+					if (sele_stat[i]==1) {
+						var sele_radio_text=arr_str[i];
+					}
+				}
+				// 通过遍历数组，来得到radio的状态，取得唯一一个值
+				
+				if (judge(user,pwd)) {
+					alert("用户名："+user+"\n"+"密码："+pwd+"\n"+"用户类型："+sele_radio_text);
+					return true;
+				}else{
+					alert(error_stat);
+					return false;
+				}
+			}
+			
+			function reset_data(){
+				console.log("重置密码")
+				var flag=window.confirm("确认要重置吗");
+				return flag;
+			}
+			
+			function judge(user,pwd){
+				console.log("检测密码");
+				var flag;
+				if(user==""||pwd==""||user==null||pwd==null){
+					flag=false;
+					error_stat="用户名或者密码为空";
+					console.log(error_stat);
+				}else if(!user.match("^[A-Za-z0-9]+$"||!pwd.match("^[A-Za-z0-9]+$"))){
+					flag=false;
+					error_stat="用户名或者密码存在非法字符";
+					console.log(error_stat);
+				}else{
+					flag=true;
+					error_stat="正常";
+					console.log(error_stat);
+				}
+				return flag;
+			}
+			
+			function changeStat(){
+				console.log("检测radio状态...")
+				for(var i=0;i<3;i++){
+					if($("r"+(i+1)).checked==1){
+						sele_stat[i]=1;
+					}else{
+						sele_stat[i]=0;
+					}
+				}
+				// 通过遍历radio的状态 保存数组
+				
+				for(var j=0;j<3;j++){
+					console.log(sele_stat[j]+" ");
+				}
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<form action="1-9.html" method="get" onsubmit="return submit_data();" onreset="return reset_data()">
+			<fieldset id="" align="center">
+				<legend>用户注册</legend>
+				<table border="0" cellspacing="4" cellpadding="">
+					<tr>
+						<td>账号：</td>
+						<td><input type="text" name="" id="text_user" value="" placeholder="输入账号" /></td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td><input type="password" name="" id="text_pwd" value="" placeholder="输入密码" /></td>
+					</tr>
+					<tr>
+						<td>用户类型：</td>
+						<td>
+							<input type="radio" name="radio_user" id="r1" value="" onclick="changeStat()" checked="1" />教师
+							<input type="radio" name="radio_user" id="r2" value="" onclick="changeStat()" />学生
+							<input type="radio" name="radio_user" id="r3" value="" onclick="changeStat()" />管理员
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="submit" name="" id="" value="提交" />
+							<input type="reset" name="" id="" value="重置" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+	</body>
+</html>

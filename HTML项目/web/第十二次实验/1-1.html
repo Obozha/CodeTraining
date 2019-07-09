@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			td{
+				text-align: center;
+				width: 200px;
+			}
+			
+			.btn{
+				padding: 20px;
+				width: 100px;
+				margin: 20px 30px;
+				border: 1px ridge #44FFEE;
+			}
+		</style>
+		<script src="js/1-1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<p style="text-align: center;">手机批发业务-商品 备选区</p>
+		<form name="" action="" method="post">
+				<table align="center" border="1" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<img src="img/mobile_1.jpg"/>
+							<br />
+							<p>
+								iPhone 6 32GB 金色 移动联通电信4G
+							</p>
+							<input onclick="checkbox_sele(1,this)" type="checkbox" name="sp1" id="" value="" />¥2576.00
+						</td>
+						<td>
+							<img src="img/moblie_2.jpg"/>
+							<p>OPPO R11 全网通 黑色 版</p>
+							<input onclick="checkbox_sele(2,this)" type="checkbox" name="sp2" id="" value="" />¥2999.00
+						</td>
+						<td>
+							<img src="img/moblie_3.jpg"/>
+							<p>Apple iPhones 6s plus 32GB 金色 移动联通电信4G手机</p>
+							<input onclick="checkbox_sele(3,this)" type="checkbox" name="sp3" id="" value="" />¥3898.00
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="img/moblie_4.jpg"/>
+							<p>小米 红米手机4X 全网通版 2GB内存 16GB 香槟金</p>
+							<input onclick="checkbox_sele(4,this)" type="checkbox" name="sp4" id="" value="" />¥699.00
+						</td>
+						<td>
+							<img src="img/moblie_5.jpg"/>
+							<p>小米 红米手机4A 全网通版 2GB内存 16GB 玫瑰金</p>
+							<input onclick="checkbox_sele(5,this)" type="checkbox" name="sp5" id="" value="" />¥599.00
+						</td>
+						<td>
+							<img src="img/moblie_6.jpg"/>
+							<p>小米 红米手机4X 全网通版 2GB内存 16GB 樱花粉</p>
+							<input onclick="checkbox_sele(6,this)" type="checkbox" name="sp6" id="" value="" />¥699.00
+							
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<input onclick="btn_checkout()" type="button" name="" class="btn" value="查看购物车" />
+							<input onclick="btn_purchase()" type="button" name="" class="btn" value="收银台结算" />
+							<input onclick="btn_clear()" type="button" name="" class="btn" value="初始化参数" />
+						</td>
+					</tr>
+			</table>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		div{
+			width: 300px;
+			border: 3px solid;
+			border-color:#006E3E #001703 #001703 #009C36;
+			margin-top: 20px;
+			margin: 20px auto;
+		}
+		h1{
+			margin-top: -20px;
+			width: 300px;
+			text-align: center;
+		}	
+		#i{
+			background: white;
+		}
+		
+		#result{
+			font-size: 25px;
+		}
+	</style>
+	<script type="text/javascript">
+		
+	</script>
+	
+	<body>
+		<div>
+			<h1><span id="i">
+				计算1!+2!+...+N!
+			</span></h1>
+			<p id="result"></p>
+		</div>
+		
+		<script type="text/javascript">
+			var m=prompt("请输入整数N",10);
+			var result=document.getElementById("result");
+			
+			function isRealNum(){ // 检测是否是数字
+				if(m==""||m==null){
+					return false;
+				}
+				if(isNaN(m)){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			
+			if (isRealNum()) {
+				var temp=1,n=parseInt(m,10),sum=0,msg="";
+				for(var i=1;i<=n;i++){ // 失误处 i的两个式子反了
+					sum+=f(i);
+					msg+=i+"!="+f(i)+"<br>";
+					console.log(i);
+				}
+				msg+="阶乘的和="+sum;
+				result.innerHTML=msg;
+			}else{
+				alert("error");
+			}
+			
+			function f(n){
+				if(n<0){
+					return -1;
+				}else if(n==1||n==0){
+					return 1;
+				}else{
+					return n*f(n-1);
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="application/javascript">
+			
+			// ==================DOM对象=================
+//			function $(id){
+//				return document.getElementById(id);
+//			}
+//			
+//			function getInformation(){
+//				var str="";
+//				if($("A").checked==true){
+//					str+="A";		
+//				}
+//				
+//				if($("B").checked==true){
+//					str+="B";		
+//				}
+//				
+//				if($("C").checked==true){
+//					str+="C";		
+//				}
+//				
+//				if($("D").checked==true){
+//					str+="D";		
+//				}
+//				
+//				if($("A").checked==false&&$("A").checked==false&&$("A").checked==false&&$("A").checked==false){
+//					alert("啥都没选");
+//				}else{
+//					alert(str);
+//				}
+			
+		// ==================jQuery对象=================
+		
+		$(function(){ // 使用
+			$("#touch").click(function(){
+				var str="";
+				
+				$("input:checked").each(function(){
+					str+=$(this).val();
+				});
+				alert(str+" "+$("input:checked").length);
+			});
+		})
+		
+		</script>
+		
+	</head>
+	<body>
+		<input type="checkbox" name="" class="ckb1" value="A" />A
+		<input type="checkbox" name="" class="ckb2" value="B" />B
+		<input type="checkbox" name="" class="ckb3" value="C" />C
+		<input type="checkbox" name="" class="ckb4" value="D" />D
+	
+		<p><input type="button" name="" id="touch" value="点我"/></p>
+	
+	</body>
+</html>

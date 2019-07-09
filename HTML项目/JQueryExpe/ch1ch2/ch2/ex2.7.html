@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<!--<script type="text/javascript" src="scripts/getElementsBySelector.js"></script>-->
+<script type="text/javascript">
+window.onload=function(){
+   //var x=document.getElementsBySelector('div p.p2');
+    var x=document.querySelectorAll("h1+p");
+   var i;
+   for (i=0;i<x.length;i++)
+     x[i].style.color="red";
+}
+</script>
+</head>
+
+<body>
+<div>
+<h1>一级标题</h1>
+<p class="p1">test1</p>
+<p class="p2">test2</p>
+</div>
+<h1>一级标题</h1>
+<p class="p1">test3</p>
+<p class="p2">test4</p>
+</body>
+</html>

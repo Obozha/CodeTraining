@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#outer{
+				width: 520px;
+				height: 520px;
+				border: 10px solid;
+				border-color:black greenyellow greenyellow black; 
+				margin: 0 auto;	
+			}
+			#inner{
+				text-align: center;
+				width: 500px;
+				height: 500px;
+				border: 10px solid;
+				border-color:greenyellow black black greenyellow; 
+			}
+			
+			
+			
+		</style>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				var start=document.getElementById("start");
+				var end=document.getElementById("end");
+				var result=document.getElementById("result");
+				var btn_clear=document.getElementById("clear");
+				var btn_cal=document.getElementById("calculate");
+				
+				
+				
+				btn_cal.onclick=function(){
+					var i,sum=0;
+					for(i=parseInt(start.value);i<=parseInt(end.value);i++){
+						sum+=i;
+					}
+					result.value=sum;
+				}
+				
+				btn_clear.onclick=function(){
+					start.value=null;
+					end.value=null;
+					result.value=null;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="inner">
+				<h1>计算任意区间内自然数的累加和</h1>
+				<br />
+				<br />
+				<h1>定义区间</h1>
+				起始数：<input type="" name="" id="start" value="" />
+				中止数：<input type="" name="" id="end" value="" />
+				<br />
+				累加和：<input type="" name="" id="result" value="" />
+				<br />
+				<input type="button" name="" id="calculate" value="计算" />
+				<input type="button" name="" id="clear" value="清空" />
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+body{
+	height: 800px;
+	width: 984px;
+	padding: 0px;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	margin: 0 auto;
+}
+
+#header{
+	width: 984px;
+	height: 120px;
+}
+
+#logo{
+	width: 199px;
+	height: 80px;
+	float: left;
+	background: url(../img/logo.png) no-repeat bottom;	
+}
+#search{
+	width: 785px;
+	height: 80px;
+	float: right;
+}
+
+#nav{
+	clear: both;
+	width: 984px;
+	height: 40px;
+	text-align: center;
+	background: #f90000;
+	color: white;
+}
+
+#nav table tr td{
+	background: url(../img/line.png) no-repeat right center;
+}
+
+#picture{
+	width: 984px;
+	height: 337px;
+	background: #828282;
+}
+
+#main{
+	width: 984px;
+	height: 250px;
+	
+}
+
+#left{
+	width: 240px;
+	height: 200px;
+	/*background: #EEFFDD;*/
+	float: left;
+	border-right: 5px solid #ffffff;
+}
+
+#center{
+	width: 466px;
+	height: 200px;
+	float: left;
+	background: #eeffdd;
+	border-right: 5px solid #ffffff;
+}
+
+#right{
+	width: 263px;
+	height: 200px;
+	background: #EEFFDD;
+	float: right;
+	
+}
+
+#footer{
+	width: 984px;
+	height: 40px;
+	background: #f7f7f7;
+	clear: both;
+	display: table;
+}
+
+ul{
+	list-style: none;
+	line-height: 1.8em;
+	padding: 0px;
+}
+ul li{
+	margin: 3px;
+	border-bottom: 1px dotted #009900;
+}
+
+#footer p{	
+	display: table-cell;
+	vertical-align: middle;
+	height: 20px;
+	text-align: center;
+}

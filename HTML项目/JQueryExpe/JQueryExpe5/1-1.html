@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+// 				$("tr:odd").css("background", "#B8DAFF");
+// 				console.log("渲染1");
+// 				$("tr:even").css("background", "#FFE8A1");
+// 				console.log("渲染2");
+				$("tr")
+// 				.mouseenter(function(){
+// 					temp=$(this).css("background");
+// 					console.log(temp);
+// 					$(this).css("background", "#fff");
+// 				}).mouseleave(function(){
+// 					temp=$(this).css("background");
+// 					// console.log(temp);
+// 					$(this).css("background","");
+// 				})
+				.click(function(){
+					$(this).find("input").prop("checked",true);
+					$(this).siblings().find("input").prop("checked",false);
+					$(this).css("background","#F5C6CB");
+					$(this).siblings().css("background","");
+				});
+			});
+		</script>
+		<style type="text/css">
+			table{
+				width: 600px;
+				margin: 0 auto;
+			}
+			
+			td {
+				padding: 5px;
+			}
+			
+			tr{
+				cursor: pointer;
+				-webkit-transition-duration: .25s;
+				-moz-transition-duration: .25s;
+				-o-transition-duration: .25s;
+				transition-duration: .25s;
+			}
+			
+			tr th{
+				font-size: 20px;
+				background: #95999C;
+				color: #fff;
+				cursor: auto;
+			}
+			
+			tr:nth-of-type(odd) {
+				background:#B8DAFF ;
+			}
+			
+			tr:nth-of-type(even) {
+				background:#FFE8A1 ;
+			}
+			
+			tr:hover{
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="tb" border="0" cellspacing="" cellpadding="">
+			<tr>
+				<th></th>
+				<th>班级</th>
+				<th>姓名</th>
+				<th>学号</th>
+				<th>爱好</th>
+				<th>生日</th>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>曹凯</td>
+				<td>201850915112</td>
+				<td>健身</td>
+				<td>1996/10/16</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>杨相文</td>
+				<td>201850915103</td>
+				<td>一种有颜色的东西</td>
+				<td>1996/9/8</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>姜亚坤</td>
+				<td>201850915117</td>
+				<td>Music</td>
+				<td>1997/2/2</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>季永恩</td>
+				<td>201850915118</td>
+				<td>English</td>
+				<td>1997/2/2</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>陈鹏</td>
+				<td>201850915125</td>
+				<td>DNF</td>
+				<td>1997/2/2</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>李文忠</td>
+				<td>201850915125</td>
+				<td>鞋</td>
+				<td>1996/8/19</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>昂</td>
+				<td>201850915125</td>
+				<td>LOL</td>
+				<td>1997/2/2</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>苏豫</td>
+				<td>201850915125</td>
+				<td>篮球</td>
+				<td>1997/1/1</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>森</td>
+				<td>201850915125</td>
+				<td>篮球，AJ</td>
+				<td>1997/1/1</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="" id="" value="" /></td>
+				<td>计算机科学1821</td>
+				<td>大佬</td>
+				<td>201850915125</td>
+				<td>各种游戏、计算机</td>
+				<td>1997/1/1</td>
+			</tr>
+		</table>
+	</body>
+</html>

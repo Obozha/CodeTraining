@@ -1,0 +1,76 @@
+body{
+	width: 1001px;
+	height: 1033px;
+	margin: 0 auto;
+	font-family: "微软雅黑";
+}
+
+#header{
+	width: 1001px;
+	height: 293px;
+	background: antiquewhite;
+}
+
+#banner{
+	width: 1001px;
+	height: 243px;
+	background: aliceblue;
+	position: relative;
+}
+
+#nav{
+	width: 1001px;
+	height: 50px;
+	background: purple;
+	color: white;
+	
+}
+
+#content{
+	width: 950px;
+	height: 400px;
+	/*background: aquamarine;*/
+	margin: 0 auto;
+}
+
+#footer{
+	width: 950px;
+	height: 40px;
+	/*background: chocolate;*/
+	margin: 0 auto;
+	display: table;
+	text-align: center;
+}
+
+a{
+	color: white;
+	text-decoration: none;
+}
+
+#paragraph{
+	width: 700px;
+	height: 400px;
+	float: left;
+	/*background: #F0F8FF;*/
+}
+
+#component{
+	width: 250px;
+	height: 400px;
+	float: right;
+	/*background: antiquewhite;*/
+}
+
+pre{
+	font-size: 13px;
+}
+
+ul{
+	list-style: none;
+}
+
+#notice{
+	position: absolute;
+	top: 170px;
+	left: 800px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("span").text("keypress");
+				$("body").keypress(function(e){
+					alert(e.which);
+				});
+				var flag = 1;
+				$("button").click(function(){
+					$("body").unbind();
+					flag%=3; // 切换
+					if (flag == 1) {
+						$("span").text("keyup");
+						$("body").keyup(function(e){
+							alert(String.fromCharCode(e.which));
+						});
+					} else if (flag == 2) {
+						$("span").text("keydown");
+						$("body").keydown(function(e){
+							alert(String.fromCharCode(e.which));
+						});
+					} else {
+						$("span").text("keypress");
+						$("body").keypress(function(e){
+							alert(String.fromCharCode(e.which));
+						});
+					}
+					$(this).blur();
+					console.log(flag);
+					flag++;
+				});
+			})
+		</script>
+		<style type="text/css">
+			*{
+				font-family: 微软雅黑;
+			}
+			body{
+				width: 500px;
+				height: 500px;
+				text-align: center;
+				z-index: 1;
+				margin: 0 auto;
+			}
+			
+			button{
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: 0;
+				background-color: cornflowerblue;
+				border: 0;
+				color: #fff;
+				padding: 10px;
+				border-radius: 3px;
+				cursor: pointer;
+				font-size: 16px;
+				-webkit-transition-duration: .25s;
+				transition-duration: .25s;
+			}
+			
+			button:hover{
+				background: #000;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<p>验证keypress和keydown中的区别:</p>
+		<p>使用方法：对着浏览器按键测试</p>
+		<button type="button">点我切换事件</button>
+		<p>当前事件：<span style="color: red;"></span></p>
+	</body>
+</html>

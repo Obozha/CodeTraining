@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>某网站品牌列表</title>
+		<style type="text/css">
+			body{
+				font-family: 微软雅黑;
+			}
+			
+			.SubCategory a{
+				text-decoration: none;
+				color: #AAAAAA;
+			}
+			
+			li{
+				float: left;
+				margin-right:200px;
+				list-style: none;
+			}
+			
+			ul{
+				width: 1000px;
+				text-align: center;
+				margin: 0 auto;
+			}
+			.showmore{
+				text-align: center;
+				clear: both;
+				width: 120px;
+				margin: 0 auto;
+			}
+			
+			.showmore a span{
+				display: block;
+				background: url(img/down.gif) no-repeat 0 7px;
+			}
+			
+		</style>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var $category=$("ul li:gt(5):not(:last)");
+				$category.hide();
+				var flag=0;
+				$("div.showmore a").click(
+					function(){
+							if(flag==0){
+								$category.show();
+								$("span").css("background","url(img/up.gif) no-repeat 0 7px")
+								$("ul li a").filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')").css("color","red").parent().css("color","red");
+							}else{
+								$category.hide();
+								$("span").css("background","url(img/down.gif) no-repeat 0 7px")
+								$("ul li a").filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')").css("color","#AAAAAA").parent().css("color","#AAAAAA");
+
+							}
+							flag=!flag;
+							return false;
+					}
+				);
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div class="SubCategory">
+			<ul>
+				<li><a href="#">佳能</a><i>(30440)</i></li>
+				<li><a href="#">索尼</a><i>(27720)</i></li>
+				<li><a href="#">三星</a><i>(20808)</i></li>
+				<li><a href="#">尼康</a><i>(17821)</i></li>
+				<li><a href="#">松下</a><i>(12289)</i></li>
+				<li><a href="#">卡西欧</a><i>(8242)</i></li>
+				<li><a href="#">富士</a><i>(14894)</i></li>
+				<li><a href="#">柯达</a><i>(9520)</i></li>
+				<li><a href="#">宾得</a><i>(2195)</i></li>
+				<li><a href="#">理光</a><i>(4114)</i></li>
+				<li><a href="#">奥林巴斯</a><i>(12205)</i></li>
+				<li><a href="#">明基</a><i>(1466)</i></li>
+				<li><a href="#">爱国者</a><i>(3091)</i></li>
+				<li><a href="#">其他品牌相机</a><i>(7525)</i></li>
+			</ul>
+		</div>
+		<div class="showmore">
+			<a href="more.html"><span>显示所有品牌</span></a>
+		</div>
+	</body>
+</html>

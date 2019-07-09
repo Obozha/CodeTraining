@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生成列表</title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("input").click(function(){
+					//alert("123");
+					var s=$("textarea").val();
+					// alert(s);
+					var ss=s.trim().split(" ");
+					$("ul").empty();
+					for(var i=0;i<ss.length;i++){
+						console.log(ss[i]);
+						$("ul").append("<li>"+ss[i]+"</li>");
+					}
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div>
+			<textarea id="tt" rows="5" cols="20">苹果 香蕉 橘子
+			</textarea>
+			<br>
+			<input type="button" name="" id="" value="生成列表" />
+
+			<p>列表用空格分隔</p>
+			<ul>
+			</ul>
+		</div>
+	</body>
+</html>

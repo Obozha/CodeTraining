@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#all").click(function (){
+					$("input:checkbox").prop("checked",true);
+				});	
+				
+				$("#not_all").click(function (){
+					$("input:checkbox").prop("checked",false);
+				});	
+				
+				$("#inverse").click(function (){
+					  $("input:checkbox").each(function(){
+						 this.checked=!this.checked;
+					});
+				});
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+		<input type="checkbox" name="" id="" value=""  />A
+		<input type="checkbox" name="" id="" value="" />B
+		<input type="checkbox" name="" id="" value="" />C
+		<input type="checkbox" name="" id="" value="" />D
+		<br>
+		<input type="button" name="" id="all" value="全选" />
+		<input type="button" name="" id="not_all" value="全不选" />
+		<input type="button" name="" id="inverse" value="反选" />
+	</body>
+</html>

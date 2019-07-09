@@ -1,0 +1,98 @@
+*{ 
+  	margin: 0;
+	padding: 0;
+}
+
+body,html{
+	font: 12px/1.5 tahoma,arial,sans-serif;
+}
+
+.body-top{
+	height: 297px;
+	background: url(../img/b1.jpg);
+}
+
+.header,.header .logo{
+	width: 960px;
+	margin: 0 auto;
+	height: 297px;
+	background: url(../img/b2.jpg) no-repeat center;
+}
+
+/*New Nav Style*/
+
+#nav_wrap {
+	width: 960px;
+	/*overflow: hidden;*/
+	padding-top: 223px;
+	/* 包裹着nav的盒子用padding-top来把盒子挤兑到对应的位置 */
+}
+
+#nav{
+	height: 74px;
+	width: 960px;
+	/*margin: 0 auto;*/
+	position: relative;
+	/* 这里设置的relative 使后边的.kind_menu相对nav来进行移动 */
+}
+
+#nav ul{
+	margin: 0;
+	padding: 0;
+	/* 消除ul默认的样式 */
+}
+
+#nav li{	/* nav下所有li的样式 */
+	float: left;
+	list-style: none;
+	/*text-align:center;*/
+	font-size:14px;
+	font-weight:700;
+	/* #nav下所有的字体和样式，以及浮动 */
+}
+
+#nav li .v a{ /* 一级标题栏的样式 */
+	padding: 0 4px;
+	/* 左右padding4px */
+	
+	line-height: 33px;
+	/*height: 39px;*/
+	
+	/* 行高指的是文字的所占的高度，而height是指内容的高度 */
+	
+	/*display: block;*/
+	/*float: left;*/
+	/* span里的a标签变成块就把其他span标签挤下去了 需要左浮动 */
+	
+	color: #0d2972;
+}
+
+#nav li .v a:hover{ /* 一级标题栏在盘旋的的样式 */
+	color: #d62e38;
+	text-decoration: none;
+}
+
+
+
+#nav .kind_menu{
+	top: 26px;
+	left: 70px;
+	position: absolute;
+	width: 880px;
+	padding-top: 18px; 
+	font-weight: normal;
+	display:none;
+	/* 暂时先不显示 */
+}
+
+.cut_line{
+	/*padding-top: 4px;*/
+	/*display: inline-block;*/
+	 /*行内块*/ 
+	/*font-size: 14px;*/
+}
+
+#nav ul li:hover .kind_menu{
+	display: block;
+	/* 当盘旋到li的时候 kind_menu 显示 */
+}

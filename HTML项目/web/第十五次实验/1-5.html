@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<style type="text/css">
+			*{
+				font-family: "微软雅黑";
+			}
+			
+			body{
+				width: 220px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			fieldset{
+				padding: 0px;
+				width:218px ;
+				margin: 0px;
+			}
+			
+			table{
+				margin: 0 auto;
+			}
+			
+			h4{
+				background: #eee;
+			}
+			
+			textarea{
+				width: 218px;
+			}
+			
+		</style>
+		<script src="js/1-5.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body onload="judgeEnvironment();">
+		<fieldset id="">
+			<legend>简易手机通讯录</legend>
+			<form onreset="true" action="" method="post">
+				<table border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>姓名：</td>
+						<td>
+							<input type="text" name="" id="text_name" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							电话：
+						</td>
+						<td>
+							<input type="text" name="" id="text_num" value="" />
+						</td>
+					</tr>					
+					<tr>
+						<td colspan="2">
+							<input type="button" name="" id="" value="添加" onclick="save();" />
+							<input type="button" name="" id="" value="查询" onclick="query_data();" />						
+							<input type="button" name="" id="" value="删除" onclick="remove_data();" />						
+							<input type="reset" name="" id="" value="重置" />						
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<textarea name="" rows="5" readonly="readonly" cols="" id="display"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p style="margin: 0px; text-align: left;">支持LocalStorage：<span style="color: red;" id="initStat">初始化...</span></p>
+						</td>
+					</tr>
+					
+				</table>				
+			</form>
+		</fieldset>
+		<h4>前端工作室设计<br />版权所有&copy;2017-2020</h4>
+	</body>
+</html>

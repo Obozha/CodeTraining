@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#inner{
+				width: 500px;
+				height: 600px;
+				border: 5px solid #009C36;
+			}
+			
+			#outer{
+				width: 510px;
+				height: 610px;
+				border: 5px solid #009C36;
+				padding: 15px;
+				background: #006600;
+				margin: 0 auto;
+			}
+			
+			p{
+				color: white;
+				font-size: 30px;
+			}
+			.title{
+				text-align: center;
+			}
+			
+			.display{
+				text-align: left;
+				margin-left: 160px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div id="outer">
+			<div id="inner">
+				<p class="title">课程成绩评定</p>
+				<p class="display">课程成绩为：<span id="score"></span></p>
+				<p class="display">成绩等级为：<span id="rank"></span></p>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var rank=document.getElementById("rank");
+			var score=document.getElementById("score");
+			function isRealNum(i){
+				if(i==""||i==null){
+					return false;
+				}
+				if(isNaN(i)){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			
+			
+			var m=prompt("请输入您的成绩",100);
+			if(isRealNum(m)&&m<=100&&m>=0){
+				score.innerHTML=parseInt(m);
+			}else{
+				alert("Error");
+			}
+			
+			if(m>=90){
+				rank.innerHTML="优秀";
+			}else if(m>=80){
+				rank.innerHTML="一般"
+			}else if(m>=60){
+				rank.innerHTML="及格";
+			}else if(m>0){
+				rank.innerHTML="再接再厉";
+			}
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

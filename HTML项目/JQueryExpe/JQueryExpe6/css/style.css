@@ -1,0 +1,101 @@
+body {
+	background: url(../img/contact-bg.jpg);
+	font-family: "montserrat-light", sans-serif;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+form {
+	width: 600px;
+	padding: 50px 0px;
+	background: rgba(0, 0, 0, 0.2);
+	display: block;
+}
+
+input {
+	display: block;
+}
+
+input[type="text"],
+input[type="password"] {
+	border-style: none;
+	border-color: #AAAAAA;
+	background: transparent;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+	color: white;
+	/* height: 3rem; */
+	margin-bottom: .9em;
+	margin-top: 25px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 60%;
+	-webkit-transition-duration: .25s;
+	-moz-transition-duration: .25s;
+	-o-transition-duration: .25s;
+	transition-duration: .25s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+	outline: 0;
+	border-color: #33a242;
+}
+
+input[type="submit"],
+input[type="reset"] {
+	background: #33a242;
+	border: none;
+	width: 65%;
+	margin: 0 auto;
+	height: 50px;
+	color: #fff;
+	margin-top: 20px;
+	cursor: pointer;
+	-webkit-transition-duration: .25s;
+	-moz-transition-duration: .25s;
+	-o-transition-duration: .25s;
+	transition-duration: .25s;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+	background: #FFFFFF;
+	color: #000;
+
+}
+
+div {
+	position: relative;
+}
+
+label {
+	font-family: "montserrat-light";
+	letter-spacing: 0.1rem;
+	padding: 2px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 11px;
+	position: absolute;
+	background: #33A242;
+	left: 230px;
+	bottom: -18px;
+	color: #fff;
+	display: none;
+	-webkit-transition-duration: .25s;
+	-moz-transition-duration: .25s;
+	-o-transition-duration: .25s;
+	transition-duration: .25s;
+}
+label::after{
+	content: "";
+	position: absolute;
+	left: -4px;
+	top: 50%;
+	margin-top: -6px;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid #39b54a;
+}

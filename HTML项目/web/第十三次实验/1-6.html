@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单提交、重置事件的应用</title>
+		<style type="text/css">
+			fieldset{
+				width: 300px;
+				height: 150px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			function $(id){
+				return document.getElementById(id);
+			}
+			// 通过$方法 可以得到进入id的返回值
+			
+			function submitTest(){
+				var msg="用户名:"+$("input1").value;
+				msg+="\n密码：是"+$("input2").value;
+				alert(msg);
+				return false;
+			}
+			
+			function resetTest(){
+				alert("将数据清空");
+			}
+		</script>
+	</head>
+	<body>
+		<form action="http://www.baidu.com" onsubmit="submitTest();" onreset="resetTest();" method="post">
+			<fieldset id="">
+				<legend>表单数据提交</legend>
+				<br /><label for="">用户名</label><input type="text" name="input1" id="input1" value="" />
+				<br /><label for="">密&nbsp;码</label><input type="password" name="input2" id="input2" value="" />
+				<br /><input type="submit" name="" id="" value="提交" />
+				<input type="reset" name="" id="" value="重置" />
+			</fieldset>			
+		</form>
+	</body>
+</html>

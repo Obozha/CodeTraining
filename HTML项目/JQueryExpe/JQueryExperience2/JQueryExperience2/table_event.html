@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("input").click(function(){
+						$("table,tr,td").removeAttr("style");
+				});
+				$("#b1").click(function(){
+					$("tr:nth-child(even)").css("background","#bbffaa");
+				});
+				$("#b2").click(function(){
+					$("tr td:nth-child(odd)").css("background","#bbffaa");
+				});
+				$("#b3").click(function(){
+					$("td:contains('h')").css("background","#ff00ff");
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<table border="1" cellspacing="1" cellpadding="1">
+			<tr>
+				<td>Datah</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+		</table>
+				<table border="1" cellspacing="1" cellpadding="1">
+			<tr>
+				<td>Datah</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+		</table>
+		<input type="button" name="" id="b1" value="隔行变色" />
+		<input type="button" name="" id="b2" value="隔列变色" />
+		<input type="button" name="" id="b3" value="文本变色" />
+	</body>
+</html>

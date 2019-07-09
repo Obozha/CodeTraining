@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn_move").click(function(){
+					var x1=$("#txt_x1").val();
+					var x2=$("#txt_x2").val();
+					var ox1=$("#b"+x1);
+					var ox2=$("#b"+x2);
+					//alert(ox1+ox2);
+					ox2.after(ox1);
+				});
+				
+// 				$("#btn_move").click(function(){
+// 					var x1=$("#txt_x1").val();
+// 					var x2=$("#txt_x2").val();
+// 					var ox1=$("#b"+x1);
+// 					var ox2=$("#b"+x2);
+// 					var temp;
+// 					
+// 					temp1=ox1.text();
+// 					temp2=ox2.text();
+// 					
+// 					ox1.empty();
+// 					ox2.empty();
+// 					ox1.prop("id","b"+x2);
+// 					ox2.prop("id","b"+x1);
+// 					
+// 					ox1.append(temp2);
+// 					ox2.append(temp1);
+// 				});
+				
+				$("#btn_copy").click(function(){
+					var x=$("#txt_x3").val();
+					$(outer).append($("#b"+x).clone());
+				});
+				
+				$("#btn_del").click(function(){
+					var x=$("#txt_x4").val();
+					// alert(x);
+					// $("#b"+x).fadeOut(1000);
+					$("#b"+x).remove();
+				});
+			})
+		</script>
+		<style type="text/css">
+			*{
+				font-family: microsoft yahei, Arial, sans-serif;
+			}
+			.inter{
+				width: 50px;
+				height: 50px;
+				background: cornflowerblue;
+				margin: 10px;
+				float: left;
+				text-align: center;
+				color: #fff;
+				line-height:50px;
+			}
+			
+			#outer{
+				width: 210px;
+				margin: 0 auto;
+			}
+			
+			#control{
+				clear: both;
+				text-align: center;
+			}
+			
+			table {
+				margin: 0 auto;
+				background: #6495ED;
+				padding: 5px;
+				border-radius: 10px;
+				
+			}
+			table td{
+				border: 1px solid #6495ED;
+			}
+			p{
+				text-align: left;
+				margin: 0px;
+				color: black;
+			}
+			
+			input[type="button"] {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: 0;
+				background-color: #fff;
+				border: 0;
+				color: #333;
+				border-radius: 3px;
+				cursor: pointer;
+
+				font-size: 16px;
+				-webkit-transition-duration: .25s;
+				transition-duration: .25s;
+			}
+			
+			input[type="button"]:hover {
+				background-color: #6495ED;
+			}
+			
+		     input[type="text"]{
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: 0;
+				border: 1px solid rgba(255, 255, 255, .4);
+				background-color: rgba(255, 255, 255, .2);
+				width: 50px;
+				border-radius: 3px;
+				text-align: center;
+				font-size: 15px;
+				color: #fff;
+				-webkit-transition-duration: .25s;
+				transition-duration: .25s;
+				font-weight: 300
+			}
+			
+			input[type="text"]:hover {
+				background-color: rgba(255, 255, 255, .4)
+			}
+			
+			 input[type="text"]:focus{
+				background-color: #fff;
+				width: 80px;
+				color: #333;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="b1" class="inter">1</div>
+			<div id="b2" class="inter">2</div>
+			<div id="b3" class="inter">3</div>
+			<div id="b4" class="inter">4</div>
+			<div id="b5" class="inter">5</div>
+			<div id="b6" class="inter">6</div>
+			<div id="b7" class="inter">7</div>
+			<div id="b8" class="inter">8</div>
+			<div id="b9" class="inter">9</div>
+		</div>
+		<div id="control">
+			<table>
+				<tr>
+					<td>
+						<input id="txt_x1" type="text" name="" id="" value="1" size="2" />
+						到
+						<input id="txt_x2" type="text" name="" id="" value="2" size="2" />
+					</td>
+					<td>
+						<input type="button" id="btn_move" name="" id="" value="移动" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input  id="txt_x3" type="text" name="" id="" value="1" size="5" />
+					</td>
+					<td>
+						<input type="button" name="" id="btn_copy" value="复制" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input id="txt_x4" type="text" name="" id="" value="1" size="5" />
+					</td>
+					<td>
+						<input type="button" name="" id="btn_del" value="删除" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+</html>

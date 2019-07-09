@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>对象的API综合运用</title>
+		
+		<style type="text/css">
+			*{
+				font-family: "微软雅黑";
+			}
+			
+			body{
+				width: 220px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			fieldset{
+				padding: 0px;
+				width:218px ;
+				margin: 0px;
+			}
+			
+			table{
+				margin: 0 auto;
+			}
+			
+			h4{
+				background: #eee;
+			}
+			
+			textarea{
+				width: 218px;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+
+		</script>
+		
+	</head>
+	<body>
+		 <h4>手机通讯录管理器</h4>
+		<fieldset id="">
+			<legend>简易手机通讯录</legend>
+			<form action="" method="post">
+				<table border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>姓名：</td>
+						<td>
+							<input type="text" name="" id="text_name" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							电话：
+						</td>
+						<td>
+							<input type="text" name="" id="text_num" value="" />
+						</td>
+					</tr>					
+					<tr>
+						<td colspan="2">
+							<input type="button" name="" id="" value="添加" onclick="addObject();" />
+							<input type="button" name="" id="" value="查询" onclick="queryInfo();" />						
+							<input type="button" name="" id="" value="删除" />						
+							<input type="button" name="" id="" value="重置" />						
+						
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<textarea name="" rows="5" cols="" id="display"></textarea>
+						</td>
+					</tr>
+					
+				</table>				
+			</form>
+		</fieldset>
+		<h4>前端工作室设计<br />版权所有&copy;2017-2020</h4>
+	</body>
+</html>

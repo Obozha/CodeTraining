@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h4>日期对象的应用</h4>
+		<script type="text/javascript">
+			var now=new Date();
+			var y=now.getFullYear(); // 从Data对象以四位数返回年份
+			var m=now.getMonth()+1; // 从Data对象返回月份 0~11
+			var d=now.getDate(); // 从Data对象一个月的某一天 （1~31）
+			var h=now.getHours(); // 返回小时数（0~23） 
+			var mi=now.getMinutes(); // 返回分钟（0~59）
+			var s=now.getSeconds(); // 返回秒（0~59）
+			
+			m=(m<10)?("0"+m):m;
+			d=(d<10)?("0"+d):d;
+			h=(h<10)?("0"+h):h;
+			mi=(mi<10)?("0"+mi):mi;
+			s=(s<10)?("0"+s):s;
+			var str=y+"年"+m+"月"+d+"日"+h+":"+mi+":"+s;
+			document.write(str);
+			
+		</script>
+	</body>
+</html>

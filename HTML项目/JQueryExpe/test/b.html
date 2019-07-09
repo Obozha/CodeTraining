@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<title></title>
+		<style type="text/css">
+			#banner-small-modal{
+				width: 240px;
+			}
+			.product-ad-small{
+				width: 240px;
+			}
+			/*=============左箭头=============*/
+			#banner-small-modal .carousel-control{
+				width: 30px;
+				height: 60px;
+				margin: auto;
+			}
+			
+			#banner-small-left-arrow{
+				background: #000000;
+				opacity: .2;
+			}
+			
+			#banner-small-left-arrow:hover{
+				opacity: .8;
+			}
+			
+			#banner-small-left-arrow span {
+				left: 0px;
+				top: 15px;
+				margin: auto;
+			}
+			
+			/*=============右箭头=============*/
+			#banner-small-right-arrow{
+				background: #000000;
+				opacity: .2;
+			}
+			
+			#banner-small-right-arrow:hover{
+				opacity: .8;
+			}
+			
+			#banner-small-right-arrow span {
+				right: 0px;
+				top: 15px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="banner-small-modal" class="carousel slide">
+			
+			<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<a href="#"><img class="product-ad-small" src="img/a.jpg" alt="First slide"></a>
+				</div>
+				<div class="item">
+					<a href="#"><img class="product-ad-small" src="img/b.jpg" alt="Second slide"></a>
+				</div>
+				<div class="item">
+					<a href="#"><img class="product-ad-small" src="img/c.jpg" alt="Third slide"></a>
+				</div>
+			</div>
+			<!-- 轮播（Carousel）导航 -->
+			<a id="banner-small-left-arrow" class="left carousel-control" href="#banner-small-modal" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a id="banner-small-right-arrow" class="right carousel-control" href="#banner-small-modal" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		
+		
+		<div id="test">
+			
+		</div>
+	</body>
+</html>

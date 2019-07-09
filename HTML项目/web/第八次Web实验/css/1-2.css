@@ -1,0 +1,63 @@
+#logo{
+	width: 920px;
+	height: 100px;
+	margin-bottom: 10px;
+	background: antiquewhite;
+}
+
+#nav{
+	width: 920px;
+	height: 40px;
+	background: antiquewhite;
+	margin-bottom: 10px;
+}
+
+#content{
+	width: 920px;
+	height: 500px;
+	
+	margin-bottom: 10px;
+}
+
+#content-left{
+	float: left;
+	width: 226px;
+	height: 500px;
+	background: antiquewhite;
+}
+
+#content-center-left{
+	float: left;
+	width: 226px;
+	height: 500px;
+	margin-left: 5px;
+	background: antiquewhite;
+}
+
+#content-center-right{
+	float: left;
+	width: 226px;
+	height: 500px;
+	margin-left:5px;
+	background: antiquewhite;
+}
+
+#content-right{
+	margin-left: 5px;
+	float: left;
+	width: 226px;
+	height: 500px;
+	background: antiquewhite;
+}
+
+#footer{
+	width: 920px;
+	height: 40px;
+	background: antiquewhite;
+}
+
+p{
+	padding: 0px;
+	margin: 0px;
+	font-size: 25px;
+}

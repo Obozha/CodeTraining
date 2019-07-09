@@ -1,0 +1,41 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#outer{
+	width: 1040px;
+	margin: 0 auto;
+	border: #BBDCFF solid;
+	border-width: 20px 50px;
+}
+
+#inner{
+	background: url(../img/bgimags.jpg);
+	margin: 0 auto;
+	width: 1000px;
+	margin: 20px;
+}
+
+table{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+h1{
+	text-align: center;
+	color: #0843FF;
+}
+
+#summary{
+	color:#386AFF;
+	font-weight: 1000;
+}
+
+.hint{
+	color:#431BD2;
+}
+
+table{
+	
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="scripts/jquery-1.3.1.js"></script>
+</head>
+
+<body>
+<p id="p1">单击我，我变颜色给你看</p>
+<script type="text/javascript">
+var i=0;
+
+  $("#p1").click(function(){
+	  var colors=new Array("black","red","blue","green");
+	  i++;
+	  if (i==colors.length) i=0;
+	  $('#p1').css('color',colors[i]);
+	  
+	  
+	  });
+
+</script>
+</body>
+</html>

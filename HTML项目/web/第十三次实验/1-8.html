@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>校园办公系统认证页面</title>
+		<style type="text/css">
+			div{
+				text-align: center;
+				width: 700px;
+				margin: 0 auto;
+				background: url(img/bg_id.jpg);
+			}
+			h1{
+				color:white;
+				background: #0033FF;
+			}
+			table{
+				/*border: 3px solid #4244FF;*/
+			}
+			
+			input[type="button"]{
+				width: 100px;
+				height: 40px;
+			}
+			span{
+				color: red;
+				font-weight: bold;
+			}
+		</style>
+		<script src="js/1-8.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>
+			<h1>校园办公认证页面</h1>
+		<form action="1-9.html" onsubmit="return cs();" onreset="form_reset();" method="post">
+			<table border="0" cellspacing="" cellpadding="">
+			<tr>
+				<td rowspan="5">
+					<img src="img/sfyz_2.jpg"/>
+				</td>
+				<td>校园卡号：</td>
+				<td><input onblur="checkNum()"  type="text" name="" id="user" value="" /></td>
+				<td><span id="hint_n"></span></td>
+			</tr>
+			<tr>
+				<td>口&nbsp;&nbsp;令:</td>
+				<td><input onblur="checkPwd()" type="password" name="" id="pwd" value="" /></td>
+				<td><span id="hint_p"></span></td>
+			</tr>
+			<tr>
+				<td>二次口令:</td>
+				<td><input onblur="checkPwd2()"  type="password" name="" id="pwd_" value="" /></td>
+				<td><span id="hint_p2"></span></td>
+			</tr>
+			<tr>
+				<td>QQ/微信:</td>
+				<td><input onblur="checkqw()" type="text" name="" id="fillqw" value="" /></span></td>
+				<td><span id="hint_qw"></span></td>
+			</tr>
+			<tr>
+				<td><input  type="submit" name="" id="" value="提交" /></td>
+				<td><input  type="reset" name="" id="" value="重置" /></td>
+			</tr>
+		</table>
+		</form>
+		</div>
+	</body>
+</html>

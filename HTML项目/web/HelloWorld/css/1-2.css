@@ -1,0 +1,33 @@
+body{
+	margin: 0 auto;
+	width: 1000px;
+	height: 800px;
+}
+
+#header{
+	width: 1000px;
+	height: 100px;
+	background: #6CF;
+	margin-bottom: 10px;
+}
+
+#container{
+	width: 1000px;
+	height: 700px;
+	
+}
+
+#left{
+	width: 200px;
+	height: 700px;
+	background: #9FF;
+	float: left;
+}
+
+#right{
+	width: 790px;
+	height: 700px;
+	background: #CFF;
+	float: right;
+}
+

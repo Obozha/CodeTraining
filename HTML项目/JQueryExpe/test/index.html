@@ -1,0 +1,147 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			#banner-modal {
+				width:796px;
+				height: 160px;
+			}
+			
+			#banner-modal .item{
+				width:796px;
+				height: 160px;
+			}
+			
+			#banner-modal .product-ad {
+				border-left: 1px gainsboro solid;
+			}
+			
+			#banner-modal .cover {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 199px;
+				height: 160px;
+				opacity: 0.15;
+			}
+			#banner-modal .cover:hover {
+				background: gray;
+			}
+
+			#banner-modal .carousel-inner a{
+				width: 199px;
+				height: 160px;
+				float: left;
+				position: relative;
+				display: block;
+			}
+			
+			/*=============左箭头=============*/
+			#banner-modal .carousel-control{
+				width: 30px;
+				height: 60px;
+				margin: auto;
+			}
+			
+			#banner-left-arrow{
+				background: #000000;
+				opacity: .2;
+			}
+			
+			#banner-left-arrow:hover{
+				opacity: .8;
+			}
+			
+			#banner-left-arrow span {
+				left: 0px;
+				top: 15px;
+				margin: auto;
+			}
+			
+			/*=============右箭头=============*/
+			#banner-right-arrow{
+				background: #000000;
+				opacity: .2;
+			}
+			
+			#banner-right-arrow:hover{
+				opacity: .8;
+			}
+			
+			#banner-right-arrow span {
+				right: 0px;
+				top: 15px;
+				margin: auto;
+			}
+
+			/*=======================*/
+			.cover,#banner-modal .carousel-control{
+				-webkit-transition-duration: .25s;
+				-moz-transition-duration: .25s;
+				-o-transition-duration: .25s;
+				transition-duration: .25s;
+			}
+
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$("#banner-left-arrow").css("display","none");
+				$("#banner-right-arrow").css("display","none");
+				$("#banner-modal").hover(function(){
+					$("#banner-left-arrow").css("display","block");
+					$("#banner-right-arrow").css("display","block");
+				},function(){
+					$("#banner-left-arrow").css("display","none");
+					$("#banner-right-arrow").css("display","none");
+				});
+					
+			});
+		</script>
+	</head>
+	<body>
+		<div id="banner-modal" class="carousel slide">
+			<!-- 轮播（Carousel）指标 -->
+			<!-- <ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active">1</li>
+				<li data-target="#myCarousel" data-slide-to="1">2</li>
+			</ol> --> 
+			<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<a href="#"><img class="product-ad"  src="img/08.jpg" alt="First slide">
+						<span class="cover"></span>
+					</a>
+					<a href="#"><img class="product-ad"  src="img/02.jpg" alt="First slide">
+						<span class="cover"></span> </a>
+					<a href="#"><img class="product-ad"  src="img/03.jpg" alt="First slide">
+						<span class="cover"></span> </a>
+					<a href="#"><img  class="product-ad" src="img/04.jpg" alt="First slide">
+						<span class="cover"></span> </a>
+				</div>
+				<div class="item">
+					<a href="#"><img  class="product-ad" src="img/05.jpg" alt="Second slide">
+						<span class="cover"></span>
+					</a>
+					<a href="#"><img class="product-ad"  src="img/06.jpg" alt="Second slide">
+						<span class="cover"></span> </a>
+					<a href="#"><img  src="img/07.jpg" alt="Second slide">
+						<span class="cover"></span> </a>
+					<a href="#"><img  class="product-ad" src="img/04.jpg" alt="Second slide">
+						<span class="cover"></span> </a>
+				</div>
+			</div>
+			<a id="banner-left-arrow"   class="left carousel-control" href="#banner-modal" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a  id="banner-right-arrow" class="right carousel-control" href="#banner-modal" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</body>
+</html>

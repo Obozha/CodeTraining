@@ -1,0 +1,65 @@
+*{
+	font-family: "微软雅黑";
+}
+
+table{
+	width: 1010px;
+	margin: 0 auto;
+}
+
+#logoset{
+	background:#D3D6DD;
+}
+
+#logoset a{
+	float: right;
+}
+
+#nav{
+	background: url(../img/bg_blue.jpg) repeat-x;
+	padding: 0px;
+}
+
+#nav ul{
+	margin: 0;
+	padding: 0px;
+	list-style: none;
+	width: ;
+}
+
+#nav ul li{
+	float: left;
+	width: 168px;
+	text-align: center;
+	color:white;
+	line-height: 40px;
+}
+
+#t{
+	background: #ECF0F1;
+	margin: 0px;
+	padding: 0px;
+}
+
+.information{
+	background: #ECF0F1;
+	list-style: none;
+	margin: 0px;
+	padding:10px;
+}
+
+.information li{
+	width: 200px;
+}
+
+hr{
+	margin: 0px;
+}
+
+#footer{
+	text-align: center;
+}
+
+#footer p{
+	margin: 0;
+}

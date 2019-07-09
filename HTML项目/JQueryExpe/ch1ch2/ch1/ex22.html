@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<style type="text/css">
+body{margin:0;padding:0 0 12px 0;font-size:12px;line-height:22px;font-family:"\5b8b\4f53","Arial Narrow";background:#fff;}
+ul,li{margin:0;padding:0;list-style-type:none;}
+a {color:#00007F;text-decoration:none;}
+a:hover {color:#bd0a01;text-decoration:underline;}
+
+.box {
+    width: 150px;
+	margin: 0 auto;
+}
+.menu{
+	overflow:hidden;
+	border-color: #C4D5DF;
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
+}
+
+/* lv1 */
+.level1 a{
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    background:#EBF3F8;
+	font-weight:700;
+    color: #5893B7;
+	text-indent: 14px;
+	border-top: 1px solid #C4D5DF;
+}
+.level1 a:hover{text-decoration:none;}
+.level1 a.current{background:#B1D7EF;}
+/* lv2 */
+li ul{overflow:hidden;}
+/*.level2{display:none;}*/
+.level2 li a{
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    background:#ffffff;
+	font-weight:400;
+    color: #42556B;
+	text-indent: 18px;
+	border-top: 0px solid #ffffff;
+    overflow: hidden;
+}
+.level2 li a:hover{
+	color:#f60;
+}
+</style>
+
+</head>
+
+<body>
+<div class="box">
+	<ul class="menu">
+      <li class="level1">
+		<a href="#">衬衫</a>
+        <ul class="level2">
+		  <li><a>短袖衬衫</a></li>
+		  <li><a>长袖衬衫</a></li>
+          <li><a>短袖T恤</a></li>
+          <li><a>长袖T恤</a></li>
+        </ul>
+       </li>
+	  <li class="level1">
+		<a href="#">卫衣</a>
+        <ul class="level2">
+		  <li><a>开襟卫衣</a></li>
+		  <li><a>套头卫衣</a></li>
+          <li><a>运动卫衣</a></li>
+          <li><a>童装卫衣</a></li>
+        </ul>
+       </li>
+       <li class="level1">
+		<a href="#">裤子</a>
+        <ul class="level2">
+		  <li><a>短裤</a></li>
+		  <li><a>休闲裤</a></li>
+          <li><a>牛仔裤</a></li>
+          <li><a>免烫卡其裤</a></li>
+        </ul>
+       </li>
+      </ul>
+</div>
+</body>
+</html>

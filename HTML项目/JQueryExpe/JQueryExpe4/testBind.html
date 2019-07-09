@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var flag = 1;
+				$("#button1").click(
+					function() {
+						flag %= 4;
+						$(".head").unbind();
+						$("#panel").unbind();
+						if (flag == 1) {
+							$("#state").text("bind");
+							$(".head").bind({
+								click: function() {
+									contentSlide();
+								}
+							});
+						} else if (flag == 2) {
+							$("#state").text("one");
+							$(".head").one({
+								click: function() {
+									contentSlide();
+								}
+							});
+						} else if(flag==3){
+							$("#state").text("delegate");
+							$("#panel").delegate(".head", "click", function() {
+								contentSlide();
+							});
+						}else{
+							$("#state").text("on");
+							$(".head").on("mouseover mouseout",function(){
+								$(".content").slideToggle();
+							});
+						}
+						flag++;
+					}
+				);
+				
+				$("#button2").click(function() {
+					$("<p>This is a new paragraph.</p>").insertAfter("#button3");
+				});
+				
+				$("p").live("click",function(){
+					$(this).slideToggle();
+				});
+				
+				$("#button3").click(function(){
+					$("p").die();
+					$(".conta").off();
+					if($("#button3").text()=="点我切换on方法"){
+						$("#button3").text("点我切换live方法");
+						$(".conta").on("click","p",function(){
+							$(this).slideToggle();
+						});
+					}else{
+						$("#button3").text("点我切换on方法");
+						$("p").live("click",function(){
+							$(this).slideToggle();
+						});
+					}
+				})
+				
+				function contentSlide() {
+					if ($(".content").is(":visible")) {
+						$(".content").slideUp();
+					} else {
+						$(".content").slideDown();
+					};
+				}
+			});
+		</script>
+		<style type="text/css">
+			
+			#panel {
+				width: 250px;
+				border: 1px solid #000;
+			}
+			h5 {
+				border-bottom: 1px solid #000;
+				margin: 0px;
+				background: darkgrey;
+				color: white;
+			}
+			.content {
+				display: none;
+			}
+			#state {
+				color: red;
+			}
+			.test1 {
+				width: 380px;
+				height: 320px;
+				border: 1px dashed;
+				padding: 10px;
+				margin: 0 auto;
+			}
+			
+			button{
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: 0;
+				background-color: cornflowerblue;
+				border: 0;
+				color: #fff;
+				border-radius: 3px;
+				cursor: pointer;
+				-webkit-transition-duration: .25s;
+				transition-duration: .25s;
+				padding: 5px;
+				font-size: 15px;
+			}
+			button:hover{
+				background: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="test1">
+			<button type="button" id="button1">点我切换绑定事件</button>
+			<span>当前绑定事件：</span>
+			<span id="state">空</span>
+			<br>
+			<span style="margin-top: 5px; display: block;">测试bind、one、delegate、on事件</span>
+			<hr size="1">
+			<div id="panel">
+				<h5 class="head">什么是jQuery[切换事件后移动|点击我]</h5>
+				<div class="content">jQuery是继Prototype之后又一个优秀的JavaScript库，它是由John
+					Resig创建与2006年1月的开源项目。JQuery凭借简洁的语法和跨平台的兼容性，极大的简化了JavaScript开发人员遍历HTML文档、操作DOM、处理事件、执行动画和开发Ajax。它独特而又优雅的代码风格改变了JavaScript程序员的设计思路和编写方式。</div>
+			</div>
+		</div>
+		<br>
+		<div class="test1">
+			<div class="conta">
+				<p>这里测试live/on方法</p>
+				<p>点击任意 live/on 元素会令其消失。包括本段落。</p>
+				<p>live/on会使未来元素也添加事件</p>
+				<button type="button" id="button2">在本按钮后面插入新的 p 元素</button>
+				<button type="button" id="button3">点我切换on方法</button>
+			</div>
+		</div>
+	</body>
+</html>

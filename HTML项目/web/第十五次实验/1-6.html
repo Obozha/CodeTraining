@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>随机产生数字</title>
+		
+		<script type="text/javascript">
+			var worker; // 定义全局变量
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+			function startMyWorker(){ // 启动我的Work
+				if(typeof(Worker)!=="undefined"){
+					
+					if(typeof(worker)=="undefined"){
+						worker=new Worker("js/1-6.js"); // 不存在则创建
+					}
+					worker.onmessage=function(event){ // 捕获传递的信息
+						$("result").innerHTML=event.data; // 
+					}
+				}else{
+					$("result").innerHTML="sorry...";
+				}
+				
+			}
+			
+			function stopMyWorker(){
+				worker.terminate();
+			}
+		</script>
+		
+	</head>
+	<body>
+		<h3>随机产生10个100以内的2位整数：</h3>
+		<p>
+			<output id="result"></output>
+		</p>
+		<input type="button" name="" id="" value="开始 Worker-每秒产生10个整数" onclick="startMyWorker()" />
+		<br />
+		<input type="button" name="" id="" value="停止Worker" onclick="stopMyWorker()"/>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+#comment{
+	margin: 0 auto;
+	width: 1093px;
+}
+
+#header{
+	margin-bottom: 10px;	
+	background: #F2F9FD;
+}
+
+#lefth{
+	color:#1654CE;
+	font-size: 40px;
+	font-weight:900;
+}
+
+#righth{
+	float: right;
+	color:#1654CE;
+	font-size: 20px;
+	line-height: 52px;
+	margin-right: 200px;
+}
+
+
+#content{
+	background: #F2F9FD;
+	height: 384px;
+}
+
+table{
+}
+
+.hint{
+	text-align: center;
+	color:#59976D;
+	
+}
+

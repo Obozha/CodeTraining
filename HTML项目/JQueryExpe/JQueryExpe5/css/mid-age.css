@@ -1,0 +1,66 @@
+html,*{
+	padding: 0px;
+	margin: 0px;
+}
+
+body{
+	text-align: center;
+	font-family: 微软雅黑;
+}
+
+#container{
+	width: 200px;
+	padding: 1px;
+	/* ??? */
+	background:#ECECF6;
+	margin: 0 auto;
+}
+
+/* #inner{
+	width: 100px;
+	height: 100px;
+	margin: 40px auto;
+	background: #000000;
+} */
+
+a{
+	width: 100px;
+	height: 30px;
+	margin: 20px auto;
+	padding: 20px;
+	display: block;
+	background: #007BFF;
+	color: #fff;
+	text-decoration: none;
+	line-height: 30px;
+	-webkit-transition-duration: .25s;
+	-moz-transition-duration: .25s;
+	-o-transition-duration: .25s;
+	transition-duration: .25s;
+}
+
+a:hover{
+	background: #005CBF;
+	color: #fff;
+}
+
+button{
+	border: 0px;
+	padding: 3px;
+	margin:20px auto;
+	outline: none;
+	display: block;
+	background:  #007BFF;
+	color: #fff;
+	cursor: pointer;
+}
+
+button:hover{
+	background: #005CBF;
+	color: #fff;
+}
+
+p{
+	background: #000;
+	color: #fff;
+}

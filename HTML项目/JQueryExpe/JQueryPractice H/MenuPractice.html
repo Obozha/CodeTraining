@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		</script>
+		<style type="text/css">
+			body{
+			}
+			
+			li{
+				list-style-type: none;
+				/*
+				 * 所有的list取消前缀
+				 */
+			}
+			
+			a{
+				text-decoration: none;
+				color: black;
+				font-family: "微软雅黑";
+				/*
+				 * 超链接a设置颜色，字体，文本装饰
+				 */
+			}
+			
+			span{
+				
+			}
+			
+			.level1{   
+				/*
+				 * 顶级菜单居中和宽度
+				 */
+				width: 120px;
+				margin: 0 auto;
+			}
+			
+			.level2{
+				/*
+				 * 子菜单格式化
+				 */
+				padding: 0px;
+			}
+			
+			.level2{
+				display: none;
+			}
+			
+			.level2 li{
+				height: 30px;
+				background: aliceblue;
+				border: 1px solid grey;
+				line-height: 30px;
+				/*
+				 * 行高和高一样的时候文字居中
+				 */
+			}
+			
+			a{
+				height: 30px;
+				line-height: 30px;
+				background: cornsilk;
+				display: block;
+				border: 1px solid gainsboro;
+			}
+			
+			.current{
+				height: 30px;
+				line-height: 30px;
+				background: bisque;
+				display: block;
+				border: 1px solid gainsboro;
+			}
+		</style>
+
+		<script type="application/javascript">
+// 			var list1_flag=false;
+// 			var list2_flag=false;
+// 			var list3_flag=false;
+			$(function(){
+				// next() 方法返回被选元素的下一个同胞元素。
+				// nextAll() 方法返回被选元素的所有跟随的同胞元素。
+				// siblings() 方法返回被选元素的所有同胞元素。
+				// nextUntil() 方法返回介于两个给定参数之间的所有跟随的同胞元素。
+				//jQuery prev(), prevAll() & prevUntil() 方法
+				// prev(), prevAll() 以及 prevUntil() 方法的工作方式
+				// 与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历）。
+// 				$("#list1_t").click(function(){
+// 					if(list1_flag==false){
+// 						$(this).next().children().children().show();
+// 						$(this).children().toggleClass("current");
+// 					}else{
+// 						$(this).next().children().children().hide();
+// 						$(this).children().removeClass("current");
+// 					}
+// 					list1_flag=!list1_flag;
+// 				});
+// 				
+// 				$("#list2_t").click(function(){
+// 					if(list2_flag==false){
+// 						$(this).next().children().children().show();
+// 						$(this).children().toggleClass("current");
+// 					}else{
+// 						$(this).next().children().children().hide();
+// 						$(this).children().removeClass("current");
+// 					}
+// 					list2_flag=!list2_flag;
+// 				});
+// 				
+// 				$("#list3_t").click(function(){
+// 					if(list3_flag==false){
+// 						$(this).next().children().children().show();
+// 						$(this).children().toggleClass("current");
+// 					}else{
+// 						$(this).next().children().children().hide();
+// 						$(this).children().removeClass("current");
+// 					}
+// 					list3_flag=!list3_flag;
+// 				});
+				
+			});
+			$(function(){
+				$(".level1 > a").click(function(){
+					$(this).addClass("current").next()
+											   .show()
+											   .parent()
+											   .siblings()
+											   .children("a")
+											   .removeClass("current")
+											   .next()
+											   .hide();
+					return false;
+				});
+			});
+			
+		</script>
+	</head>
+	<body>
+		
+		
+		
+		<ul>
+			<li>122223</li>
+			<li>122223</li>
+			<li>122223</li>
+		</ul>
+		
+		
+		<ul class="menu">
+			<li class="level1">
+				<a href="#none"></a>
+				<ul class="level2">
+					<li><a href="none"></a></li><br />
+					<li><a href="none"></a></li><br />
+					<li><a href="none"></a></li><br />
+					<li><a href="none"></a></li><br />
+				</ul>
+			</li>
+			<li class="level1">
+				<a href="#none"></a>
+				<ul class="level2">
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+				</ul>
+			</li>
+			<li class="level1">
+				<a href="#none"></a>
+				<ul class="level2">
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+					<li><a href="none"></a></li>
+				</ul>
+			</li>
+		</ul>
+		
+	</body>
+</html>

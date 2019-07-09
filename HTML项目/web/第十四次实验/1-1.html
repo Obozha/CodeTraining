@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h3>数组对象的应用</h3>
+		<script type="text/javascript">
+			var stu1=new Array("张有为","姜丽娟","王一新","李大为");
+			var stu2=["张祥雨","姜进步","王新力","刘大山"];
+			
+			
+			document.write("数组中的元素：<br>");
+			for(var i=0;i<=stu1.length-1;i++){
+				document.write(i+"-"+stu1[i]+"&nbsp;&nbsp;");
+			}
+			
+			document.write("<br><br>");
+			
+			// join方法的使用
+			document.write(stu2.join("-")+"<br>"); // "-"分隔
+			document.write(stu2.join("+")+"<br>"); // "+"分隔
+			document.write(stu2.join()+"<br>"); // 默认
+			document.write(stu2+"<br>"); // 默认
+			
+			// pop
+			document.write("<br>原来："+stu2)
+			document.write("<br>删除数组最后的元素是"+stu2.pop());
+			document.write("<br>剩余："+stu2+"<br><br>")
+			
+			// push
+			var s=stu2.push("沈通达","高学衡");
+			document.write("<br>添加后数组2的长"+s);
+			document.write("<br>stu2："+stu2+"<br><br>");
+			
+			// shift
+			document.write("stu1原来："+stu1);
+			var ss=stu1.shift();
+			document.write("<br>删除数组第一个元素是："+ss);
+			document.write("<br>stu1现在："+stu1+"<br><br>");
+			// 在数组开始处插入新元素
+			
+			// unshift
+			var s=stu1.unshift("徐丽丽");
+			document.write("<br>数组元素分别："+stu1.join("+")+"<br>数组的长度="+s);
+			// 在IE中用stu1.length代替
+		</script>
+	</body>
+</html>

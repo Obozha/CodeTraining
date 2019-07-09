@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#outer{
+				width: 320px;
+				height: 140px;
+				border: 10px solid;
+				border-color:blue black black blue;
+			}
+			
+			#inner{
+				width: 300px;
+				height: 120px;
+				border: 10px solid;
+				border-color:black blue blue black;
+				text-align: center;
+				background: greenyellow;
+			}
+			
+			p{
+				margin-left:80px ;
+				text-align: left;
+			}
+		</style>
+		
+		<script src="" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var inputname=document.getElementById("inputname");
+				var btn_sub=document.getElementById("btn_submit");
+				var btn_clear=document.getElementById("btn_clear");
+				
+				
+				
+				inputname.onclick=function(){
+					var n=prompt("请输入姓名","李");
+					inputname.value=n;
+				}
+				
+				btn_sub.onclick=function(){
+					if(inputname!=null&&inputname!=""){
+						alert("您的姓名是:"+inputname.value);
+					}else{
+						alert("没有输入姓名！");
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="inner">
+				<p>你的姓名：
+					<br />
+					
+				<input type="text" name="" id="inputname" value="" />
+				</p>
+				
+				<input type="button" name="" id="btn_submit" value="输入姓名" />
+				<input type="button" name="" id="btn_clear" value="清空" />
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 333px;
+			}
+		</style>
+
+		<script type="text/javascript">
+			function $(id) {
+				return document.getElementById(id);
+			}
+
+			function choose(id) {
+				var array_int = new Array();
+				for(var i = 0; i < 10; i++) {
+					// 产生m-n之间的随机数
+					array_int[i] = Math.round((Math.random() * (99 - 10) + 10));
+				}
+				$(id).value = array_int.join();
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<div>
+			<h4 style="text-align: center;">简易福彩投注程序</h4>
+			<form action="" method="post">
+				<table border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>彩票号码</td>
+						<td>
+							<input type="text" name="" id="num1" value="" />
+						</td>
+						<td>
+							<input type="button" name="" id="" value="投注" onclick="choose('num1');" />
+						</td>
+						<td rowspan="3">
+							<input type="reset" name="" id="" value="清空" style="height: 80px;" />
+						</td>
+					</tr>
+					<tr>
+						<td>彩票号码</td>
+						<td>
+							<input type="text" name="" id="num2" value="" />
+						</td>
+						<td>
+							<input type="button" name="" id="" value="投注" onclick="choose('num2');" />
+						</td>
+
+					</tr>
+					<tr>
+						<td>
+							彩票号码
+						</td>
+						<td>
+							<input type="text" name="" id="num3" value="" />
+						</td>
+						<td>
+							<input type="button" name="" id="" value="投注" onclick="choose('num3');" />
+						</td>
+					</tr>
+				</table>
+			</form>
+
+		</div>
+	</body>
+
+</html>

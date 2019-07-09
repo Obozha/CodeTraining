@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>菜鸟教程（runoob.com）</title>
+		
+	</head>
+	<body>
+		<canvas id="myCanvas" width="800" height="500" style="border: 1px solid #000;"></canvas>
+		<img id="img" src="img/img_the_scream.jpg"/>
+		<script type="text/javascript">
+			// 找到canvas元素
+			var c=document.getElementById("myCanvas");
+			
+			// 创建context对象
+			var context=c.getContext("2d");
+			
+			// 下面的两行代码绘制一个红色的句型
+			context.fillStyle="#ff0000";
+			context.fillRect(10,10,150,75);
+			
+			// 线段
+			context.moveTo(170,10);
+			context.lineTo(320,85);
+			context.lineTo(320,10);
+			context.stroke();
+			
+			// 路径
+			context.beginPath();
+			context.arc(370,50,40,0,2*Math.PI);
+			context.stroke();
+			
+			// 文字 
+			context.font="30px Arial";
+			context.fillText("HelloWorld",420,50);
+			
+			// 空心字体
+			context.strokeText("HelloWorld",580,50);
+			
+			//创建渐变
+			var grd=context.createLinearGradient(0,0,200,0);
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+			
+			// 填充渐变
+			context.fillStyle=grd;
+			context.fillRect(10,95,150,75);
+			
+			// 径向/圆渐变。使用渐变填充矩形
+			var grd=context.createRadialGradient(245,132.5,10,245,132.5,100);
+			context.creater
+			//x0: Float, y0: Float, r0: Float, x1: Float, y1: Float, r1: Float):
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+			
+			context.fillStyle=grd;
+			context.fillRect(170,95,150,75);
+			
+			
+			
+			document.getElementById("img").onload=function(){
+				context.drawImage(document.getElementById("img"),10,180);
+			}
+			
+//			img.src="img/img_the_scream.jpg";
+			
+			
+			
+		</script>
+	</body>
+</html>

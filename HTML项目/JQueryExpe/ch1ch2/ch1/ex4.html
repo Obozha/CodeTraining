@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+  body{margin:0;padding:0 0 12px 0;font-size:12px;line-height:22px;font-family:"\5b8b\4f53","Arial Narrow";background:#fff;}
+  form{width:300px;margin:0 auto;background:#ddd;}
+</style>
+<script type="text/javascript" src="scripts/jquery-1.3.1.js"></script>
+<script type="text/javascript">
+  $(function(){
+	  $("#b1").click(function(){
+		  //var cr=document.getElementById("ty");
+		  var cr=$("#ty");
+		  if (!cr.is(":checked"))
+		  //if (!cr.checked)
+		    {alert("必须同意后才能提交");
+			 return false;
+			}
+		  })
+	  });
+</script>
+</head>
+
+<body>
+<form name="form1" method="post" action="">
+  <p>
+    <label for="ua">请输入用户名</label>
+    <input type="text" name="ua" id="ua">
+  </p>
+  <p>
+    <label for="ps">请输入密码</label>
+    <input type="password" name="ps" id="ps">
+  </p>
+  运动<input type="checkbox" name="ah" value="运动" id="yd"><br>
+  音乐<input type="checkbox" name="ah" value="音乐" id="yy"><br>
+  看书<input type="checkbox" name="ah" value="看书" id="ks"><br>
+  舞蹈<input type="checkbox" name="ah" value="舞蹈" id="wd"><br>
+  <br><br><br> 
+  同意协议<input type="checkbox" name="ty" id="ty">
+  <input type="submit" name="button" id="b1" value="提交">
+</form>
+</body>
+</html>

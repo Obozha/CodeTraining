@@ -1,0 +1,14 @@
+
+
+#outer{
+	width: 684px;
+	padding: 2px;
+	border: solid;
+	border-color: #FFCBFF;
+	border-width: 10px;
+	margin: 0 auto;
+}
+
+table{
+	width: 680px;
+}

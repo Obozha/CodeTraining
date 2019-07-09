@@ -1,0 +1,171 @@
+*{
+	font-size: 12px;
+	font-family: "times new roman";
+}
+
+#container{
+	margin: 0 auto;
+	padding: 0 auto;
+	width: 990px;
+}
+
+#header{
+	width: 990px;
+	height: 65px;
+	margin: 0 auto;
+	/*background: indianred;*/
+}
+
+#logo{
+	width: 263px;
+	height: 65px;
+	float: left;
+}
+
+#select{
+	width: 727px;
+	height: 65px;
+	float: left;
+	text-align: right;
+}
+
+#select #sel{
+	margin-top: 15px;
+}
+
+#picture{
+	width: 990px;
+	height: 345px;
+	clear: both;
+	/*background: greenyellow;*/
+}
+
+#nav{
+	width: 990px;
+	height: 40px;
+	background: #0099cc;
+	border: 0;
+}
+
+a:link,a:visited,a:active{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#nav a:hover{
+	color: #333333;
+	text-decoration: none;
+	background: #f6f6f6;
+}
+
+#nav a{width: 194px;
+	height: 40px;
+}
+
+td{
+	line-height: 40px;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#main{
+	width: 990px;
+	height: 250px;
+	/*background: yellowgreen;*/
+}
+
+#left{
+	width: 660px;
+	height: 250px;
+	float: left;
+	line-height: 1.5em;
+	/*background: yellow;*/
+}
+
+h1{
+	color: #0099ff;
+	font-size: 18px;
+	height: 36px;
+	border-bottom:2px solid #0099FF;
+	
+}
+
+#left img{
+	float: left;
+	width: 220px;
+	height: 144px;
+	
+}
+
+#left-up{
+	/*background: #0099CC;*/
+}
+
+#left-down{
+	margin: 0 auto;
+	padding: 0px;
+	clear: both;
+	width: 100%;
+	height: 70px;
+	/*background: red;*/
+}
+
+
+#left-down img{
+	margin: 0px;
+	vertical-align: text-bottom;
+/*	vertical-align: bottom;*/
+	width: 60px;
+	height: 50px;
+}
+
+p{
+	padding: 0px;
+}
+
+#p1{
+	padding-top: 20px;
+	height: 30px;
+}
+
+#right{
+	width: 290px;
+	height: 250px;
+	float: right;
+	/*background: red;*/
+	text-align: left;
+	border: 1px solid #00ff00;
+}
+
+ul{
+	width: 200px;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+li{
+	padding: 0px;
+	margin: 0px;
+	line-height: 2.0em;
+	
+}
+
+#footer{
+	display: table;
+	clear: both;
+	width: 990px;
+	height: 60px;
+	background: #f7f7f7;
+	text-align: center;
+	border-top:2px solid #0099ff ;
+	
+}
+#fp{
+	padding: 0 auto;
+	display: table-cell;
+	vertical-align: middle;
+	/*margin:22px ;*/
+}

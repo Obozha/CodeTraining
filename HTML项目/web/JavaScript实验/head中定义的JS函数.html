@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>head中定义的JS函数</title>
+		<script type="text/javascript">
+			function message(){
+				alert("调用函数！sum(100,200)="+sum(100,200));
+			}
+			function sum(x,y){
+				return x+y; // 返回函数计算结果
+			}
+		</script>
+	</head>
+	<body>
+		<h4>head标记内定义两个JS函数</h4>
+		<p>无返回值函数：message()</p>
+		<p>有返回值函数：sum(x,y)</p>
+		<form action="" method="post">
+			<input type="button" name="btnCallJS" onclick="message();" value="计算并显示两个数的和"/>
+		</form>
+	</body>
+</html>

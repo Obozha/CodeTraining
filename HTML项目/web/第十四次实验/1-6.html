@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				text-align: center;
+			}
+			input[type=button] {
+				width: 100px;
+				height: 40px;
+				text-align: center;
+			}
+			input[type=reset] {
+				width: 100px;
+				height: 40px;
+				text-align: center;
+			}
+			
+			div{
+				width: 500px;
+				height: 360px;
+				border: 1px solid #000;
+				margin: 0 auto;
+			}
+			
+			table{
+				margin: 0 auto;
+			}
+		</style>
+
+		<script type="text/javascript">
+			function $(id) {
+				return document.getElementById(id);
+			}
+
+			function choosei(k) {
+				console.log("touch" + k);
+				for(var i = 0; i < k; i++) {
+					var array_int = new Array();
+					for(var j = 0; j < 10; j++) {
+						// 产生m-n之间的随机数
+						array_int[j] = Math.round((Math.random() * (99 - 10) + 10));
+					}
+					console.log(array_int);
+					var new_opt = document.createElement("option");
+					var new_opt_text = document.createTextNode(array_int.join(" "));
+					new_opt.appendChild(new_opt_text);
+					$("selec").appendChild(new_opt);
+				}
+			}
+			
+			function removeAll(){
+				$("selec").options.length=0;
+			}
+			
+			function removeOne(){ 
+			    var obj=$("selec"); 
+			    //index,要删除选项的序号，这里取当前选中选项的序号 
+			    var index=obj.selectedIndex; 
+			    obj.options.remove(index); 
+			} 
+		</script>
+
+	</head>
+
+	<body>
+		<div>
+				<img src="img/ico_7l.gif" style="float: left;" />
+				<img src="img/fc_logo.jpg" style="float: right;" />
+				
+			<h3 style="clear: both; margin-top:120px;">福彩投注站投注彩票助手</h3>
+			<form action="" method="post">
+
+				<table border="0" cellspacing="" cellpadding="">
+					<tr>
+						<td>
+							<input type="button" name="" id="" value="机选1号" onclick="choosei(1);" />
+						</td>
+						<td rowspan="3">
+							<select id="selec" name="" size="2" style="width: 250px; height: 160px;">
+							</select>
+						</td>
+						<td>
+							<input type="button" name="" id="" value="删&nbsp;&nbsp;除" onclick="removeOne();" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" name="" id="" value="机选5号" onclick="choosei(5);" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" name="" id="" value="机选10号" onclick="choosei(10);" />
+						</td>
+						<td>
+							<input type="button" name="ss" id="ss" value="全部删除" onclick="removeAll();" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+
+</html>

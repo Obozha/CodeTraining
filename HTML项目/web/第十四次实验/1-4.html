@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>随机产生[m,n]区间内10个整数</title>
+		<script type="text/javascript">
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+			function createInt(){
+				var m=parseFloat($("minN").value);
+				var n=parseFloat($("maxN").value);
+				var array_int=new Array();
+				
+				if(m>=n){
+					alert("数组下限值不能大于或等于上限值！请重新输入");
+					$("minN").focus();
+				}else{
+					for(var i=0;i<10;i++){
+						// 产生m-n之间的随机数
+						array_int[i]=Math.round((Math.random()*(n-m)+m));
+					}
+					$("array_num").value=array_int.join();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h3>随机产生[m,n]区间内10个整数</h3>
+		<form action="" method="post">
+			下限：
+			<input type="text" name="minN" id="minN" size="20" value="10" />
+			上限:
+			<input type="text" name="maxN" id="maxN" value="20" size="20" />
+			<br /><br />
+			产生数组：
+			<input type="text" name="array_num" id="array_num" readonly="" value="" />
+			<br /><br />
+			<input type="button" onclick="createInt()" name="" id="" value="产生10个随机整数" onclick="" />
+			<input type="reset" />
+		</form>
+	</body>
+</html>

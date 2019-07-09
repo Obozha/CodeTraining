@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				font-family: 微软雅黑;
+			}
+			#content{
+				width: 150px;
+				height: 90px;
+				background: lemonchiffon;
+				border: 1px solid #000;
+			}
+			span{
+				display: block;
+				padding-left: 20px;
+				margin: 10px;
+				background: skyblue;
+				color: white;
+				border: 1px solid #000;
+			}
+			
+			button{
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: 0;
+				background-color: cornflowerblue;
+				border: 0;
+				color: #fff;
+				padding: 10px;
+				border-radius: 3px;
+				cursor: pointer;
+				font-size: 16px;
+				-webkit-transition-duration: .25s;
+				transition-duration: .25s;
+			}
+			
+			button:hover{
+				background: #000;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				var flag=0;
+				
+				$("button").click(function(){
+					if(flag==0){
+						flag=1;
+						$("button").text("点击放行冒泡");
+					}else{
+						flag=0;
+						$("button").text("点击阻止冒泡");
+					}
+				});
+				
+				$('span').bind("click",function(){
+					// 冒泡排序
+					var txt=$('#msg').html()+"<p>内层元素</p>";
+					$('#msg').html(txt);
+					if(flag==1){
+						event.stopPropagation();
+					}
+				});
+				
+				$('#content').bind("click",function(){
+					var txt=$('#msg').html()+"<p>外层DIV元素</p>";
+					$('#msg').html(txt);
+					if(flag==1){
+						event.stopPropagation();
+					}
+					// 阻止冒泡排序
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<button type="button">点击阻止冒泡</button>
+		<br>
+		<br>
+		<div id="content">
+			外层div元素
+			<span>内层span元素</span>
+			外层div元素
+		</div>
+		<div id="msg"></div>
+		
+	</body>
+</html>

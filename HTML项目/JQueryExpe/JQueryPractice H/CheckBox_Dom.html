@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CheckBox_Dom</title>
+		<script type="text/javascript">
+			// === === === === === === DOM对象 === === === === === ==
+			function $(id) {
+				return document.getElementById(id);
+			}
+
+			function $s(c) {
+				return document.getElementsByClassName(c);
+			}
+
+			function getInformation() {
+				var cb=$s("cb");
+				var str_="";
+				var count=0;
+				for(var i=0;i<4;i++){
+					if(cb[i].checked){
+						str_+=cb[i].value;
+						count++;
+					}
+				}
+				alert(count+" "+str_);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="checkbox" name="" class="cb" value="A" />A
+		<input type="checkbox" name="" class="cb" value="B" />B
+		<input type="checkbox" name="" class="cb" value="C" />C
+		<input type="checkbox" name="" class="cb" value="D" />D
+		<p><input type="button" name="" id="touch" onclick="getInformation();" value="点我" /></p>
+	</body>
+</html>

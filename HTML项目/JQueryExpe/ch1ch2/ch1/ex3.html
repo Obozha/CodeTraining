@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="scripts/jquery-1.3.1.js"></script>
+<script type="text/javascript">
+//等待dom元素加载完毕.
+$(document).ready(function(){
+	var zsl=$(".box");
+	var zsl1=document.getElementById("div1");
+	
+	//alert(zsl.html());
+	alert(zsl1.innerHTML);
+});
+</script>
+</head>
+
+<body>
+<div class="box" id="div1">
+	<ul class="menu">
+      <li class="level1">
+		<a href="#">衬衫</a>
+        <ul class="level2">
+		  <li><a>短袖衬衫</a></li>
+		  <li><a>长袖衬衫</a></li>
+          <li><a>短袖T恤</a></li>
+          <li><a>长袖T恤</a></li>
+        </ul>
+       </li>
+	  <li class="level1">
+		<a href="#">卫衣</a>
+        <ul class="level2">
+		  <li><a>开襟卫衣</a></li>
+		  <li><a>套头卫衣</a></li>
+          <li><a>运动卫衣</a></li>
+          <li><a>童装卫衣</a></li>
+        </ul>
+       </li>
+       <li class="level1">
+		<a href="#">裤子</a>
+        <ul class="level2">
+		  <li><a>短裤</a></li>
+		  <li><a>休闲裤</a></li>
+          <li><a>牛仔裤</a></li>
+          <li><a>免烫卡其裤</a></li>
+        </ul>
+       </li>
+      </ul>
+</div>
+</body>
+</html>
+

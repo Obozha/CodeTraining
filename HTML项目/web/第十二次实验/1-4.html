@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#inner {
+				position: relative;
+				width: 500px;
+				height: 300px;
+				background: #000;
+				text-align: center;
+				color: white;
+				border: 10px solid;
+				border-color: #262633 #9999CC #9999CC #262633;
+			}
+			
+			#outer {
+				border: 10px solid;
+				border-color: #9999CC #262633 #262633 #9999CC;
+				width: 520px;
+				margin: 0 auto;
+			}
+			
+			#calc,
+			#clear {
+				width: 120px;
+				height: 60px;
+				margin-top: 30px;
+			}
+			
+			table {
+				position: absolute;
+				top: 0px;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				margin: auto;
+				width: 300px;
+			}
+		</style>
+
+		<script type="text/javascript">
+			function calcNum() {
+				var input_n = document.getElementById("input_n");
+				var result = document.getElementById("result");
+				var sum = 0,
+					temp = 1;
+				for(var i = 1; i <= input_n.value; i++) {
+					temp *= i;
+					sum += temp;
+				}
+				result.value = sum;
+			}
+
+			function cleart() {
+				var input_n = document.getElementById("input_n");
+				var result = document.getElementById("result");
+
+				input_n.value = "";
+				result.value = "";
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="outer">
+			<div id="inner">
+				<p>计算∑N！</p>
+				<table cellspacing="" cellpadding="">
+					<tr>
+						<td>输入整数N的值：</td>
+						<td><input type="text" name="" id="input_n" onkeyup="this.value=this.value.replace(/\D/g,'')" value="" /></td>
+					</tr>
+					<tr>
+						<td>∑N！=</td>
+						<td><input type="text" name="" id="result" value="" readonly="1" /></td>
+					</tr>
+					<tr>
+						<td><input type="button" name="" onclick="calcNum();" id="calc" value="计算∑N" /></td>
+						<td><input type="button" name="" id="clear" onclick="cleart();" value="清空" /></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

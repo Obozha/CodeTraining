@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>为HTML添加新元素</title>
+		<script type="text/javascript">
+			document.createElement("myhero");
+			// document.createElement("") 是IE浏览器添加新的元素
+		</script>
+		<style type="text/css">
+			myhero{
+				display: block;
+				background: #ddd;
+				padding: 50px;
+				font-size: 30px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h1>我的第一个标题</h1>
+		<p>我的第一个段落</p>
+		<myhero>我的第一个新元素</myhero>
+	</body>
+</html>

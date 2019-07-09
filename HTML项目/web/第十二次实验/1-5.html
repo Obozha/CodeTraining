@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			div{
+				border: 1px dashed;
+				width: 600px;
+				border-color: #AB9797;
+				margin: 0 auto;
+			}
+			
+			.s{
+				color: red;
+			}
+			
+			.result{
+				text-indent: 1em;
+				font-size: 20px;
+				margin: 0px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div>
+			<p>1.Javascript常用函数的应用</p>
+			<p id="tex"></p>
+			
+		</div>
+		<script type="text/javascript">
+			var tex=document.getElementById("tex");
+			var x=10,y=20;
+			var z=60;
+			tex.innerHTML=
+				"<p class=\"s\">1.计算表达式的结果函数eval(\"字符串\")</p>"
+				+"<p class=\"result\">1000+3/5="+(1000+3/5)+"  x="+x+",y="+y+",x*y="+x*y+"</p>"
+				+"<p class=\"result\">2+2="+(2+2)+"  x="+x+",x+17="+(x+17)+"</p>"+
+				"<p class=\"s\">2.编码函数escape(\"字符串\")</p>"+
+				"<p class=\"result\">escape('&')="+escape('&')+"</p>"+
+				"<p class=\"result\">escape('my name is 张华')="+escape('my name is 张华')+"</p>"
+				+"<p class=\"s\">3.解码函数unescape(string)</p>"
+				+"<p class=\"result\">unescape('%26')="+unescape("%26")+"</p>"
+				+"<p class=\"result\">unescape('my%20name%20is%20%u5F20%u534E')="+unescape("my%20name%20is%20%u5F20%u534E")+"</p>"
+				+"<p class=\"s\">4.字符型转换成浮点型函数parseFloat(string)</p>"
+				+"<p class=\"result\">parseFloat('3.14')="+parseFloat("3.14")+"&nbsp"+"parseFloat('314e-2')="+parseFloat("314e-2")+"</p>"
+				+"<p class=\"result\">parseFloat('3.14ab')="+parseFloat("3.14ab")+"&nbsp"+"parseFloat('FF2')="+parseFloat("FF2")+"</p>"
+				+"<p class=\"result\">parseFloat('345.25FF2')="+parseFloat("345.25FF2")+"</p>"
+				+"<p class=\"s\">5.字符型转换成整形函数parseInt(numberstring,radix)</p>"
+				+"<p class=\"result\">32："+parseInt("32",10)+"</p>"
+				+"<p class=\"result\">032："+parseInt("032",8)+"</p>"
+				+"<p class=\"result\">0x32："+parseInt("0x32",16)+"</p>"
+				+"<p class=\"s\">6.判断是否是NaN函数isNaN()</p>"
+				+"<p class=\"result\">isNaN(\"5454g\")="+isNaN("5454g")+"</p>"
+				+"<p class=\"result\">isNaN(\"789\")="+isNaN("789")+"</p>"
+				+"<p class=\"s\">7.保留固定小数点位数的函数toFixed(n)</p>"
+				+"<p class=\"result\">356.25678.toFixed(2)="+356.25678.toFixed(2)+"   356.25678.toFixed(3)="+356.25678.toFixed(3)+"</p>"
+				+"<p class=\"s\">8.将数值转为不同进制的字符串函数toString(radix)</p>"
+				+"<p class=\"result\">64.toString()="+z.toString()+"   64.toString(2)="+z.toString(2)+"</p>"
+				+"<p class=\"s\">8.单个字符提取函数charAt(n)</p>"
+				+"<p class=\"result\">\"ABCDEFG\".charAt(1)="+"ABCDEFG".charAt(1)+"   \"ABCDEFG\".charAt(5)="+"ABCDEFG".charAt(5)+"   \"ABCDEFG\".charAt(10)="+"ABCDEFG".charAt(10)+"</p>";
+				
+		</script>
+	</body>
+</html>

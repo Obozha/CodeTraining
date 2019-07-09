@@ -1,0 +1,78 @@
+/* hoverbox.css */
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* =Basic HTML, Non-essential
+ ---------------------------------
+*/
+
+div{			/* 定义图层的样式 */
+	width: 720px;
+	height: 500px;
+	margin: 0 auto;		/* DIV在页面居中显示 */
+	padding: 30px;
+	text-align: center; /* DIV中的行内元素居中 */
+	/*position: relative;*/
+}
+
+h1{				/* 定义h1的样式 */
+	/*background: inherit;*/
+	color:#000099;
+	font:17px georgia,serif;
+	margin: 0 0 10px;  /* 上 左右 下 */
+	padding: 0 0 35px;
+	border-bottom: 1px dashed #097;
+}
+
+.hoverbox img{
+	background: #fff;
+	border-color: #aaa #ccc #ddd #bbb;
+	border-width: 1px;
+	border-style:solid ;
+	/*color: inherit;*/
+	padding: 2px;
+	vertical-align: top; /* 图片与a标签上部对齐 */
+	width: 100px;
+	height: 75px;
+}
+
+.hoverbox li{
+	background: #eee;
+	border-color: #ddd,#bbb,#aaa,#ccc;
+	border-style: solid;
+	border-width: 1px;
+	/*color: inherit;*/
+	float: left;	/* li左对齐 */
+	margin: 3px;
+	padding: 5px;
+	position: relative;  /* 位置设置相对位置 */
+}
+
+.hoverbox .preview{
+	border-color: #100;
+	width: 200px;
+	height: 150px;
+}
+
+.hoverbox{
+	list-style: none;
+}
+
+.hoverbox a{
+	cursor: default;
+}
+
+.hoverbox a .preview{
+	display: none;
+}
+
+.hoverbox a:hover .preview{
+	display: block;		/* 将行内元素转换成块状元素才能使用position属性 */
+	position: absolute; /* 这里设置父元素的相对位置 */
+	top: -33px;
+	left: -45px;
+	z-index: 1;
+}

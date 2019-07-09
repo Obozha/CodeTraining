@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>改变新闻网页中字号</title>
+		
+		<style type="text/css">
+			*{
+				text-align: center;
+			}
+			
+			div{
+				width: 800px;
+				margin: 0 auto;
+				background: gainsboro;
+				border: 1px solid;
+				border-color: yellow black yellow black; 
+				
+			}
+			
+			#inner{
+				border: 1px yellow solid;
+				text-align: left;
+				margin: 0px;
+				border-color: black yellow black yellow; 
+			}
+		</style>
+		<script type="text/javascript">
+			
+			window.onload=function(){
+				var inner=document.getElementById("inner");
+				$('small').onclick=function(){
+					return changeFontSize(15);
+				}
+				$('mid').onclick=function(){
+//					inner.style.fontSize=18+"px";
+					return changeFontSize(18);
+				}
+				$('big').onclick=function(){
+//					inner.style.fontSize=20+"px";
+					return changeFontSize(20);
+				}
+			}
+			
+			function $(id){
+				return document.getElementById(id);
+			}
+			
+			function changeFontSize(size){
+				inner.style.fontSize=size+"px";
+			}
+		</script>
+	</head>
+	<body>
+		
+		<h1>用javascript改变新闻网页中字号</h1>
+		<p>选择字号 <a id="small" href="#">小</a> <a id="mid" href="#">中</a> <a href="#" id="big">大</a></p>
+		<div>
+			<p id="inner">JavaScript是一种能让你的网页更加生动活泼的程式语言，也是目前网页中设计中最容易学又最方便的语言。你可以利用JavaScript轻易的做出亲切的欢迎讯息、漂亮的数字钟、有广告效果的跑马灯及简易的选举，还可以显示浏览器停留的时间。让这些特殊效果提高网页的可观性。</p>
+		</div>
+	</body>
+</html>

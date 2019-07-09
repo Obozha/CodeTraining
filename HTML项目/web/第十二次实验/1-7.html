@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>倒置乘法口诀表</h1>
+		<p id="result"></p>
+		<script type="text/javascript">
+			var msg="";
+			var r=document.getElementById("result");
+			for(var i=9;i>0;i--){
+				for(var j=1;j<=9;j++){
+					msg+=i+"*"+j+"="+(i*j)+"&nbsp";
+					if(i==j){
+						msg+="<br/>";
+						break;
+					}
+				}
+			}
+			r.innerHTML=msg;
+		</script>
+		<p></p>
+	</body>
+</html>

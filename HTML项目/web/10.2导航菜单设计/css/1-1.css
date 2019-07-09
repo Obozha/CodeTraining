@@ -1,0 +1,74 @@
+ul{
+	margin: 0px;
+	padding: 0px; /* 消除ul默认的padding和margin */
+	height: 30px;
+}
+
+ul li{
+	height: 30px;
+	width: 115px;
+	float:left;
+	list-style: none;
+	font: 0.9em arial;
+}
+
+ul li a{
+	line-height: 29px;
+	/* 因为li标签是30px a先转为块，
+	 * 宽度填充父布局 高度设为29为底部留一个像素 */
+	width: 113px;
+	/**
+	 * 总共宽度为115px 设置113像素留2个像素
+	 */
+	text-align: center;
+	/**
+	 * a 块中的文字居中
+	 */
+	display: block;
+	text-decoration: none;
+	border-bottom: 1px solid #ccc;
+	/* 1个像素来作下划线 */
+	border-right: 1px solid #ccc;
+	padding: 0 0 0 1px;
+	
+	color: #fff;
+	background: #808080;
+}
+
+ul li ul li{
+	height: 25px;
+	/* 本来通过继承的是30px 这里单独制定二级标题的高度25px */
+}
+
+ul li ul li a{
+	height: 24px;
+	background: #666;
+	/* 相应的也要覆盖原来a继承的高度，原来是29像素，覆盖之后是24px
+	 * 背景颜色也做相应改变
+	 *  */
+}
+
+ul li a:hover{
+	background: #666;
+	border-bottom: 1px dashed #ff0000;
+	/**
+	 * a:hover当超链接滑过的时候
+	 * 这里的背景颜色与二级标题一直，意味这我要被选中了
+	 * 而且当选中的时候出现下划线
+	 */
+}
+
+ul li ul{
+	visibility: hidden;
+	/**
+	 * 隐藏掉二级菜单
+	 */
+}
+
+ul li:hover ul{
+	visibility: visible;
+}
+
+ul li ul li a:hover{
+	background: #333;
+}

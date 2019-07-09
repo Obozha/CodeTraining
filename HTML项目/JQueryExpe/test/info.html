@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.home_notice_gg {
+				width: 202px;
+				overflow: hidden;
+			}
+
+			body,
+			ul,
+			li,
+			ol,
+			p,
+			dl,
+			dd,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			img,
+			iframe,
+			form {
+				list-style-type: none;
+			}
+
+			ul,
+			li {
+				padding: 0px;
+				margin: 0px;
+			}
+
+			.home_notice_gg .tab_aa {
+				border-top: 1px solid #e6e6e6;
+				height: 29px;
+				overflow: hidden;
+				width: 204px;
+			}
+
+			.home_notice_gg .tab_aa li {
+				margin-left: -1px;
+				float: left;
+				width: 101px;
+				border: 1px solid #e6e6e6;
+				border-top: 0;
+				height: 28px;
+				background-color: #f0f0f0;
+				cursor: default;
+				font: 14px/29px "Microsoft Yahei";
+				text-align: center;
+				color: #646464;
+				overflow: hidden;
+			}
+
+			.home_notice_gg .tab_aa li.on {
+				background-color: #fff;
+				border-bottom: 0;
+				padding-bottom: 1px;
+			}
+
+			ul::after,
+			.fbox::after,
+			.clearfix::after {
+				content: ".";
+				height: 0;
+				display: block;
+				clear: both;
+				visibility: hidden;
+			}
+
+			.home_notice_gg .tab_content_aa {
+				width: 202px;
+				height: 142px;
+				position: relative;
+				border-bottom: 1px solid #e6e6e6;
+				overflow: hidden;
+			}
+
+			.home_notice_gg .tab_content_aa ul {
+				height: 130px;
+				width: 202px;
+				overflow: hidden;
+				padding-top: 6px;
+			}
+
+			.home_notice_gg .tab_content_aa li a,
+			.home_notice_gg .tab_content_aa li a:hover {
+				display: block;
+				padding-left: 10px;
+				color: #646464;
+				font-family: "Microsoft Yahei";
+			}
+
+			.home_notice_gg .tab_content_aa li {
+				line-height: 25px;
+				padding-left: 10px;
+				width: 183px;
+				height: 25px;
+				background: url(img/test.png) no-repeat 10px -188px;
+				overflow: hidden;
+			}
+
+			.home_notice_gg .tab_content_aa li a:hover {
+				color: #ff2832;
+			}
+
+			.home_notice_gg .tab_content_aa li a {
+				color: #646464;
+				font-family: "Microsoft Yahei";
+			}
+
+			.home_notice_gg a,
+			.home_notice_gg a:hover {
+				color: #646464;
+				text-decoration: none;
+			}
+
+			.tab_1 {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$(".tabh_0").hover(
+					function() {
+						$(this).removeClass("first");
+						$(this).addClass("on");
+						$(".tabh_1").removeClass("on");
+						$(".tab_1").show();
+						$(".tab_2").hide();
+					}
+				);
+				$(".tabh_1").hover(
+					function() {
+						$(this).removeClass("first");
+						$(this).addClass("on");
+						$(".tabh_0").removeClass("on");
+						$(".tab_2").show();
+						$(".tab_1").hide();
+					}
+				);
+			})
+		</script>
+	</head>
+	<body>
+		<div id="notice">
+			<div class="home_notice_gg">
+				<div class="head  headhome_notice_gg">
+					<ul class="tab_aa">
+						<li class="tabh_0  first" type="bar"><span>信息公告</span></li>
+						<li class="tabh_1 on" type="bar"><a href="http://blog.dangdang.com/?page_id=3382" target="_blank" dd_name="服务公告"><span>服务公告</span></a></li>
+					</ul>
+
+
+				</div>
+				<div class="tab_content_aa tab_content_aahome_notice_gg ">
+					<div class="content tab_1" type="item" ddt-area="9270" dd_name="信息公告">
+						<div id="logo_content">
+							<ul id="cxgg_content">
+								<li>
+									<a href="http://shop.dangdang.com/21540" target="_blank" title="笛莎大牌日，限时4件2折" dd_name="信息公告1">
+										<span> 笛莎大牌日，限时4件2折</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://shop.dangdang.com/21611" target="_blank" title="珀莱雅约惠日 限时3件4折" dd_name="信息公告2">
+										<span> 珀莱雅约惠日 限时3件4折</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://book.dangdang.com/520aidu" target="_blank" title="百万图书每满100减50" dd_name="信息公告3">
+										<span> 百万图书每满100减50</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://shop.dangdang.com/19384" target="_blank" title="飞利浦儿童节350减40" dd_name="信息公告4">
+										<span> 飞利浦儿童节350减40</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://baby.dangdang.com/20190514_haei" target="_blank" title="礼品童书每满100减50" dd_name="信息公告5">
+										<span> 礼品童书每满100减50</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="content tab_2" type="item" style="display: block;" ddt-area="9272" dd_name="服务公告">
+						<div id="logo_content">
+							<ul id="cxgg_content">
+								<li>
+									<a href="http://blog.dangdang.com/?p=28129%20%3E%3Cspan%20style=" target="_blank" title="快钱网“光大银行”支付关闭通知"
+									 dd_name="服务公告1">
+										<span> 快钱网“光大银行”支付关闭通知</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://book.dangdang.com/20161128_zl3t" target="_blank" title="当当阅读器 海量电子书随时读" dd_name="服务公告2">
+										<span> 当当阅读器 海量电子书随时读</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://cashier.dangdang.com/exchangeApply" target="_blank" title="话费卡兑换当当礼品卡" dd_name="服务公告3">
+										<span> 话费卡兑换当当礼品卡</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://giftcard.dangdang.com/goods?type=mall" target="_blank" title="多种商品，礼品卡支付更优惠！" dd_name="服务公告4">
+										<span> 多种商品，礼品卡支付更优惠！</span>
+									</a>
+								</li>
+								<li>
+									<a href="http://blog.dangdang.com/?p=22276" target="_blank" title="关于假冒客服诈骗的声明" dd_name="服务公告5">
+										<span style="color: #ff2832"> 关于假冒客服诈骗的声明</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

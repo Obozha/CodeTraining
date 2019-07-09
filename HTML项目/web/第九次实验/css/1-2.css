@@ -1,0 +1,37 @@
+*{
+	font-family: "微软雅黑";
+}
+ul{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#nav{
+	text-align: center;
+	width: 1002px;
+	height: 40px;
+	background: #666699;
+}
+
+#nav li{
+	float: left;
+	width: 167px;
+	line-height: 40px;
+	color: white;
+}
+
+#slide{
+	width: 180px;
+	text-align: center;
+}
+
+#slide li{
+	width: 180px;
+	margin: 25px 0px;
+	font-size: 20px;
+}
+
+.red{
+	color: red;	
+}

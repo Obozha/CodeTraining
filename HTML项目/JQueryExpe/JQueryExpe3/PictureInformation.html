@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			
+		$(function(){
+			var x=10;
+			var y=20;
+			var temp;
+			$("a").mouseover(function(e){
+				// alert($(this).attr("class"));
+				temp=this.title;
+				if($(this).attr("class")=="tooltip"){
+					var tooltip="<div id='tooltip'><img src='"+this.href+"' alt='产品预览图'/><p>"+temp+"</p></div>";
+				}else if($(this).attr("class")=="tooltip2"){
+					var tooltip="<div id='tooltip'><p>"+temp+"</p></div>";
+				}else{
+					return;
+				}
+				this.title="";
+				$("body").append(tooltip);
+				$("#tooltip").css({
+					"top":(e.pageY+y)+"px",
+					"left":(e.pageX+x)+"px"
+				}).fadein();
+			}).mouseout(function(){
+				this.title=temp;
+				$("#tooltip").remove();
+			}).mousemove(function(e){
+				$("#tooltip").css({
+					"top":(e.pageY+y)+"px",
+					"left":(e.pageX+x)+"px"
+				})
+			})
+		})
+	</script>
+	<style type="text/css">
+		ul{
+			list-style: none;
+		}
+		
+		ul li{
+			float: left;
+			
+		}
+		
+		.tooltip img{
+			width: 100px;
+			margin: 10px;
+		}
+		#tooltip{
+			position: absolute;
+			
+		}
+		
+		#tooltip p{
+			background: #6495ED;
+			color: white;
+			text-align: center;
+			font-family: 微软雅黑;
+			padding: 5px;
+		}
+	</style>
+	<body>
+		<ul>
+		<li> <a  class="tooltip"  title="数学的世界" href="img/image61.jpg"> <img src="img/image61.jpg"  alt="" ></a>  </li>
+		<li> <a  class="tooltip"  title="现代教育技术"  href="img/image62.jpg"> <img src="img/image62.jpg" alt="">   </a> </li>
+		<li> <a  class="tooltip"  title="生态可持续性"  href="img/image63.jpg"> <img src="img/image63.jpg" alt="">   </a> </li>
+		<li> <a  class="tooltip"  title="中国工程院士" href="img/image64.jpg"> <img src="img/image64.jpg"  alt="" > </a></li>
+		<p><a href="#" class="tooltip2" title="这是我的超链接提示1.">提示1</a></p>
+		<p><a href="#" class="tooltip2" title="这是我的超链接提示2.">提示2</a></p>
+		<p><a href="#" title="这是自带提示1.">自带提示1.</a></p>
+		<p><a href="#" title="这是自带提示2.">自带提示2.</a></p>
+	</body>
+</html>

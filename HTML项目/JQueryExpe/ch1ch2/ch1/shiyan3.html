@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+  body{margin:0;padding:0 0 12px 0;font-size:12px;line-height:22px;font-family:"\5b8b\4f53","Arial Narrow";background:#fff;}
+  form{width:300px;margin:0 auto;background:#ddd;}
+</style>
+<script type="text/javascript" src="scripts/jquery-1.3.1.js"></script>
+<script type="text/javascript">
+  $(function(){
+	  $("#b1").click(function(){
+		  /*var cr=document.getElementsByName("ah");
+		  j=0;value="";
+		  for (i=0;i<cr.length;i++)
+		    {if (cr[i].checked) {j++; value+=cr[i].value;}
+			}
+		  alert("您有"+j+"个爱好，分别是"+value);*/
+		  v="";
+		  var cr=$("input.c1:checked");
+		  j=cr.length;
+		  for (i=0;i<j;i++)
+		     {v+=$(cr.get(i)).val();}
+		  
+		  
+		  alert("您有"+j+"个爱好，分别是"+v);
+		  })
+	  });
+</script>
+</head>
+
+<body>
+<form name="form1" method="post" action="">
+  <p>请选择您的爱好</p>
+  运动<input type="checkbox" name="ah" value=" 运动" id="yd" class="c1"><br>
+  音乐<input type="checkbox" name="ah" value=" 音乐" id="yy" class="c1"><br>
+  看书<input type="checkbox" name="ah" value=" 看书" id="ks" class="c1"><br>
+  舞蹈<input type="checkbox" name="ah" value=" 舞蹈" id="wd" class="c1"><br>
+  <br><br><br> 
+  
+  <input type="button" name="button" id="b1" value="提交">
+</form>
+</body>
+</html>

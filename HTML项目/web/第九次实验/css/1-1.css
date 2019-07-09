@@ -1,0 +1,37 @@
+body{
+	font-family: "微软雅黑";
+}
+
+h1{
+	background:url(../img/images61-4.png) no-repeat;
+	color: white;
+	margin: 0px;
+	height: 58px;
+}
+
+div{
+	width:920px ;
+	height: 550px;
+	background: #EAEAEA;
+	
+}
+table{
+	width: 897px;
+	height: 287px;
+	background: white;
+}
+
+
+a{
+	float: right;
+	background: url(../img/images61-3.png);
+	padding: 5px 20px;
+}
+
+.gray{
+	background: #EAEAEA;
+}
+
+td{
+	padding: 10px;
+}

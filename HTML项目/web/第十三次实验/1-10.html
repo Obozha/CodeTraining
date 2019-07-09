@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标动作捕获与响应</title>
+		<script type="text/javascript">
+			function $(id) {
+				return document.getElementById(id);
+			}
+			function f_click() {
+				
+				changeStyle("#99CC66","鼠标单击","23")
+			}
+			function d_click() {
+				changeStyle("#AACCFF","鼠标双击","24");
+			}
+			function mouserOver(){
+				changeStyle("#00CC99","鼠标移入","24");
+			}
+			function mouserOut(){
+				changeStyle("#99CC66","鼠标移除","22");
+			}
+			function changeStyle(color,info,src){
+				$("inner").style.backgroundColor = color;
+				$("t").style.backgroundColor = color;
+				$("info").value = info;
+				$("i").src="img/image"+src+".jpg";
+			}
+		</script>
+		<style type="text/css">
+			#outer {
+				text-align: center;
+				width: 500px;
+				margin: 0 auto;
+			}
+			h1 {
+				background: #99CC66;
+				margin: 2px 0px;
+				padding-bottom: 25px;
+			}
+			#inner {
+				background: #99CC66;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer" onclick="f_click();" ondblclick="d_click();" onmouseover="mouserOver();" onmouseout="mouserOut();">
+			<h1 id="t">鼠标动作捕获与响应</h1>
+			<div id="inner">
+				<input style="margin: 20px;" type="text" readonly="true" name="" id="info" value="" />
+				<br />
+				<img id="i" src="img/image22.jpg" />
+			</div>
+		</div>
+	</body>
+</html>

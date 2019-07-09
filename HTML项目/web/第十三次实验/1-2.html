@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript中的动态指定</title>
+		<script type="text/javascript">
+		</script>
+		
+		<style type="text/css">
+			#inp{
+				width: 100px;
+				height: 40px;
+				color: red;
+			}
+		</style>
+		<script type="text/javascript">
+			function clickHandler(){
+				alert("代码触发事件，即将提交表单!");
+				return true;
+			}
+		</script>
+		
+
+	</head>
+	<body>
+		<form action="" name="myform" method="post">
+			<input type="button" name="inp" id="inp" value="提交" />			
+		</form>
+		
+		<script type="text/javascript">
+			document.getElementById('inp').onclick=function(){
+				return clickHandler(); 
+			}
+//			myform.inp.onclick();
+		</script>
+		
+	</body>
+</html>

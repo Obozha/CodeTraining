@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery的选择器</title>
+		<style type="text/css">
+			div,span,p{
+				width: 140px;
+				height: 140px;
+				background: #aaa;
+				margin: 5px;
+				border: #000 1px solid;
+				float:left;
+				font-size: 17px;
+				font-family: verdana;
+			}
+			div.mini{
+				width: 55px;
+				height: 55px;
+				background: #aaa;
+				font-size: 12px;
+			}
+			dis.hide{
+				display: none;
+			}
+			.basic_sele_div{
+					width: auto;
+					height: auto;
+					background: #fff;
+					margin: 0 auto;
+					margin: 5px;
+					padding: 5px;
+					border: 0px;
+			}
+			input{
+				display: inline;
+			}
+		</style>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$("#b1").click(function(){
+					$("#one").css("background","#bbffaa");
+				});
+				$("#b2").click(function(){
+					$(".mini").css("background","#bbffaa");
+				});
+				$("#b3").click(function(){
+					$("div").css("background","#bbffaa");
+				});
+				$("#b4").click(function(){
+					$("*").css("background","#bbffaa");
+				});
+				$("#b5").click(function(){
+					$("span,#two").css("background","#bbffaa");
+				});	
+				$("#b6").click(function(){
+					$("body div").css("background","#bbffaa");
+				});
+				$("#b7").click(function(){
+					$("body>div").css("background","#bbffaa");
+				});
+				$("#b8").click(function(){
+					$(".one+div").css("background","#bbffaa");
+				});
+				$("#b9").click(function(){
+					$("#two~div").css("background","#bbffaa");
+				});
+				$("#b10").click(function(){
+					$("div:first").css("background","#bbffaa");
+				});
+				$("#b11").click(function(){
+					$("div:last").css("background","#bbffaa");
+				});
+				$("#b12").click(function(){
+					$("div:not(.one)").css("background","#bbffaa");
+				});
+				$("#b13").click(function(){
+					$("div:even").css("background","#bbffaa");
+				});
+				$("#b14").click(function(){
+					$("div:odd").css("background","#bbffaa");
+				});
+				$("#b15").click(function(){
+					$("div:eq(3)").css("background","#bbffaa");
+				});	
+				$("#b16").click(function(){
+					$("div:gt(3)").css("background","#bbffaa");
+				});
+				$("#b17").click(function(){
+					$("div:lt(3)").css("background","#bbffaa");
+				});
+				$("#b18").click(function(){
+					$(":header").css("background","#bbffaa");
+				});
+				$("#b19").click(function(){
+					$(":animated").css("background","#bbffaa");
+				});
+				$("#b20").click(function(){
+					$(":focus").css("background","#bbffaa");
+				});
+				$("#b21").click(function(){
+					$("div:contains(di)").css("background","#bbffaa");
+				});
+				$("#b22").click(function(){
+					$("div:empty").css("background","#bbffaa");
+				});
+				$("#b23").click(function(){
+					$("div:has('.mini')").css("background","#bbffaa");
+				});
+				$("#b24").click(function(){
+					$("div:parent").css("background","#bbffaa");
+				});
+				$("#b25").click(function(){
+					$("div:visible").css("background","#ff6500");
+				});
+				$("#b26").click(function(){
+					$("div:hidden").show(3000);
+				});
+				$("#b27").click(function(){
+					$("div[title]").css("background","#bbffaa");
+				});
+				$("#b28").click(function(){
+					$("div[title=test]").css("background","#bbffaa");
+				});
+				$("#b29").click(function(){
+					$("div[title!=test]").css("background","#bbffaa");
+				});
+				$("#b30").click(function(){
+					$("div[title^=te]").css("background","#bbffaa");
+				});	
+				$("#b31").click(function(){
+					$("div[title$=est]").css("background","#bbffaa");
+				});
+				$("#b32").click(function(){
+					$("div[title*=es]").css("background","#bbffaa");
+				});
+				$("#b33").click(function(){
+					$("div[id][title*=es]").css("background","#bbffaa");
+				});
+				
+				$("#b34").click(function(){
+					$("div.one :nth-child(2)").css("background","#bbffaa");
+				});
+				$("#b35").click(function(){
+					$("div.one :first-child").css("background","#bbffaa");
+				});
+				$("#b36").click(function(){
+					$("div.one :last-child").css("background","#bbffaa");
+				});
+				$("#b37").click(function(){
+					$("div.one :only-child").css("background","#bbffaa");
+				});
+				
+				
+				
+				
+				$("#re").click(function(){
+					window.location.reload();
+				});
+				
+				
+				function animateIt(){
+					$("#mover").slideToggle("show",animateIt);
+				}
+				animateIt();
+			})
+		</script>
+	</head>
+	<body>
+		<div class="one" id="one">
+			id为one,class 为one的div
+			<div class="mini">class为mini</div>
+		</div>
+		<div class="one" id="two" title="test">
+			id为two，class为one,title为test的div
+				<div class="mini" title="other">class为mini,title为other</div>
+				<div class="mini" title="test">class为mini,title为test</div>
+			</div>
+		</div>
+		<div class="one">
+			<div class="mini">class为mini</div>
+			<div class="mini">class为mini</div>
+			<div class="mini">class为mini</div>
+			<div class="mini"></div>
+		</div>
+		<div class="one">
+			<div class="mini">class为mini</div>
+			<div class="mini">class为mini</div>
+			<div class="mini">class为mini</div>
+			<div class="mini" title="tesst">class为mini,title为tesst</div>
+		</div>
+		<div style="display: none;" class="none">
+			style的display为"none"的div
+		</div>
+		<div class="hide">
+			class为“hide”的div
+		</div>
+		<div>
+			包含input的type为“hidden”的div <input type="hidden" size="8">
+		</div>
+		<span id="mover">
+			正在执行动画的Span元素.
+		</span>
+		<input type="button" onclick="window.location.reload();" style="clear: both; display: block;" name="" id="" value="刷新" />
+		<div id="posi" style=" background:#fff; border: 0px; width: 1000px; height: auto; margin:40px 20px; position: absolute; top:300px; clear: both;">
+			<div class="basic_sele_div">
+				<h2>基本选择器</h2>
+				<input type="button" name="" id="b1" value="改变id为one的背景色" />
+				<input type="button" name="" id="b2" value="改变class为mini的背景色" />
+				<input type="button" name="" id="b3" value="改变元素名是<div>的所有元素的背景色" />
+				<input type="button" name="" id="b4" value="改变所有元素的背景色" />
+				<input type="button" name="" id="b5" value="改变所有的span和id为two的元素的背景色" />
+			</div>
+			<div class="basic_sele_div">
+				<h2>层次选择器</h2>
+				<input type="button" name="" id="b6" value="改变<body>内所有<div>的背景色" />
+				<input type="button" name="" id="b7" value="改变<body>内子<div>元素的背景色" />
+				<input type="button" name="" id="b8" value="改变class为one的下一个<div>同辈元素背景色" />
+				<input type="button" name="" id="b9" value="改变id为two的元素后面所有<div>同辈元素的背景色" />
+			</div>
+			<div class="basic_sele_div">
+				<h2>基本过滤选择器</h2>
+				<input type="button" name="" id="b10" value="改变第1个<div>元素的背景色" />
+				<input type="button" name="" id="b11" value="改变最后一个<div>元素的背景色" />
+				<input type="button" name="" id="b12" value="改变class不为one的<div>元素的背景色" />
+				<input type="button" name="" id="b13" value="改变索引值为偶数的<div>元素的背景色" />
+				<input type="button" name="" id="b14" value="改变所有索引值为奇数的<div>元素的背景色" />
+				<input type="button" name="" id="b15" value="改变索引值等于3的<div>元素的背景色" />
+				<input type="button" name="" id="b16" value="改变索引值大于3的<div>元素的背景色" />
+				<input type="button" name="" id="b17" value="改变索引值小于3的<div>元素的背景色" />
+				<input type="button" name="" id="b18" value="改变所有标题元素,例如<h1>,<h2>..." />
+				<input type="button" name="" id="b19" value="改变当前正在执行动画的元素的背景色" />
+				<input type="button" name="" id="b20" value="改变当前获取焦点的元素的背景色" />
+			</div>
+			<div class="basic_sele_div">
+				<h2>内容过滤选择器</h2>
+				<input type="button" name="" id="b21" value="改变含有文本&quot;di&quot;的<div>元素的背景色" />
+				<input type="button" name="" id="b22" value="改变不包括子元素(包括文本元素)的<div>元素的背景色" />
+				<input type="button" name="" id="b23" value="改变含有class为mini元素的<div>元素的背景色"/>
+				<input type="button" name="" id="b24" value="改变含有子元素(包括文本元素)的<div>元素的背景色"/>
+			</div>
+			<div class="basic_sele_div">
+				<h2>可见性过滤选择器</h2>
+				<input type="button" name="" id="b25" value="改变所有可见的<div>元素的背景色" />
+				<input type="button" name="" id="b26" value="显示隐藏div元素" />
+			</div>
+			<div class="basic_sele_div">
+				<h2>属性过滤选择器示例</h2>
+				<input type="button" name="" id="b27" value="改变含有属性title的<div>元素的背景色" />
+				<input type="button" name="" id="b28" value="改变属性title值等于&quot;test&quot;的<div>元素的背景色" />
+				<input type="button" name="" id="b29" value="改变属性title值不等于&quot;test&quot;" />
+				<input type="button" name="" id="b30" value="改变属性title值te开始的div元素的背景" />
+				<input type="button" name="" id="b31" value="改变属性title值以est结束的div元素的背景" />
+				<input type="button" name="" id="b32" value="改变属性title值含有es的div元素" />
+				<input type="button" name="" id="b33" value="改变含有属性id,并且属性title含有es的div元素的背景色" />
+			</div>
+			<div class="basic_sele_div">
+				<h2>子元素过滤选择器</h2>
+				<input type="button" name="" id="b34" value="改变每个class为one的父元素下的第2个子元素的背景色" />
+				<input type="button" name="" id="b35" value="改变每个class为one的父元素下的第1个子元素的背景色" />
+				<input type="button" name="" id="b36" value="改变每个class为one的父元素下的最后一个子元素的背景色" />
+				<input type="button" name="" id="b37" value="如果class为one的div父元素下只有一个子元素,那么则改变这个子元素的背景色" />
+				<input type="button" name="" id="re" value="刷新" />
+			</div>
+		</div>
+	</body>
+</html>

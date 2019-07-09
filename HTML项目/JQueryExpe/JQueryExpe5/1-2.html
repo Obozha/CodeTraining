@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/form_verify.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="" method="post" onsubmit="return false;">
+			<div>
+				<input type="text" id="input_username" placeholder="请输入用户名">
+				<label id="l_username_error">用户名输入错误，6-8位字母或数字的混合</label>
+			</div>
+			<div>
+				<input type="password" id="input_userpwd" placeholder="请输入密码">
+				<label id="l_pwd_error">密码输入错误，密码不能为空</label>
+			</div>
+			<div>
+				<input type="password" id="input_c_userpwd" placeholder="请重复输入密码">
+				<label id="l_c_pwd_error">重复密码输入错误，重置密码是否和密码一致？</label>
+			</div>
+			<div>
+				<input type="text" id="useremail" placeholder="请输入你的 E-mail">
+				<label id="l_email_error">E-mail输入错误，格式是否正确？</label>
+			</div>
+			<div>
+				<input type="text" id="input_realname" placeholder="请输入你的真实姓名">
+				<label id="l_real_name">真实姓名，真实姓名由两~四个汉字组成</label>
+			</div>
+			<input type="submit" name="" id="btn_submit" value="提     交" />
+			<input type="reset" name="" id="btn-reset" value="重     置" />
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">
+							</h4>
+						</div>
+						<div class="modal-body">
+							在这里添加一些文本
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+		</form>
+	</body>
+</html>

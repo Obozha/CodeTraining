@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.mynav-bar {
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				-webkit-box-shadow: 0px 8px 74px rgba(0, 0, 0, 0.15);
+				-moz-box-shadow: 0px 8px 74px rgba(0, 0, 0, 0.15);
+				box-shadow: 0px 8px 74px rgba(0, 0, 0, 0.15);
+			}
+
+			.mynav-bar span {
+				margin-right: 15px;
+				;
+			}
+
+			.mynav-bar a {
+				color: #000 !important;
+			}
+
+			.mynav-bar li:hover {
+				-webkit-transition-duration: .25s;
+				-moz-transition-duration: .25s;
+				-o-transition-duration: .25s;
+				transition-duration: .25s;
+				background: #e7e7e7;
+			}
+
+			.mynav-bar .dropdown-menu {
+				-webkit-transition-duration: .25s !important;
+				-moz-transition-duration: .25s !important;
+				-o-transition-duration: .25s !important;
+				transition-duration: .25s !important;
+			}
+
+
+
+			.content-wrapper {
+				background: #F6F8FA;
+				min-height: 100vh;
+				padding: 1.5rem 1.7rem;
+				transition: width 0.25s ease, margin 0.25s ease;
+				width: 100%;
+			}
+
+			.row {
+				display: flex;
+				flex-wrap: wrap;
+				margin-right: -15px;
+				margin-left: -15px;
+			}
+
+			.grid-margin {
+				margin-bottom: 1.875rem;
+			}
+
+			.col-md-4 {
+				flex: 0 0 33.33333%;
+				max-width: 33.33333%;
+			}
+
+
+			.text-white {
+				color: #fff !important;
+			}
+
+			.stretch-card {
+				display: -webkit-flex;
+				display: flex;
+				-webkit-align-items: stretch;
+				align-items: stretch;
+				-webkit-justify-content: stretch;
+				justify-content: stretch;
+			}
+
+			.stretch-card>.card {
+				width: 100%;
+				min-width: 100%;
+			}
+
+			.bg-gradient-warning {
+				background: linear-gradient(to right, rgba(255, 88, 88, 0.9), rgba(240, 152, 25, 0.9));
+			}
+
+			.bg-gradient-info {
+				background: linear-gradient(to right, rgba(68, 129, 235, 0.9), rgba(4, 190, 254, 0.9));
+			}
+
+			.bg-gradient-success {
+				background: linear-gradient(to right, rgba(80, 204, 127, 0.9), rgba(245, 209, 0, 0.9));
+			}
+
+			.card {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				min-width: 0;
+				word-wrap: break-word;
+				background-color: #fff;
+				background-clip: border-box;
+				border: 1px solid rgba(0, 0, 0, 0.125);
+				border-radius: 0.3125rem;
+			}
+
+			.card .card-body {
+				padding: 1.88rem 1.81rem;
+			}
+
+			img {
+					width: 32px;
+					height: 32px;
+					border-radius: 100%;
+					vertical-align: middle;
+					margin-right: 1rem;
+					
+			}
+		</style>
+	</head>
+	<body>
+
+		<nav class="navbar navbar-default mynav-bar" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">B2CDemo</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav navbar-right">
+						<li><img src="img/01.jpg"></li>
+						<li class="active">
+							<a href="#"><span class="glyphicon glyphicon-home"></span>主页</a>
+						</li>
+						<li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span>联系方式</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-lock"></span>后台管理</a></li>
+
+						<li class="dropdown mydropdown">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="glyphicon glyphicon-align-justify"></span>设置
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu mymenu">
+								<li><a href="#"><span class="glyphicon glyphicon-user"></span>个人信息</a></li>
+								<li class="divider"></li>
+								<li><a href="#">退出</a></li>
+
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="content-wrapper">
+			<div class="row">
+				<div class="col-md-4 stretch-card grid-margin">
+					<div class="card bg-gradient-warning text-white">
+						<div class="card-body">
+							<h4 class="font-weight-normal mb-3">Weekly Sales</h4>
+							<h2 class="font-weight-normal mb-5">$ 15,00000.00</h2>
+							<p class="card-text">Incresed by 60%</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 stretch-card grid-margin">
+					<div class="card bg-gradient-info text-white">
+						<div class="card-body">
+							<h4 class="font-weight-normal mb-3">Weekly Orders</h4>
+							<h2 class="font-weight-normal mb-5">45633456</h2>
+							<p class="card-text">Decreased by 10%</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 stretch-card grid-margin">
+					<div class="card bg-gradient-success text-white">
+						<div class="card-body">
+							<h4 class="font-weight-normal mb-3">Visitors Online</h4>
+							<h2 class="font-weight-normal mb-5">955741235</h2>
+							<p class="card-text">Increased by 5%</p>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</body>
+</html>

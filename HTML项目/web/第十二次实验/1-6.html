@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<h3>找出100-999之间能被11和7同时整除的整数</h3>
+		<p>区间中符合条件的数（输出格式：10个一行）</p>
+		<p id="result"></p>
+		<script type="text/javascript">
+			var result=document.getElementById("result");
+			var msg="",count=0,sum=0,isTen;
+			for(var i=100;i<=1000;i++){
+				if(i%11==0&&i%7==0){
+					sum+=i;
+					msg+=i+"&nbsp&nbsp";
+					count++;
+					if(count==10){
+						isTen=true;
+					}
+				}
+				
+				if(isTen){
+					msg=msg+"<br/>"
+					console.log(msg);
+					isTen=false;
+				}
+			}
+			msg+="<br/>区间中符合条件的数共有"+count+"个";
+			msg+="<br/>区间中符合条件的数的累加和为"+sum;
+			result.innerHTML+=msg;
+		</script>
+	</body>
+</html>
