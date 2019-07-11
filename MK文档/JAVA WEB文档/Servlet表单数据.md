@@ -8,6 +8,7 @@
   * [使用表单的GET方法实例](#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E7%9A%84get%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B)
   * [使用表单的POST方法实例](#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E7%9A%84post%E6%96%B9%E6%B3%95%E5%AE%9E%E4%BE%8B)
   * [将复选框数据传递到 Servlet 程序](#%E5%B0%86%E5%A4%8D%E9%80%89%E6%A1%86%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%E5%88%B0-servlet-%E7%A8%8B%E5%BA%8F)
+  * [读取所有的表单参数](#%E8%AF%BB%E5%8F%96%E6%89%80%E6%9C%89%E7%9A%84%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0)
 
 ## Get
 
@@ -245,6 +246,8 @@ html的话就是改变一下method
     </body>
     </html>
 
+ReceiveCheckbox Servlet源码
+
     package com.test.helloservlet;
 
     import java.io.IOException;
@@ -320,3 +323,121 @@ html的话就是改变一下method
 
 html的`checkbox`是通过`name="runoob"`来传递值的，所以在后台代码直接通过`request.getParameter("runoob")`获取
 
+## 读取所有的表单参数
+
+以下是通用的实例，使用 HttpServletRequest 的 getParameterNames() 方法读取所有可用的表单参数。该方法返回一个枚举，其中包含未指定顺序的参数名。
+
+    package com.test.helloservlet;
+
+    import java.io.IOException;
+    import java.io.PrintWriter;
+    import java.util.Enumeration;
+
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.HttpServlet;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+
+    /**
+    * Servlet implementation class ReceiveMultiArgs
+    */
+    @WebServlet("/ReceiveMultiArgs")
+    public class ReceiveMultiArgs extends HttpServlet {
+        private static final long serialVersionUID = 1L;
+
+        /**
+        * @see HttpServlet#HttpServlet()
+        */
+        public ReceiveMultiArgs() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+        * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+        *      response)
+        */
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            // 设置响应内容类型
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            String title = "读取所有的表单数据";
+            String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+            out.println(docType + "<html>\n" + "<head><meta charset=\"utf-8\"><title>" + title + "</title></head>\n"
+                    + "<body bgcolor=\"#f0f0f0\">\n" + "<h1 align=\"center\">" + title + "</h1>\n"
+                    + "<table width=\"100%\" border=\"1\" align=\"center\">\n" + "<tr bgcolor=\"#949494\">\n"
+                    + "<th>参数名称</th><th>参数值</th>\n" + "</tr>\n");
+
+            Enumeration paramNames = request.getParameterNames();
+
+            while (paramNames.hasMoreElements()) {
+                String paramName = (String) paramNames.nextElement();
+                out.print("<tr><td>" + paramName + "</td>\n");
+                String[] paramValues = request.getParameterValues(paramName);
+
+                if (paramValues.length == 1) {
+                    String paramValue = paramValues[0];
+                    if (paramValue.length() == 0)
+                        out.println("<td><i>没有值</i></td>");
+                    else
+                        out.println("<td>" + paramValue + "</td>");
+                } else {
+                    // 读取多个值的数据
+                    out.println("<td><ul>");
+                    for (int i = 0; i < paramValues.length; i++) {
+                        out.println("<li>" + paramValues[i]);
+                    }
+                    out.println("</ul></td>");
+                }
+                out.print("</tr>");
+            }
+            out.println("\n</table>\n</body></html>");
+        }
+
+        /**
+        * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+        *      response)
+        */
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            // TODO Auto-generated method stub
+            doGet(request, response);
+        }
+
+    }
+
+通过以下html来测试上边的servlet
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <form action="ReadParams" method="POST" target="_blank">
+    <input type="checkbox" name="maths" checked="checked" /> 数学
+    <input type="checkbox" name="physics"  /> 物理
+    <input type="checkbox" name="chemistry" checked="checked" /> 化学
+    <input type="submit" value="选择学科" />
+    </form>
+
+    </body>
+    </html>
+
+设置相应的 web.xml:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <web-app>
+    <servlet>
+        <servlet-name>ReadParams</servlet-name>
+        <servlet-class>com.runoob.test.ReadParams</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReadParams</servlet-name>
+        <url-pattern>/TomcatTest/ReadParams</url-pattern>
+    </servlet-mapping>
+    </web-app>

@@ -62,8 +62,9 @@ public class ReceiveMultiArgs extends HttpServlet {
 				}
 				out.println("</ul></td>");
 			}
-			out.println("\n</table>\n</body></html>");
+			out.print("</tr>");
 		}
+		out.println("\n</table>\n</body></html>");
 	}
 
 	/**

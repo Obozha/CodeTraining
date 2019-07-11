@@ -33,4 +33,47 @@
     <servlet-name>ReceiveCheckbox</servlet-name>
     <url-pattern>/HelloServlet/ReceiveCheckbox</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ReceiveMultiArgs</servlet-name>
+    <servlet-class>com.test.helloservlet.ReceiveMultiArgs</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReceiveMultiArgs</servlet-name>
+    <url-pattern>/HelloServlet/ReceiveMultiArgs</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DisplayHeader</servlet-name>
+    <servlet-class>com.test.helloservlet.DisplayHeader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayHeader</servlet-name>
+    <url-pattern>/HelloServlet/DisplayHeader</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Refresh</servlet-name>
+    <servlet-class>com.test.helloservlet.Refresh</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Refresh</servlet-name>
+    <url-pattern>/HelloServlet/Refresh</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ShowError</servlet-name>
+    <servlet-class>com.test.helloservlet.ShowError</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowError</servlet-name>
+    <url-pattern>/HelloServlet/ShowError</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.service.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/HelloServlet/LoginServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
