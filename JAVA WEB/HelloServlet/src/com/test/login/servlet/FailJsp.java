@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.test.login.entity.Users;
-import com.test.login.service.UserService;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class FailJsp
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/FailJsp")
+public class FailJsp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public FailJsp() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,23 +28,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// ¸ü¸ÄÏìÓ¦Í·
 		response.setContentType("text/html;charset=UTF-8");
-
-		String html = "", title = "µÇÂ½";
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		UserService us = new UserService();
-		Users users = us.login(name, pwd);
-
-		if (users != null) {
-			request.setAttribute("name", users.getUsername());
-			request.getRequestDispatcher("/SuccessJsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/FailJsp").forward(request, response);
-		}
+		String title = "µÇÂ½";
+		String html = "<html>\n" + "<head><title>" + title + "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
+				+ "<p>µÇÂ½Ê§°Ü</p>" + "</body></html>";
 		response.getWriter().print(html);
-		
 	}
 
 	/**

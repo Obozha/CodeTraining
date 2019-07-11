@@ -11,16 +11,16 @@ import com.test.login.entity.Users;
 import com.test.login.service.UserService;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class SuccessJsp
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/SuccessJsp")
+public class SuccessJsp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public SuccessJsp() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,23 +31,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 更改响应头
 		response.setContentType("text/html;charset=UTF-8");
-
-		String html = "", title = "登陆";
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		UserService us = new UserService();
-		Users users = us.login(name, pwd);
-
-		if (users != null) {
-			request.setAttribute("name", users.getUsername());
-			request.getRequestDispatcher("/SuccessJsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/FailJsp").forward(request, response);
-		}
+		String title = "登陆";
+		String html = "<html>\n" + "<head><title>" + title + "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
+				+ "<p>登陆成功</p>"+request.getAttribute("name") + "</body></html>";
 		response.getWriter().print(html);
-		
 	}
 
 	/**
