@@ -68,8 +68,6 @@
 		<servlet-name>ShowError</servlet-name>
 		<url-pattern>/HelloServlet/ShowError</url-pattern>
 	</servlet-mapping>
-
-	<!-- 登陆頁面配置信息 -->
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.service.servlet.LoginServlet</servlet-class>
@@ -78,8 +76,6 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/HelloServlet/LoginServlet</url-pattern>
 	</servlet-mapping>
-
-	<!-- 成功頁面配置信息 -->
 	<servlet>
 		<servlet-name>SuccessJsp</servlet-name>
 		<servlet-class>com.service.servlet.SuccessJsp</servlet-class>
@@ -88,7 +84,6 @@
 		<servlet-name>SuccessJsp</servlet-name>
 		<url-pattern>/HelloServlet/SuccessJsp</url-pattern>
 	</servlet-mapping>
-	<!-- 失敗頁面配置信息 -->
 	<servlet>
 		<servlet-name>FailJsp</servlet-name>
 		<servlet-class>com.service.servlet.SuccessJsp</servlet-class>
@@ -96,5 +91,13 @@
 	<servlet-mapping>
 		<servlet-name>FailJsp</servlet-name>
 		<url-pattern>/HelloServlet/FailJsp</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowAllPersonAction</servlet-name>
+		<servlet-class>com.service.servlet.ShowAllPersonAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowAllPersonAction</servlet-name>
+		<url-pattern>/HelloServlet/ShowAllPersonAction</url-pattern>
 	</servlet-mapping>
 </web-app>

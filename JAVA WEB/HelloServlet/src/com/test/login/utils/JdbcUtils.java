@@ -3,6 +3,7 @@ package com.test.login.utils;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,7 +31,7 @@ public class JdbcUtils {
 		// 注册驱动程序
 		Properties prop = new Properties();
 		// 构造输入流
-		Class clazz = JdbcUtils.class;
+		Class<JdbcUtils> clazz = JdbcUtils.class;
 		InputStream in = clazz.getResourceAsStream("/jdbc.properties");
 		try {
 
@@ -103,6 +104,32 @@ public class JdbcUtils {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void executesql(String sql, Object... objs) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			// 循环为每一个变量设置参数
+			for (int i = 0; i < objs.length; i++) {
+				ps.setObject(i + 1, objs[i]);
+			}
+
+			ps.execute();
+			System.out.println("执行" + sql + "成功");
+
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(ps, conn);
+		}
+
 	}
 
 	public static void main(String[] args) {

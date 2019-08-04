@@ -41,7 +41,7 @@ public class ReceiveMultiArgs extends HttpServlet {
 				+ "<table width=\"100%\" border=\"1\" align=\"center\">\n" + "<tr bgcolor=\"#949494\">\n"
 				+ "<th>参数名称</th><th>参数值</th>\n" + "</tr>\n");
 
-		Enumeration paramNames = request.getParameterNames();
+		Enumeration<String> paramNames = request.getParameterNames();
 
 		while (paramNames.hasMoreElements()) {
 			String paramName = (String) paramNames.nextElement();

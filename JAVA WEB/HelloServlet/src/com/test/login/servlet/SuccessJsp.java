@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.test.login.entity.Users;
-import com.test.login.service.UserService;
-
 /**
  * Servlet implementation class SuccessJsp
  */
@@ -34,7 +31,8 @@ public class SuccessJsp extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String title = "登陆";
 		String html = "<html>\n" + "<head><title>" + title + "</title></head>\n" + "<body bgcolor=\"#f0f0f0\">\n"
-				+ "<p>登陆成功</p>"+request.getAttribute("name") + "</body></html>";
+				+ "<p>登陆成功</p><p><a href='ShowAllPersonAction'>查看所有联系人<a><p>" + request.getAttribute("name")
+				+ "</body></html>";
 		response.getWriter().print(html);
 	}
 

@@ -40,7 +40,7 @@ public class DisplayHeader extends HttpServlet {
 				+ "<table width=\"100%\" border=\"1\" align=\"center\">\n" + "<tr bgcolor=\"#949494\">\n"
 				+ "<th>Header Ãû³Æ</th><th>Header Öµ</th>\n" + "</tr>\n");
 
-		Enumeration headerNames = request.getHeaderNames();
+		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String paramName = (String) headerNames.nextElement();
 			out.print("<tr><td>" + paramName + "</td>\n");
@@ -49,8 +49,7 @@ public class DisplayHeader extends HttpServlet {
 		}
 
 		out.println("</table>\n</body></html>");
-		
-		
+
 	}
 
 	/**

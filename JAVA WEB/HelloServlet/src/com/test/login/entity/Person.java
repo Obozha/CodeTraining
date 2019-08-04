@@ -1,49 +1,65 @@
 package com.test.login.entity;
 
 public class Person {
+	private String sno;
+	private String sname;
+	private String ssex;
+	private String sdept;
+	private String telephone;
 
-	private String name;
-	private String age;
-	private String sex;
-	private String dept;
-
-	public String getName() {
-		return name;
+	public String getSno() {
+		return sno;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSno(String sno) {
+		this.sno = sno;
 	}
 
-	public String getAge() {
-		return age;
+	public String getSname() {
+		return sname;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 
-	public String getSex() {
-		return sex;
+	public String getSsex() {
+		return ssex;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setSsex(String ssex) {
+		this.ssex = ssex;
 	}
 
-	public String getDept() {
-		return dept;
+	public String getSdept() {
+		return sdept;
 	}
 
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setSdept(String sdept) {
+		this.sdept = sdept;
 	}
 
-	public Person(String name, String age, String sex, String dept) {
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [sno=" + sno + ", sname=" + sname + ", ssex=" + ssex + ", sdept=" + sdept + ", telephone="
+				+ telephone + "]";
+	}
+
+	public Person(String sno, String sname, String ssex, String sdept, String telephone) {
 		super();
-		this.name = name;
-		this.age = age;
-		this.sex = sex;
-		this.dept = dept;
+		this.sno = sno;
+		this.sname = sname;
+		this.ssex = ssex;
+		this.sdept = sdept;
+		this.telephone = telephone;
 	}
+
 }
