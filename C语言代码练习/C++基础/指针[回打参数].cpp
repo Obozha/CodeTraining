@@ -1,7 +1,11 @@
 #include<iostream>
+using namespace std;
+
 int main(int argc,char* argv[]){
 	int iCount=0;
 	while(iCount<<argc){
-		cout<<
+		cout<<"arg"<<iCount<<":"<<argv[iCount]<<endl;
+		iCount++; 
 	}
+	return 0;
 }

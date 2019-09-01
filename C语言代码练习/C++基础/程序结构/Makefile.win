@@ -6,12 +6,12 @@ CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = 主程序.o fn2.o
 LINKOBJ  = 主程序.o fn2.o
-LIBS     = -L"I:/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc -g3
+LIBS     = -L"I:/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc -pg -g3
 INCS     = -I"I:/Dev-Cpp/MinGW32/include"
 CXXINCS  = -I"I:/Dev-Cpp/MinGW32/include"
 BIN      = 程序结构.exe
-CXXFLAGS = $(CXXINCS) -g3
-CFLAGS   = $(INCS) -g3
+CXXFLAGS = $(CXXINCS) -pg -g3
+CFLAGS   = $(INCS) -pg -g3
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
