@@ -182,38 +182,39 @@ void DFS(AMGraph G,int v) {
 }
 
 int main() {
-	AMGraph G,GN,temp {
-		{1,2,3,4,5,6},
-		{
-			{0,0,0,0,0,0,0},
-			{0,0,1,1,1,0,0},
-			{0,1,0,0,0,1,0},
-			{0,1,0,0,0,1,0},
-			{0,1,0,0,0,0,1},
-			{0,0,1,1,0,0,0},
-			{0,0,0,0,1,0,0}
-		},6,6
-	},temp2 {
-		{'a','b','c','d','e','f'},
-		{
-			{MaxInt,12,MaxInt,MaxInt,9,9},
-			{12,MaxInt,6,MaxInt,MaxInt,15},
-			{MaxInt,6,MaxInt,3,MaxInt,17},
-			{MaxInt,MaxInt,3,MaxInt,4,20},
-			{9,MaxInt,MaxInt,4,MaxInt,9},
-			{9,15,17,MaxInt,9,MaxInt}
-		},6,10
-	};
-
-	MainSpanTree_Prim(temp2,'a');
+	AMGraph G;
+//	,GN,temp {
+//		{1,2,3,4,5,6},
+//		{
+//			{0,0,0,0,0,0,0},
+//			{0,0,1,1,1,0,0},
+//			{0,1,0,0,0,1,0},
+//			{0,1,0,0,0,1,0},
+//			{0,1,0,0,0,0,1},
+//			{0,0,1,1,0,0,0},
+//			{0,0,0,0,1,0,0}
+//		},6,6
+//	},temp2 {
+//		{'a','b','c','d','e','f'},
+//		{
+//			{MaxInt,12,MaxInt,MaxInt,9,9},
+//			{12,MaxInt,6,MaxInt,MaxInt,15},
+//			{MaxInt,6,MaxInt,3,MaxInt,17},
+//			{MaxInt,MaxInt,3,MaxInt,4,20},
+//			{9,MaxInt,MaxInt,4,MaxInt,9},
+//			{9,15,17,MaxInt,9,MaxInt}
+//		},6,10
+//	};
+//
+//	MainSpanTree_Prim(temp2,'a');
 
 
 //	printf("开始建立图\n");
-//	if(CreateUDG(G)==OK){
-//		printf("图建立成功\n");
-//	}
+	if(CreateUDG(G)==OK){
+		printf("图建立成功\n");
+	}
 //	PrintMatrix(temp);
-//	DFS(temp,2);
+	PrintMatrix(G);
 //	printf("\n");
 //	printf("开始建立网\n");
 //	if(CreateUDN(GN)==OK){

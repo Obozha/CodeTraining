@@ -1,0 +1,34 @@
+# Project: 屏蔽类的内部实现
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o Point.o point2.o
+LINKOBJ  = main.o Point.o point2.o
+LIBS     = -L"I:/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc -g3
+INCS     = -I"I:/Dev-Cpp/MinGW32/include"
+CXXINCS  = -I"I:/Dev-Cpp/MinGW32/include"
+BIN      = 屏蔽类的内部实现.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Point.o: Point.cpp
+	$(CPP) -c Point.cpp -o Point.o $(CXXFLAGS)
+
+point2.o: point2.cpp
+	$(CPP) -c point2.cpp -o point2.o $(CXXFLAGS)

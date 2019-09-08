@@ -85,8 +85,10 @@ void DFS_AL(ALGraph G,int v){
 	visited[v]=true; 					// 依次检查邻接矩阵v所在的行
 	ArcNode* p=G.vertices[v].firstarc;	// p指向v的边链表第一个边结点
 	while(p){
-		if(!visited[p->adjvex])
+		if(!visited[p->adjvex]){
 			DFS_AL(G,p->adjvex);
+		}
+			
 		p=p->nextarc;
 	} 
 }
