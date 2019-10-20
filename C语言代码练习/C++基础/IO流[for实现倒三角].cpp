@@ -8,9 +8,9 @@ using namespace std;
 int main()
 {
 	
-  for(int n =1; n <=7; n++){
+  for(int n =0; n <=9; n++){
     for(int k =1; k <=n; k++) cout <<" ";
-    for(int k =1; k <=15-2*n; k++) cout <<"m";
+    for(int k =1; k <=19-2*n; k++) cout <<"m";
     cout <<endl;
   }
 }

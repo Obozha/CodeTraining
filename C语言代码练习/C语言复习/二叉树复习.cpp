@@ -113,7 +113,6 @@ int Depth(BiTree T) {
 		else
 			return (n+1);
 	}
-
 	return 0;  //补充完该操作后，请修改此行代码
 }
 

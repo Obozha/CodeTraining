@@ -7,7 +7,7 @@ class Student{
 		static int number(){
 			return noOfStudents;
 		}
-	protected:
+	private:
 		char name[40];
 		static int noOfStudents;
 }; 

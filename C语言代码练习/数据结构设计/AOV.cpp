@@ -127,7 +127,7 @@ Status CreateDG(ALGraph &G) {
 		G.vertices[i].firstarc=NULL;// 初始化头结点的指针域为NULL
 		G.converse_vertices[i].firstarc=NULL;
 	}
-	cout<<"请输入每个边依附的两个顶点以及权值:";
+	cout<<"请输入每个边依附的两个顶点:";
 	for(k=0; k<G.arcnum; k++) {		// 输入各边，构造邻接表
 		cin>>v1>>v2;				// 输入一条边依附的两个顶点
 		i=LocateVex(G,v1);
@@ -173,7 +173,7 @@ void FindInDegree(ALGraph G,int *indegree) {
  *		int *tope  拓扑排序数组的指针 
  * return： bool true无环，false有环 
  */
-bool TopologicalSort(ALGraph G,int *tope) {
+bool TopologicalSort(ALGraph G,int *topo) {
 	// 对有向图进行拓扑排序，若G无回路，生成G的一个拓扑排序序列topo[]并返回true
 	// 否则返回false
 	int i,k,m,indegree[G.vexnum];
@@ -186,7 +186,7 @@ bool TopologicalSort(ALGraph G,int *tope) {
 	m=0; // 对输出顶点计数
 	while(StackEmpty(S)) {
 		Pop(S,i);  // i为顶点的位置
-		tope[m]=i; // 将第i个顶点保存在拓扑序
+		topo[m]=i; // 将第i个顶点保存在拓扑序
 		m++;	   // 对输出顶点计数
 		ArcNode* p=G.vertices[i].firstarc; // p指向vi的第一个弧结点
 		while(p!=NULL) { // 对i号顶点的每个邻接点入度减1
@@ -200,7 +200,7 @@ bool TopologicalSort(ALGraph G,int *tope) {
 	
 	cout<<"拓扑序列:";
 	for(i=0;i<G.vexnum;i++)
-		cout<<tope[i]<<" ";
+		cout<<topo[i]<<" ";
 	
 	if(m<G.vexnum)
 		return false; // 该有向图有回路
@@ -238,6 +238,17 @@ void TraverseGraphList(ALGraph G){
 		cout<<endl;
 	}
 }
+
+// 6 8
+// 0 1 2 3 4 5
+//0 1 
+//0 3
+//2 1
+//2 5
+//1 5
+//4 0
+//4 1
+//4 5
 
 int main() {
 	cout<<"AOV（Activity on Vextex）代码测试"<<endl;

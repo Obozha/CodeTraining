@@ -34,7 +34,7 @@ int LocateVex(AMGraph G,VerTexType u) {
 }
 
 typedef int VRType;
-struct u{
+struct{
 	VerTexType adjvex; // 该边所依附的在U中的顶点
 	VRType lowcost; // 该边的权值
 } closedge[MVNum];

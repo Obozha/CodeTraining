@@ -8,7 +8,7 @@ using namespace std;
 #define OK 1
 
 typedef int Status;
-typedef char VerTexType;	// 假设顶点的数据类型为字符型
+typedef int VerTexType;	// 假设顶点的数据类型为字符型
 typedef int ArcType;		// 假设边的权值类型为整形
 typedef struct {
 	VerTexType vexs[MVNum];	// 顶点表
@@ -19,7 +19,7 @@ typedef struct {
 int LocateVex(AMGraph G,VerTexType u) {
 	// 存在则返回u在顶点表中的下标；否则返回-1
 	int i;
-	for(i=0; i<G.vexnum; i++)
+	for(i=1; i<=G.vexnum; i++)
 		if(u==G.vexs[i]) {
 			return i;
 		}
@@ -133,7 +133,7 @@ Status CreateUDG(AMGraph &G) {
 	scanf("%d %d",&G.vexnum,&G.arcnum);
 	printf("请输入顶点数据：");
 	for(i=1; i<=G.vexnum; i++) {
-		scanf("%c",&G.vexs[i]);
+		scanf("%d",&G.vexs[i]);
 	}
 	printf("\n");
 	printf("初始化图 ...\n");

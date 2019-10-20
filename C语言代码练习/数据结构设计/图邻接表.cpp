@@ -28,7 +28,7 @@ int visited[MVNum];
 int LocateVex(ALGraph G,VerTexType u){
 	// 存在则返回u在顶点表中的下标；否则返回-1
 	int i;
-	for(i=0;i<G.vexnum;i++){
+	for(i=1;i<=G.vexnum;i++){
 		if(u==G.vertices[i].data){
 			return i;
 		} 
@@ -43,7 +43,7 @@ Status CreateUDG(ALGraph &G){
 	cout<<"请输入总顶点数，总边数:";
 	cin>>G.vexnum>>G.arcnum;     		// 输入总顶点数，总边数 
 	cout<<"请输入顶点数据:";
-	for(i=0;i<G.vexnum;i++){
+	for(i=1;i<=G.vexnum;i++){
 		cin>>G.vertices[i].data; 		// 输入顶点值
 		G.vertices[i].firstarc=NULL; 	// 初始化表头结点的指针域为NULL 
 	}
@@ -68,7 +68,7 @@ Status CreateUDG(ALGraph &G){
 
 void TraverseGraphList(ALGraph G){
 	int i;
-	for(i=0;i<G.vexnum;i++){
+	for(i=1;i<=G.vexnum;i++){
 		cout <<"当前结点为："<< G.vertices[i].data<<" ";
 		ArcNode* vptr=G.vertices[i].firstarc;
 		while(vptr){
@@ -93,11 +93,33 @@ void DFS_AL(ALGraph G,int v){
 	} 
 }
 
+bool ExistPath(ALGraph *G,int u,int v){ // 判断G中从顶点u到v是否存在简单路径 
+	int w;
+	ArcNode* p;
+	visited[u]=1;
+	if(u==v)
+		return true;
+	p=G->vertices[u].firstarc;
+	while(p!=NULL){
+		w=p->adjvex;
+		if(visited[w]==0){
+			bool flag=ExistPath(G,w,v);
+			if(flag)
+				return true;
+		}
+		p=p->nextarc;
+	}
+	return false;
+} 
+
 // 1 2 2 5 5 3 2 3 3 4 1 4 
 int main(){
 	ALGraph G;
 	cout<<"开始创建图 ..."<<endl; 
 	CreateUDG(G);
 	TraverseGraphList(G);
-	DFS_AL(G,0);
+	if(ExistPath(&G,5,6)){
+		cout<<"Exist"<<endl;
+	}
+//	DFS_AL(G,0);
 }

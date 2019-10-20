@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>线性表</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="%e7%ba%bf%e6%80%a7%e8%a1%a8">线性表</h1>
+<h2 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8">顺序表</h2>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e5%ad%98%e5%82%a8%e8%a1%a8%e7%a4%ba">顺序表的存储表示</h3>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXSIZE 100</span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        ElemType *elem;  <span class="hljs-comment">// 存储空间的基地址 </span>
+        <span class="hljs-keyword">int</span> length;         <span class="hljs-comment">// 当前长度 </span>
+    }SqList;             <span class="hljs-comment">// 顺序表结构类型为SqList </span>
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">顺序表的初始化</h3>
+<ol>
+<li>为顺序表L动态分配一个预定义大小的数组空间，使elem指向这段空间的基地址。</li>
+<li>将表的当前长度设为0</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function">Status <span class="hljs-title">InitList</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+        <span class="hljs-comment">// 构造一个空的顺序表L</span>
+        L.elem=<span class="hljs-keyword">new</span> ElemType[MAXSIZE]; <span class="hljs-comment">// 向堆申请内存空间 </span>
+        <span class="hljs-keyword">if</span>(!L.elem)
+            <span class="hljs-built_in">exit</span>(OVERFLOW);
+        L.length=<span class="hljs-number">0</span>;                      <span class="hljs-comment">// 设置长度</span>
+        <span class="hljs-keyword">return</span> OK;
+    }
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e5%8f%96%e5%80%bc">顺序表的取值</h3>
+<ol>
+<li>判断值定的位置序号i值是否合理（1&lt;=i&lt;=L.length）,若不合理，则返回ERROR。</li>
+<li>若i值合理，则将第i个元素<code>L.elem[i-1]</code>赋值给参数e，通过e返回第i个数据元素的值</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function">Status <span class="hljs-title">GetElem</span><span class="hljs-params">(SqList L,<span class="hljs-keyword">int</span> i,ElemType &amp;e)</span></span>{
+        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">1</span>||i&gt;L.length)
+            <span class="hljs-keyword">return</span> ERROR;
+        e=L.elem[i<span class="hljs-number">-1</span>];
+        <span class="hljs-keyword">return</span> OK;
+    }
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be">顺序表的查找</h3>
+<ol>
+<li>从第一个元素起，依次和e相比较，若找到与e相等的元素L.elem[i]，则查找成功，返回该元素的序号i+1</li>
+<li>若查遍整个顺序表都没有找到，则查找失败</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">LocateElem</span><span class="hljs-params">(SqList L,ElemType e)</span></span>{
+        <span class="hljs-comment">// 在顺序表L中查找值为e的数据元素，返回其序号</span>
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;L.length;i++)
+            <span class="hljs-keyword">if</span>(L.elem[i]==e)
+                <span class="hljs-keyword">return</span> i+<span class="hljs-number">1</span>;
+    }
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e6%8f%92%e5%85%a5">顺序表的插入</h3>
+<ol>
+<li>判断插入位置i是否合法（i值得合法范围是1&lt;=i&lt;=n+1）,若不合法返回ERROR。</li>
+<li>判断顺序表的存储空间是否已满，若满则返回ERROR。</li>
+<li>将第n个至第i个的元素依次向后移动一个位置，空出第i个位置（i=n+1时无需移动）。</li>
+<li>将要插入的新元素e放入第i个位置。</li>
+<li>表长加1</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function">Status <span class="hljs-title">ListInsert</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> i,ElemType e)</span></span>{
+        <span class="hljs-comment">// 在顺序表L中第i个位置插入新的元素e，i的合法范围是1&lt;=i&lt;=L.length+1</span>
+        <span class="hljs-keyword">if</span>((i&lt;<span class="hljs-number">1</span>)||(i&gt;L.length+<span class="hljs-number">1</span>))
+            <span class="hljs-keyword">return</span> ERROR;
+        <span class="hljs-keyword">if</span>(L.length=MAXSIZE)
+            <span class="hljs-keyword">return</span> ERROR;
+        <span class="hljs-keyword">for</span>(j=L.length<span class="hljs-number">-1</span>;j&gt;=i<span class="hljs-number">-1</span>;j--){
+            L.elem[j+<span class="hljs-number">1</span>]=L.elem[j];
+        }
+        L.elem[i<span class="hljs-number">-1</span>]=e;
+        ++L.length;
+        <span class="hljs-keyword">return</span> OK;
+    }
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e8%a1%a8%e7%9a%84%e5%88%a0%e9%99%a4">顺序表的删除</h3>
+<ol>
+<li>判断删除位置i是否合法（合法值为1&lt;=i&lt;=n），若不合法则返回ERROR。</li>
+<li>将第i+1个至第n个元素依次向前移动一个位置（i=n时无需移动）。</li>
+<li>表长减1</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function">Status <span class="hljs-title">ListDelete</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> i)</span></span>{
+        <span class="hljs-comment">// 在顺序表L中删除第i个元素，i值的合法范围是1&lt;=i&lt;=L.length;</span>
+        <span class="hljs-keyword">if</span>((i&lt;<span class="hljs-number">1</span>)||(i&gt;L.length))  <span class="hljs-comment">// i值不合法</span>
+            <span class="hljs-keyword">return</span> ERROR;
+        <span class="hljs-keyword">for</span>(j=i;j&lt;=L.length<span class="hljs-number">-1</span>;j++)
+            L.elem[j<span class="hljs-number">-1</span>]=L.elem[j];
+        L.length--;
+        <span class="hljs-keyword">return</span> OK;
+    }
+</div></code></pre>
+<h2 id="%e9%93%be%e8%a1%a8">链表</h2>
+<h3 id="%e5%8d%95%e9%93%be%e8%a1%a8%e7%9a%84%e5%ad%98%e5%82%a8%e8%a1%a8%e7%a4%ba">单链表的存储表示</h3>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span>{</span>
+        ElemType data;      <span class="hljs-comment">// 结点的数据域</span>
+        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span> <span class="hljs-comment">// 结点的指针域</span>
+    }LNode,*LinkList;       <span class="hljs-comment">// LinkList为指向结构体LNode的指针类型```</span>
+</div></code></pre>
+<h3 id="%e5%8d%95%e9%93%be%e8%a1%a8%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">单链表的初始化</h3>
+<ol>
+<li>生成新结点作为头结点，用头指针L指向头结点</li>
+<li>头指针的指针域置空</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function">Status <span class="hljs-title">InitList</span><span class="hljs-params">(LinkList &amp;L)</span></span>{
+        <span class="hljs-comment">// 构造一个空单链表L</span>
+        L=<span class="hljs-keyword">new</span> LNode;    <span class="hljs-comment">// 生成新结点作为头节点</span>
+        L-&gt;next=<span class="hljs-literal">NULL</span>;   <span class="hljs-comment">// 头结点的指针域置空</span>
+        <span class="hljs-keyword">return</span> OK;
+    }
+</div></code></pre>
+
+    </body>
+    </html>
