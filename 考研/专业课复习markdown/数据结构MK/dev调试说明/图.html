@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>图</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="%e5%9b%be">图</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E5%9B%BE">图</a>
+<ul>
+<li><a href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5">邻接矩阵</a>
+<ul>
+<li><a href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%B3%95">邻接矩阵表示法</a></li>
+<li><a href="#%E9%87%87%E7%94%A8%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%88%9B%E5%BB%BA%E6%97%A0%E5%90%91%E5%9B%BE">采用邻接矩阵表示法创建无向图</a></li>
+</ul>
+</li>
+<li><a href="#%E9%82%BB%E6%8E%A5%E8%A1%A8">邻接表</a>
+<ul>
+<li><a href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E8%A1%A8%E7%A4%BA%E6%B3%95">邻接表表示法</a></li>
+<li><a href="#%E9%87%87%E7%94%A8%E9%82%BB%E6%8E%A5%E8%A1%A8%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%88%9B%E5%BB%BA%E6%97%A0%E5%90%91%E5%9B%BE">采用邻接表表示法创建无向图</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86">图的遍历</a>
+<ul>
+<li><a href="#dfs">DFS</a></li>
+<li><a href="#bfs">BFS</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8">图的应用</a>
+<ul>
+<li><a href="#%E6%99%AE%E5%88%A9%E5%A7%86%E7%AE%97%E6%B3%95%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91">普利姆算法(最小生成树)</a></li>
+<li><a href="#%E5%85%8B%E9%B2%81%E6%96%AF%E5%8D%A1%E5%B0%94%E7%AE%97%E6%B3%95%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91">克鲁斯卡尔算法(最小生成树)</a></li>
+<li><a href="#%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89%E7%AE%97%E6%B3%95">迪杰斯特拉算法</a></li>
+<li><a href="#%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%E7%AE%97%E6%B3%95">弗洛伊德算法</a></li>
+<li><a href="#aov">AOV</a></li>
+<li><a href="#aoe">AOE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5">邻接矩阵</h2>
+<h3 id="%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5%e8%a1%a8%e7%a4%ba%e6%b3%95">邻接矩阵表示法</h3>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-comment">// 图的邻接矩阵存储表示</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MaxInt 32767            <span class="hljs-comment">// 表示极大值，即∞</span></span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MVNum 100               <span class="hljs-comment">// 最大顶点数</span></span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">char</span> VerTexType;        <span class="hljs-comment">// 假设顶点的数据类型为字符型</span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> ArcType;            <span class="hljs-comment">// 假设边的权值类型为整形</span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        VerTexType vexs[MVNum];     <span class="hljs-comment">// 顶点表</span>
+        ArcType arcs[MVNum][MVNum]; <span class="hljs-comment">// 邻接矩阵</span>
+        <span class="hljs-keyword">int</span> vexnum,arcnum;          <span class="hljs-comment">// 图的当前点数和边数</span>
+    }AMGraph;
+</div></code></pre>
+<h3 id="%e9%87%87%e7%94%a8%e9%82%bb%e6%8e%a5%e7%9f%a9%e9%98%b5%e8%a1%a8%e7%a4%ba%e6%b3%95%e5%88%9b%e5%bb%ba%e6%97%a0%e5%90%91%e5%9b%be">采用邻接矩阵表示法创建无向图</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">CreateUND</span><span class="hljs-params">(AMGraph &amp;G)</span></span>{
+    <span class="hljs-comment">// 采用邻接矩阵表示法，创建无向图G</span>
+    <span class="hljs-built_in">cin</span>&gt;&gt;G.vexnum&gt;&gt;G.arcnum;        <span class="hljs-comment">// 输入总顶点数，总边数</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;i++){
+        <span class="hljs-built_in">cin</span>&gt;&gt;vex[i];
+    }
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;i++){
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;j&lt;G.vexnum;j++){
+            G.arcs[i][j]=MaxInt;    <span class="hljs-comment">// 构造邻接矩阵</span>
+        }
+    }
+    <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>;k&lt;G.arcnum;k++){
+        <span class="hljs-built_in">cin</span>&gt;&gt;v1&gt;&gt;v2&gt;&gt;w;
+        i=LocateVex(G,v1);
+        j=LocateVex(G,v2);          <span class="hljs-comment">// 确定v1和v2在G中的位置，即顶点数组的下标</span>
+        G.arcs[i][j]=w;             <span class="hljs-comment">// 边&lt;v1,v2&gt;的权值置为w</span>
+        G.arcs[j][i]=G.arcs[i][j];  <span class="hljs-comment">// 置&lt;v1,v2&gt;的对称边&lt;v2,v1&gt;的权值为w</span>
+    }
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h2 id="%e9%82%bb%e6%8e%a5%e8%a1%a8">邻接表</h2>
+<h3 id="%e9%82%bb%e6%8e%a5%e8%a1%a8%e8%a1%a8%e7%a4%ba%e6%b3%95">邻接表表示法</h3>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MVNum 100               <span class="hljs-comment">// 最大定点数</span></span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ArcNode</span>{</span>         <span class="hljs-comment">// 边结点</span>
+        <span class="hljs-keyword">int</span> adjvex;                 <span class="hljs-comment">// 该边所指向结点的位置</span>
+        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ArcNode</span> *<span class="hljs-title">nextarc</span>;</span>    <span class="hljs-comment">// 指向下一条边的指针</span>
+        Other info;                 <span class="hljs-comment">// 和边相关的信息</span>
+    }ArcNode;
+
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">VNode</span>{</span>           <span class="hljs-comment">// 顶点信息</span>
+        VerTexType data;
+        ArcNode *firstarc;          <span class="hljs-comment">// 指向第一条依附该顶点的边的指针</span>
+    }VNode,AdjList[MVNum];          <span class="hljs-comment">// AdjList 表示邻接表类型</span>
+
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        AdjList vertices;
+        <span class="hljs-keyword">int</span> vexnum,arcnum;          <span class="hljs-comment">// 图的当前定点数和边数</span>
+    }ALGraph;
+</div></code></pre>
+<h3 id="%e9%87%87%e7%94%a8%e9%82%bb%e6%8e%a5%e8%a1%a8%e8%a1%a8%e7%a4%ba%e6%b3%95%e5%88%9b%e5%bb%ba%e6%97%a0%e5%90%91%e5%9b%be">采用邻接表表示法创建无向图</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">CreateUDG</span><span class="hljs-params">(ALGraph &amp;G)</span></span>{
+    <span class="hljs-comment">// 采用邻接表表示法，创建无向图G</span>
+    <span class="hljs-built_in">cin</span>&gt;&gt;G.vexnum&gt;&gt;G.arcnum         <span class="hljs-comment">// 输入总定点数，总边数</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.arcnum;k++){
+        <span class="hljs-built_in">cin</span>&gt;&gt;G.vertices[i].data;    <span class="hljs-comment">// 输入顶点值</span>
+        G.vertices[i].firstarc=<span class="hljs-literal">NULL</span>;<span class="hljs-comment">// 初始化表头指针域为null</span>
+    }
+    <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>;k&lt;G.arcnum;k++){
+        <span class="hljs-built_in">cin</span>&gt;&gt;v1&gt;&gt;v2;                <span class="hljs-comment">// 输入一条边依附的两个顶点</span>
+        i=LocateVex(G,v1);
+        j=LocateVex(G,v2);
+        <span class="hljs-comment">// 确定v1和v2在G的位置，即顶点在G.vertices中的序号</span>
+        p1=<span class="hljs-keyword">new</span> ArcNode;                 <span class="hljs-comment">// 生成一个新的边结点</span>
+        p1-&gt;adjvex=j;                   <span class="hljs-comment">//邻接点序号为j</span>
+        p1-&gt;nextarc=G.vertices[i].firstarc;
+        G.vertices[i].firstarc=p1;
+        <span class="hljs-comment">// 将新结点*p1插入顶点vi的边表头部</span>
+        p2=<span class="hljs-keyword">new</span> ArcNode;                 <span class="hljs-comment">// 生成另一个对称的新的边结点*p2</span>
+        p2-&gt;adjvex=i;                   <span class="hljs-comment">// 邻接点序号为i</span>
+        p2-&gt;nextarc=G.vertices[j].firstarc;
+        G.vertices[j].firstarc=p2;
+        <span class="hljs-comment">// 将新结点*p2插入顶点vj的边表头部</span>
+    }
+}
+</div></code></pre>
+<h2 id="%e5%9b%be%e7%9a%84%e9%81%8d%e5%8e%86">图的遍历</h2>
+<h3 id="dfs">DFS</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// 深度优先遍历非连通图</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFSTraverse</span><span class="hljs-params">(Graph G)</span></span>{
+    <span class="hljs-comment">// 对图G做深度优先遍历</span>
+    <span class="hljs-keyword">for</span>(v=<span class="hljs-number">0</span>;v&lt;G.vernum;v++){
+        visited[v]=<span class="hljs-literal">false</span>;              <span class="hljs-comment">// 访问标志数组初始化</span>
+    }
+    <span class="hljs-keyword">for</span>(v=<span class="hljs-number">0</span>;v&lt;G.vernum;v++){
+        <span class="hljs-keyword">if</span>(!visited[v])
+            DFS(G,v);
+            <span class="hljs-comment">// 对尚未访问的顶点调用DFS</span>
+    }
+}
+
+<span class="hljs-comment">// 采用邻接链表表示图的深度优先遍历</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(ALGraph G,<span class="hljs-keyword">int</span> v)</span></span>{              <span class="hljs-comment">// 图G为邻接表类型</span>
+    <span class="hljs-built_in">cout</span>&lt;&lt;v;
+    visited[v]=<span class="hljs-literal">true</span>;                    <span class="hljs-comment">// 访问第v个顶点</span>
+    p=G.vertices[v].firstarc;           <span class="hljs-comment">// p指向v的边链表的第一个边结点</span>
+    <span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>){                     <span class="hljs-comment">// 边结点非空</span>
+        w=p-&gt;adjvex;                    <span class="hljs-comment">// 表示w是v的邻接点</span>
+        <span class="hljs-keyword">if</span>(!visited[w])
+            DFS(G,w);                   <span class="hljs-comment">// 如果w未访问，则递归调用DFS</span>
+        p=p-&gt;next;                      <span class="hljs-comment">// p指向下一个边结点</span>
+    }
+}
+
+<span class="hljs-comment">// 采用邻接矩阵表示图的深度优先遍历</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(AMGraph G,<span class="hljs-keyword">int</span> v)</span></span>{
+    <span class="hljs-comment">// 图G为邻接矩阵类型</span>
+    <span class="hljs-built_in">cout</span>&lt;&lt;v;
+    visited[v]=<span class="hljs-literal">true</span>;                    <span class="hljs-comment">// 访问第v个顶点</span>
+    <span class="hljs-keyword">for</span>(w=<span class="hljs-number">0</span>;w&lt;G.vexnum;w++){            <span class="hljs-comment">// 依次检查邻接矩阵v所在的行</span>
+        <span class="hljs-keyword">if</span>((G.arcs[v][w]!=<span class="hljs-number">0</span>)&amp;&amp;(!visited[w]))
+            DFS(G,w);
+    }
+    <span class="hljs-comment">// w是v的邻接点，如果w未访问，则递归调用DFS</span>
+}
+</div></code></pre>
+<h3 id="bfs">BFS</h3>
+<hr>
+<pre><code class="language-C"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BFSTraverse</span><span class="hljs-params">(Graph G)</span></span>{
+    按广度优先非递归遍历图<span class="hljs-function">G
+    <span class="hljs-title">for</span><span class="hljs-params">(v=<span class="hljs-number">0</span>;v&lt;G.vernum;v++)</span></span>{
+        visited[v]=<span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">for</span>(v=<span class="hljs-number">0</span>;G&lt;G.vernum;v++){
+        <span class="hljs-keyword">if</span>(!visited[v])
+            BFS(G,v);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(Graph G,<span class="hljs-keyword">int</span> v)</span></span>{
+    <span class="hljs-comment">// 按广度遍历非递归遍历图G</span>
+    InitQueue(Q);
+    <span class="hljs-built_in">cout</span>&lt;&lt;v;
+    visited[v]=<span class="hljs-literal">true</span>;
+    EnQueue(Q,v);
+    <span class="hljs-keyword">while</span>(!QueueEmpty(Q)){
+        DeQueue(Q,u);
+        w=p-&gt;adjvex;
+        <span class="hljs-keyword">if</span>(!visited[w]){
+            <span class="hljs-built_in">cout</span>&lt;&lt;w;
+            visited[w]=<span class="hljs-literal">true</span>;
+            EnQueue(Q,w);
+            p=p-&gt;next;
+        }
+    }
+}
+</div></code></pre>
+<h2 id="%e5%9b%be%e7%9a%84%e5%ba%94%e7%94%a8">图的应用</h2>
+<h3 id="%e6%99%ae%e5%88%a9%e5%a7%86%e7%ae%97%e6%b3%95%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91">普利姆算法(最小生成树)</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+    VertexType adjvex;                      <span class="hljs-comment">// 最小边在U中的那个顶点</span>
+    ArcType lowcost;                        <span class="hljs-comment">// 最小边上的权值</span>
+}closedge[MVNum];
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MiniSpanTree_Prim</span><span class="hljs-params">(AMGraph G,vertexType u)</span></span>{
+    <span class="hljs-comment">// 无向图G以邻接矩阵形式存储，从顶点u出发构造G的最小生成树T，输出T的各条边</span>
+    k=LocateVex(G,u);                       <span class="hljs-comment">// k为顶点u的下标</span>
+    <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;G.vexnum;j++){
+        <span class="hljs-keyword">if</span>(j!=k)
+            closedge[j]={u,G.arcs[k][j]};   <span class="hljs-comment">// {adjvex，lowcost}</span>
+    }
+    closedge[k].lowcost=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;G.vexnum;++i){
+        <span class="hljs-comment">// 选择其余n-1个顶点，生成n-1条边（n=G.vexnum）</span>
+        k=Min(closedge);
+        <span class="hljs-comment">// 求出T的下一个结点：第k个顶点，closedge[k]中存有当前最小边</span>
+        u0=closedge[k].adjvex;               <span class="hljs-comment">// u0为最小边一个顶点 u0∈U</span>
+        v0=G.vexs[k];                        <span class="hljs-comment">// v0为最小边的另一个顶点 v0∈V-U</span>
+        <span class="hljs-built_in">cout</span>&lt;&lt;u0&lt;&lt;v0;                        <span class="hljs-comment">// 输出当前最小边</span>
+        closedge[k].lowcost=<span class="hljs-number">0</span>;               <span class="hljs-comment">// 第k个顶点并入U集</span>
+        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;G.vexnum;j++)
+            <span class="hljs-keyword">if</span>(G.arcs[k][j]&lt;closedge[j].lowcost);
+            closedge[j]={G.vexs[k],G.arcs[k][j]};
+            <span class="hljs-comment">// 新顶点并入U后选择最小边</span>
+    }
+}
+</div></code></pre>
+<h3 id="%e5%85%8b%e9%b2%81%e6%96%af%e5%8d%a1%e5%b0%94%e7%ae%97%e6%b3%95%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91">克鲁斯卡尔算法(最小生成树)</h3>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MiniSpanTree_Kruskal</span><span class="hljs-params">(AMGraph G)</span></span>{
+        <span class="hljs-comment">// 无向图G以邻接矩阵形式存储，构造G的最小生成树T，输出T的各条边</span>
+        Sort(Edge);                           <span class="hljs-comment">// 将数组Edge中的元素按权值从小到大排序</span>
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;i++)               <span class="hljs-comment">// 辅助数组，表示各而顶点自成一个连通分量</span>
+            Vexset[i]=i;
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.arcnum;i++){
+            v1=LocateVex(G,Edge[i].Head);     <span class="hljs-comment">// v1为边的始点Head的下标</span>
+            v2=LocateVex(G,Edge[i].Tail);     <span class="hljs-comment">// v2为边的终点Tail的下标</span>
+            vs1=Vexset[v1];                   <span class="hljs-comment">// 获取边Edge[i]的始点所在的连通分量vs1</span>
+            vs2=Vexset[v2];                   <span class="hljs-comment">// 获取边Edge[i]的始点所在的连通分量vs2</span>
+            <span class="hljs-keyword">if</span>(vs1!=vs2){
+                <span class="hljs-built_in">cout</span>&lt;&lt;Edge[i].Head&lt;&lt;Edge[i].Tail; <span class="hljs-comment">// 输出此边</span>
+                <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;i&lt;G.vexnum;++j)           <span class="hljs-comment">// 合并vs1和vs2两个分量，即两个集合统一编号</span>
+                    <span class="hljs-keyword">if</span>(Vexset[j]==vs2)
+                        Vexset[j]=vs1;
+            }
+        }
+    }
+</div></code></pre>
+<h3 id="%e8%bf%aa%e6%9d%b0%e6%96%af%e7%89%b9%e6%8b%89%e7%ae%97%e6%b3%95">迪杰斯特拉算法</h3>
+<ol>
+<li>初始化
+<ul>
+<li>将源点v0加到S中，即S[v0]=true;</li>
+<li>将v0到各个终点的最短路径长度初始化为权值，即D[i]=G.arcs[v0][vi],(vi∈V-S)；</li>
+<li>如果v0和顶点vi之间有弧，则将vi的前驱置为v0，即Path[i]=v0，否则Path[i]=-1</li>
+</ul>
+</li>
+<li>循环n-1次，执行以下操作：
+<ul>
+<li>选择下一条最短路径的终点vk，使得：
+<ul>
+<li>D[K]=Min{D[i]|vi∈V-S}</li>
+<li>将vk加入到S中，即S[vk]=true;</li>
+<li>根据条件更新从v0出发到集合V-S上任一顶点的最短路径的长度，若条件D[k]+G.arcs[k][i]&lt;D[i]成立，则更新D[i]=D[k]+G.arcs[k][i]，同时更改vi的前驱为vk，Path[i]=k</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ShortestPath_DIJ</span><span class="hljs-params">(AMGraph G,<span class="hljs-keyword">int</span> v0)</span></span>{
+    <span class="hljs-comment">// 用Dijkstra算法求有向网G的v0的顶点到其余顶点的最短路径</span>
+    n=G.vexnum;                                <span class="hljs-comment">// n为G中的顶点的个数</span>
+    <span class="hljs-keyword">for</span>(v=<span class="hljs-number">0</span>;v&lt;n;++v){
+        S[v]=<span class="hljs-literal">false</span>;                            <span class="hljs-comment">// S初始为空集</span>
+        D[v]=G.arcs[v0][v];                    <span class="hljs-comment">// 将v0到各个终点的最短路径长度初始化为弧上的权值</span>
+        <span class="hljs-keyword">if</span>(D[v]&lt;MaxInt)
+            Path[v]=v0;                        <span class="hljs-comment">// 如果v0和v之间有弧，则将v的前驱置为v0</span>
+        <span class="hljs-keyword">else</span>
+            Path[v]=<span class="hljs-number">-1</span>;                        <span class="hljs-comment">// 如果v0和v之间无弧，则将vde前驱为-1</span>
+        S[v0]=<span class="hljs-literal">true</span>;                            <span class="hljs-comment">// 将v0加入S</span>
+        D[V0]=<span class="hljs-number">0</span>;                               <span class="hljs-comment">// 源点到源点的距离为0</span>
+        <span class="hljs-comment">/*------初始化结束，开始主循环，每次求得v0到某个顶点v的最短路径，将v加到s集合-----*/</span>
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n;i++){
+            min=MaxInt;
+            <span class="hljs-keyword">for</span>(w=<span class="hljs-number">0</span>;w&lt;n;++W){
+                <span class="hljs-keyword">if</span>(!S[w]&amp;&amp;D[w]&lt;min){
+                    v=w;
+                    min=D[w];
+                }
+                S[v]=<span class="hljs-literal">true</span>;
+                <span class="hljs-keyword">for</span>(w=<span class="hljs-number">0</span>;w&lt;n;++w){
+                    <span class="hljs-keyword">if</span>(!S[w]&amp;&amp;(D[v]+G.arcs[v][w]&lt;D[w])){
+                        D[w]=D[v]+G.arcs[v][w]; <span class="hljs-comment">// 更新D[w]</span>
+                        Path[w]=v;              <span class="hljs-comment">// 更改w的前驱v</span>
+                    }
+                }
+            }
+        }
+    }
+}
+</div></code></pre>
+<h3 id="%e5%bc%97%e6%b4%9b%e4%bc%8a%e5%be%b7%e7%ae%97%e6%b3%95">弗洛伊德算法</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ShortestPath_Floyd</span><span class="hljs-params">(AMGraph G)</span></span>{
+    <span class="hljs-comment">// 用Floyd算法求有向网G中各顶点i和j之间的最短路径</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;i++)
+        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;G.vexnum;j++){
+            D[i][j]=G.arcs[i][j];
+            <span class="hljs-keyword">if</span>(D[i][j]&lt;MaxInt &amp;&amp; i!=j)
+                Path[i][j]=i;
+            <span class="hljs-keyword">else</span>
+                Path[i][j]=<span class="hljs-number">-1</span>;
+        }
+    <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>;k&lt;G.vexnum;k++)
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;++i)
+            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;G.vexnum;++j){
+                <span class="hljs-keyword">if</span>(D[i][k]+D[k][j]&lt;D[i][j]){
+                    D[i][j]=D[i][k]+D[k][j];
+                    Path[i][j]=Path[k][j];
+                }
+            }
+}
+</div></code></pre>
+<h3 id="aov">AOV</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">TopologicalSort</span><span class="hljs-params">(ALGraph G,<span class="hljs-keyword">int</span> topo[])</span></span>{
+    <span class="hljs-comment">// 有向图G采用邻接表存储结构</span>
+    <span class="hljs-comment">// 若G无回路，则生成G的一个拓扑序列topo[]并返回OK，否则ERROR</span>
+    FindInDegree[G,indegree];           <span class="hljs-comment">// 求出各顶点的入度存入数组indegree</span>
+    InitStack(S);                       <span class="hljs-comment">// 栈初始化为空</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;G.vexnum;i++)
+        <span class="hljs-keyword">if</span>(!indegree[i])
+            Push(S,i);
+    m=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(!StackEmpty(S)){
+        Pop(S,i);
+        topo[m]=i;
+        ++m;
+        p=G.vertices[i].firstarc;
+        <span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>){
+            k=p-&gt;adjvex;
+            --indegree[k];
+            <span class="hljs-keyword">if</span>(indegree[k]==<span class="hljs-number">0</span>)
+                Push(S,k);
+            p=p-&gt;nextarc;
+        }
+    }
+    <span class="hljs-keyword">if</span>(m&lt;G.vexnum)
+        <span class="hljs-keyword">return</span> ERROR;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> OK;
+}
+
+</div></code></pre>
+<h3 id="aoe">AOE</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">CriticalPath</span><span class="hljs-params">(ALGraph G)</span></span>{
+    <span class="hljs-comment">// G为邻接表存储的有想网，输出G的各项关键活动</span>
+    <span class="hljs-keyword">if</span>(!TopologicalOrder(G,topo))
+        <span class="hljs-keyword">return</span> ERROR;
+    n=G..vexnum;                        <span class="hljs-comment">// n为顶点个数</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)
+        ve[i]=<span class="hljs-number">0</span>;
+    <span class="hljs-comment">/* - - - - - 按拓扑次序来求每个事件的最早发生时间 - - - -  */</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++){
+        k=topo[i];                      <span class="hljs-comment">// 取得拓扑序列中的顶点序号k</span>
+        p=G.vertices[k].firstarc;       <span class="hljs-comment">// p指向k的的个邻接顶点</span>
+        <span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>){                 <span class="hljs-comment">// 依次更新k的所有邻接顶点的最早发生时间</span>
+            j=p-&gt;adjvex;                <span class="hljs-comment">// j为邻接顶点的序号</span>
+            <span class="hljs-keyword">if</span>(ve[j]&lt;ve[k]+p-&gt;weight)   <span class="hljs-comment">// 更新顶点j的最早发生时间ve[j]</span>
+                ve[j]=ve[k]+p-&gt;weight;
+            p=p-&gt;nextarc;               <span class="hljs-comment">// p指向k的下一个邻接顶点</span>
+        }
+    }
+
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)                    <span class="hljs-comment">// 给每个事件的最迟发生事件置初值ve[n-1]</span>
+        vl[i]=ve[n<span class="hljs-number">-1</span>];
+    <span class="hljs-comment">/* - - - - - 按拓扑次序来求每个事件的最迟发生时间 - - - -  */</span>
+    <span class="hljs-keyword">for</span>(i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+        k=topo[i];                      <span class="hljs-comment">// 取得拓扑序列中的顶点序号k</span>
+        p=G.vertices[k].firstarc;       <span class="hljs-comment">// p指向k的第一个邻接顶点</span>
+        <span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>){
+            j=p-&gt;adjvex;                <span class="hljs-comment">// j为邻接顶点的序号</span>
+            <span class="hljs-keyword">if</span>(vl[k]&gt;vl[j]-p-&gt;weight)   <span class="hljs-comment">// 更新顶点最迟发生时间vl[k]</span>
+                vl[k]=vl[j]-p-&gt;weight;
+            p=p-&gt;nextarc;               <span class="hljs-comment">// p指向k的下一个邻接顶点</span>
+        }
+    }
+
+    <span class="hljs-comment">/* - - - - - - - - -判断每个活动是否为关键活动- - - - - - - */</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++){
+        p=G.vertices[i].firstarc;       <span class="hljs-comment">// p指向i的第一个邻接顶点</span>
+        <span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>){
+            j=p-&gt;adjvex;                <span class="hljs-comment">// j为i的邻接顶点的序号</span>
+            e=ve[i];                    <span class="hljs-comment">// 计算活动&lt;vi,vj&gt;的最早开始时间</span>
+            l=vl[j]-p-&gt;weight;          <span class="hljs-comment">// 计算活动&lt;vi,vj&gt;的最迟开始时间</span>
+            <span class="hljs-keyword">if</span>(e==l){
+                <span class="hljs-built_in">cout</span>&lt;&lt;G.vertices[i].data&lt;&lt;G.vertices[j].data;
+            }
+            p=p-&gt;nextarc;               <span class="hljs-comment">// p指向i的下一个邻接顶点</span>
+        }
+    }
+}
+</div></code></pre>
+
+    </body>
+    </html>
