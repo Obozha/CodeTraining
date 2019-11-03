@@ -12,7 +12,7 @@ Status InitList(LinkList &L){
 Status GetElem(LinkList L,int i,ElemType &e){
 	p=L->next;
 	j=1;
-	while((j<i)&&(p)){
+	while(j<i&&p){
 		p=p->next;
 		j++;
 	}
@@ -31,19 +31,34 @@ LNode *LocateElem(LinkList L,ElemType e){
 	return p;
 }
 
-Status ListInsert(LinkList L,ElemType e,int i){
-	p=L;
+Status ListInsert(LinkList &L,ElemType e,int i){
 	j=0;
+	p=L;
 	while(j<i-1&&p){
 		p=p->next;
-		++j
-	}	
-	if(i-1<j||!p){
+		j++;
+	}
+	if(i-1<j||p){
 		return ERROR;
 	}
-	s=new LNode;
-	s->data=e;
-	s->next=p->next;
+	S=new LNode;
+	S->data=e;
+	S->next=p->next;
 	p->next=s;
+	return OK; 
+}
+
+Status ListDelete(LinkList &L,ElemType e,int i){
+	p=L;
+	j=0;
+	while(j<i-1||p->next){
+		p=p->next;
+		j++;
+	}
+	if(j>i-1||!(p->next))
+		return ERROR;
+	q=p->next;
+	p->next=q->next;
+	delete q;
 	return OK;
 }
