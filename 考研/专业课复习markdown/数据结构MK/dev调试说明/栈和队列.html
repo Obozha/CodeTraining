@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>栈和队列</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="%e6%a0%88%e5%92%8c%e9%98%9f%e5%88%97">栈和队列</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97">栈和队列</a>
+<ul>
+<li><a href="#%E6%A0%88">栈</a>
+<ul>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E6%A0%88">顺序栈</a>
+<ul>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">顺序栈的存储结构</a></li>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">顺序栈的初始化</a></li>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E5%85%A5%E6%A0%88">顺序栈的入栈</a></li>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E5%87%BA%E6%A0%88">顺序栈的出栈</a></li>
+<li><a href="#%E5%8F%96%E9%A1%BA%E5%BA%8F%E6%A0%88%E9%A1%B6%E5%85%83%E7%B4%A0">取顺序栈顶元素</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%A0%88">链栈</a>
+<ul>
+<li><a href="#%E9%93%BE%E6%A0%88%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">链栈的存储结构</a></li>
+<li><a href="#%E9%93%BE%E6%A0%88%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">链栈的初始化</a></li>
+<li><a href="#%E9%93%BE%E6%A0%88%E7%9A%84%E5%85%A5%E6%A0%88">链栈的入栈</a></li>
+<li><a href="#%E9%93%BE%E6%A0%88%E7%9A%84%E5%87%BA%E6%A0%88">链栈的出栈</a></li>
+<li><a href="#%E5%8F%96%E9%93%BE%E6%A0%88%E9%A1%B6%E5%85%83%E7%B4%A0">取链栈顶元素</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%98%9F%E5%88%97">队列</a>
+<ul>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97">循环队列</a>
+<ul>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">循环队列的存储结构</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">循环队列的初始化</a></li>
+<li><a href="#%E6%B1%82%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E9%95%BF%E5%BA%A6">求循环队列长度</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E5%85%A5%E9%98%9F">循环队列入队</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E5%87%BA%E9%98%9F">循环队列出队</a></li>
+<li><a href="#%E5%8F%96%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%9A%84%E9%98%9F%E5%A4%B4%E5%85%83%E7%B4%A0">取循环队列的队头元素</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E9%98%9F">链队</a>
+<ul>
+<li><a href="#%E9%98%9F%E5%88%97%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">队列的链式存储结构</a></li>
+<li><a href="#%E9%93%BE%E9%98%9F%E5%88%9D%E5%A7%8B%E5%8C%96">链队初始化</a></li>
+<li><a href="#%E9%93%BE%E9%98%9F%E7%9A%84%E5%85%A5%E9%98%9F">链队的入队</a></li>
+<li><a href="#%E9%93%BE%E9%98%9F%E7%9A%84%E5%87%BA%E9%98%9F">链队的出队</a></li>
+<li><a href="#%E5%8F%96%E9%98%9F%E5%A4%B4%E5%85%83%E7%B4%A0">取队头元素</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%e6%a0%88">栈</h2>
+<h3 id="%e9%a1%ba%e5%ba%8f%e6%a0%88">顺序栈</h3>
+<h4 id="%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">顺序栈的存储结构</h4>
+<pre><code class="language-c"><div><span class="hljs-comment">// 顺序栈的存储结构</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXSIZE 100 <span class="hljs-comment">// 顺序栈存储空间的初始分配量</span></span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        SElemType *base;    <span class="hljs-comment">// 栈底指针</span>
+        SElemType *top;     <span class="hljs-comment">// 栈顶指针</span>
+        <span class="hljs-keyword">int</span> stacksize;      <span class="hljs-comment">// 栈可用最大容量</span>
+    }SqStack;
+</div></code></pre>
+<h4 id="%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">顺序栈的初始化</h4>
+<ol>
+<li>为顺序栈动态分配一个最大容量为MAXSIZE的数组空间，使base指向这段空间的基地址，即栈底。</li>
+<li>栈顶指针top初始为base，表示栈为空。</li>
+<li>stacksize置为栈的最大容量MAXSIZE。</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">InitStack</span><span class="hljs-params">(SqStack &amp;S)</span></span>{
+    <span class="hljs-comment">// 构造一个空栈</span>
+    S.base=<span class="hljs-keyword">new</span> SElemType[MAXSIZE]; <span class="hljs-comment">// 为顺序栈动态分配一个容量为MAXSIZE的数组空间</span>
+    <span class="hljs-keyword">if</span>(!S.base)
+        <span class="hljs-built_in">exit</span>(OVERFLOW);            <span class="hljs-comment">// 存储分配失败</span>
+    S.top=S.base;                  <span class="hljs-comment">// top初始为base，空栈</span>
+    S.stacksize=MAXSIZE;           <span class="hljs-comment">// stacksize置为栈的最大容量MAXSIZE</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e5%85%a5%e6%a0%88">顺序栈的入栈</h4>
+<ol>
+<li>判断栈是否满，若满则返回ERROR。</li>
+<li>将新元素压入栈顶，栈顶指针加1</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">Push</span><span class="hljs-params">(SqStack &amp;S,SElemType e)</span></span>{
+    <span class="hljs-comment">// 插入e为新的栈顶元素</span>
+    <span class="hljs-keyword">if</span>(S.top-S.base==S.stacksize)
+        <span class="hljs-keyword">return</span> ERROR;               <span class="hljs-comment">// 栈满</span>
+    *S.top++=e;
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%a1%ba%e5%ba%8f%e6%a0%88%e7%9a%84%e5%87%ba%e6%a0%88">顺序栈的出栈</h4>
+<ol>
+<li>判断栈是否为空，若空则返回ERROR。</li>
+<li>栈顶指针减1，栈顶元素出栈。</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">Pop</span><span class="hljs-params">(SqStack &amp;S,SElemType &amp;e)</span></span>{
+    <span class="hljs-comment">// 删除S的栈顶元素，用e返回其值</span>
+    <span class="hljs-keyword">if</span>(S.top==S.base)
+        <span class="hljs-keyword">return</span> ERROR;   <span class="hljs-comment">// 栈空</span>
+    e=*--S.top;         <span class="hljs-comment">// 栈顶指针减1，将栈顶元素赋给e</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e5%8f%96%e9%a1%ba%e5%ba%8f%e6%a0%88%e9%a1%b6%e5%85%83%e7%b4%a0">取顺序栈顶元素</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">SElemType <span class="hljs-title">GetTop</span><span class="hljs-params">(SqStack S)</span></span>{
+    <span class="hljs-comment">// 返回S的栈顶元素，不修改栈顶指针</span>
+    <span class="hljs-keyword">if</span>(S.top!=S.base)       <span class="hljs-comment">// 栈非空</span>
+        <span class="hljs-keyword">return</span> *(S.top<span class="hljs-number">-1</span>);  <span class="hljs-comment">// 返回栈顶元素的值，栈顶元素不变</span>
+}
+</div></code></pre>
+<h3 id="%e9%93%be%e6%a0%88">链栈</h3>
+<h4 id="%e9%93%be%e6%a0%88%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">链栈的存储结构</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// 链栈的存储结构</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span>{</span>
+    ElemType data;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span> *<span class="hljs-title">next</span>;</span>
+}StackNode,*LinkStack;
+</div></code></pre>
+<h4 id="%e9%93%be%e6%a0%88%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">链栈的初始化</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">InitStack</span><span class="hljs-params">(LinkStack &amp;S)</span></span>{
+    <span class="hljs-comment">// 构造一个空栈S，栈顶指针置空</span>
+    S=<span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%93%be%e6%a0%88%e7%9a%84%e5%85%a5%e6%a0%88">链栈的入栈</h4>
+<ol>
+<li>为入栈元素e分配空间，用指针p指向</li>
+<li>将新结点数据域置为e</li>
+<li>将新结点插入栈顶</li>
+<li>修改栈顶指针为p</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">Push</span><span class="hljs-params">(LinkStack &amp;S,SElemType e)</span></span>{
+    <span class="hljs-comment">// 在栈顶插入元素e</span>
+    p=<span class="hljs-keyword">new</span> StackNode;    <span class="hljs-comment">// 生成新结点</span>
+    p-&gt;data=e;          <span class="hljs-comment">// 将新结点数据置为e</span>
+    p-&gt;next=S;          <span class="hljs-comment">// 将新结点插入栈顶</span>
+    S=p;
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%93%be%e6%a0%88%e7%9a%84%e5%87%ba%e6%a0%88">链栈的出栈</h4>
+<ol>
+<li>判断栈是否为空，若空则返回ERROR。</li>
+<li>将栈顶元素赋给e</li>
+<li>临时保存栈顶元素的空间，以备释放。</li>
+<li>修改栈顶指针，指向新的栈顶元素。</li>
+<li>释放原栈顶元素的空间。</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">Pop</span><span class="hljs-params">(LinkStack &amp;S,SElemType &amp;e)</span></span>{
+    <span class="hljs-comment">// 删除S的栈顶元素，用e返回其值</span>
+    <span class="hljs-keyword">if</span>(S==<span class="hljs-literal">NULL</span>)             <span class="hljs-comment">// 栈空</span>
+        <span class="hljs-keyword">return</span> ERROR;
+    e=S-&gt;data;              <span class="hljs-comment">// 将栈顶元素赋给e</span>
+    p=S;                    <span class="hljs-comment">// 用p临时保存栈顶元素空间，以备释放</span>
+    S=S-&gt;next;              <span class="hljs-comment">// 修改栈顶指针</span>
+    <span class="hljs-keyword">delete</span> p;               <span class="hljs-comment">// 释放原栈顶元素的空间</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e5%8f%96%e9%93%be%e6%a0%88%e9%a1%b6%e5%85%83%e7%b4%a0">取链栈顶元素</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">SElemType <span class="hljs-title">GetTop</span><span class="hljs-params">(LinkStack S)</span></span>{
+    <span class="hljs-comment">// 返回S的栈顶元素，不修改栈顶指针</span>
+    <span class="hljs-keyword">if</span>(S!=<span class="hljs-literal">NULL</span>){        <span class="hljs-comment">// 栈非空</span>
+        <span class="hljs-keyword">return</span> S-&gt;data; <span class="hljs-comment">// 返回栈顶元素的值，栈顶指针不变</span>
+    }
+}
+</div></code></pre>
+<h2 id="%e9%98%9f%e5%88%97">队列</h2>
+<h3 id="%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97">循环队列</h3>
+<h4 id="%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">循环队列的存储结构</h4>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-comment">// 队列的顺序存储结构</span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXQSIZE 100 <span class="hljs-comment">// 队列可能达到的最大长度</span></span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        QElemType *base;
+        <span class="hljs-keyword">int</span> front;      <span class="hljs-comment">// 头指针</span>
+        <span class="hljs-keyword">int</span> rear;       <span class="hljs-comment">// 尾指针</span>
+    }SqQueue
+</div></code></pre>
+<h4 id="%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">循环队列的初始化</h4>
+<ol>
+<li>为队列分配一个最大容量为MAXQSIZE的数组空间，base指向数组空间的首地址。</li>
+<li>头指针和尾指针置为0，表示队列为空</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">InitQueue</span><span class="hljs-params">(SqQueue &amp;Q)</span></span>{
+    <span class="hljs-comment">// 构造一个空队列Q</span>
+    Q.base=<span class="hljs-keyword">new</span> QElemType[MAXQSIZE]; <span class="hljs-comment">// 为队列分配一个最大容量为MAXQSIZE的数组空间</span>
+    <span class="hljs-keyword">if</span>(!Q.base)
+        <span class="hljs-built_in">exit</span>(OVERFLOW);             <span class="hljs-comment">// 存储分配失败</span>
+    Q.front=Q.rear=<span class="hljs-number">0</span>;               <span class="hljs-comment">// 头指针和尾指针置为0，队列为空。</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e6%b1%82%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e9%95%bf%e5%ba%a6">求循环队列长度</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">QueueLength</span><span class="hljs-params">(SqQueue Q)</span></span>{
+    <span class="hljs-comment">// 返回Q的元素个数，即队列的长度</span>
+    <span class="hljs-keyword">return</span> (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;
+}
+</div></code></pre>
+<h4 id="%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e5%85%a5%e9%98%9f">循环队列入队</h4>
+<ol>
+<li>判断队列是否满，若满则返回ERROR。</li>
+<li>将新元素插入队尾</li>
+<li>队尾指针加1</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">EnQueue</span><span class="hljs-params">(SqQueue &amp;Q,QElemType e)</span></span>{
+    <span class="hljs-comment">// 插入元素e为Q的新的队列元素</span>
+    <span class="hljs-keyword">if</span>((Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE==Q.front) <span class="hljs-comment">// 尾指针在循环意义上+1后等于头指针，表明队满</span>
+        <span class="hljs-keyword">return</span> ERROR;
+    Q.base[Q.rear]=e;                <span class="hljs-comment">// 新元素插入队尾</span>
+    Q.rear=(Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE;      <span class="hljs-comment">// 队尾指针+1</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e5%87%ba%e9%98%9f">循环队列出队</h4>
+<ol>
+<li>判断队列是否为空，若空则返回ERROR。</li>
+<li>保存队头元素</li>
+<li>队头指针加1</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">DeQueue</span><span class="hljs-params">(SeQueue &amp;Q,QElemType &amp;e)</span></span>{
+    <span class="hljs-comment">// 删除Q的队头元素，用e返回其值</span>
+    <span class="hljs-keyword">if</span>(Q.front==Q.rear)
+        <span class="hljs-keyword">return</span> ERROR;       <span class="hljs-comment">// 队空</span>
+    e=Q.base[Q.front];      <span class="hljs-comment">// 保存队头元素</span>
+    Q.front=(Q.front+<span class="hljs-number">1</span>)%MAXQSIZE;    <span class="hljs-comment">// 队头指针加1</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e5%8f%96%e5%be%aa%e7%8e%af%e9%98%9f%e5%88%97%e7%9a%84%e9%98%9f%e5%a4%b4%e5%85%83%e7%b4%a0">取循环队列的队头元素</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">SElemType <span class="hljs-title">GetHead</span><span class="hljs-params">(SqQueue Q)</span></span>{
+    <span class="hljs-comment">// 返回Q的队头元素，不修改队头指针</span>
+    <span class="hljs-keyword">if</span>(Q.front!=Q.rear)         <span class="hljs-comment">// 队列非空</span>
+        <span class="hljs-keyword">return</span> Q.base[Q.front]; <span class="hljs-comment">// 返回队头元素的值，队头指针不变</span>
+}
+</div></code></pre>
+<h3 id="%e9%93%be%e9%98%9f">链队</h3>
+<h4 id="%e9%98%9f%e5%88%97%e7%9a%84%e9%93%be%e5%bc%8f%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">队列的链式存储结构</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// 队列的链式存储结构</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QNode</span>{</span>
+    QElemType data;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QNode</span> *<span class="hljs-title">next</span>;</span>
+}QNode,*QueuePtr;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+    QueuePtr front;     <span class="hljs-comment">// 队头指针</span>
+    QueuePtr rear;      <span class="hljs-comment">// 队尾指针</span>
+}LinkQueue;
+</div></code></pre>
+<h4 id="%e9%93%be%e9%98%9f%e5%88%9d%e5%a7%8b%e5%8c%96">链队初始化</h4>
+<ol>
+<li>生成新结点作为头结点，队头和队尾指针指向此结点。</li>
+<li>头指针的指针域置空</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">InitQueue</span><span class="hljs-params">(LinkQueue &amp;Q)</span></span>{
+    <span class="hljs-comment">// 构造一个空队列Q</span>
+    Q.front=Q.rear=<span class="hljs-keyword">new</span> QNode; <span class="hljs-comment">// 生成新结点作为头结点，队头和队尾指针指向此结点</span>
+    Q.front-&gt;next=<span class="hljs-literal">NULL</span>;       <span class="hljs-comment">// 头结点的指针域置空</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%93%be%e9%98%9f%e7%9a%84%e5%85%a5%e9%98%9f">链队的入队</h4>
+<ol>
+<li>为入队元素分配结点空间，用指针p指向。</li>
+<li>将新结点数据域置为e</li>
+<li>将新结点插入到队尾</li>
+<li>修改队尾指针p</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">EnQueue</span><span class="hljs-params">(LinkQueue &amp;Q,QElemType e)</span></span>{
+    <span class="hljs-comment">// 插入元素e为Q的新的队尾元素</span>
+    p=<span class="hljs-keyword">new</span> QNode;        <span class="hljs-comment">// 为入队元素分配结点空间，用指针p指向</span>
+    p-&gt;data=e;          <span class="hljs-comment">// 将新结点数据域置为e</span>
+    p-&gt;next=<span class="hljs-literal">NULL</span>;       <span class="hljs-comment">// 将新结点插入到队尾</span>
+    Q.rear-&gt;next=p;
+    Q.rear=p;           <span class="hljs-comment">// 修改队尾指针</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+</div></code></pre>
+<h4 id="%e9%93%be%e9%98%9f%e7%9a%84%e5%87%ba%e9%98%9f">链队的出队</h4>
+<ol>
+<li>判断队列是否为空，若空则返回ERROR</li>
+<li>临时保存队头元素的空间，以备释放。</li>
+<li>修改头结点的指针域，指向下一个结点。</li>
+<li>判断出队元素是否为最后一个元素，若是，则将队尾指针重新赋值，指向头结点。</li>
+<li>释放原队头元素的空间。</li>
+</ol>
+<pre><code class="language-c"><div><span class="hljs-function">Status <span class="hljs-title">DeQueue</span><span class="hljs-params">(LinkQueue &amp;Q,QElemType &amp;e)</span></span>{
+    <span class="hljs-comment">// 删除Q的队头元素，用e返回其值</span>
+    <span class="hljs-keyword">if</span>(Q.front==Q.rear)         <span class="hljs-comment">// 若队列为空则返回ERROR</span>
+        <span class="hljs-keyword">return</span> ERROR;
+    p=Q.front-&gt;next;            <span class="hljs-comment">// p指向队头元素</span>
+    e=p-&gt;data;                  <span class="hljs-comment">// e保存队头元素的值</span>
+    Q.front-&gt;next=p-&gt;next;      <span class="hljs-comment">// 修改头结点的指针域</span>
+    <span class="hljs-keyword">if</span>(Q.rear==p)               <span class="hljs-comment">// 最后一个元素被删，队尾指针指向头结点</span>
+        Q.rear=Q.front;
+    <span class="hljs-keyword">delete</span> p;                   <span class="hljs-comment">// 释放原队头元素的空间</span>
+    <span class="hljs-keyword">return</span> OK;
+}
+
+</div></code></pre>
+<h4 id="%e5%8f%96%e9%98%9f%e5%a4%b4%e5%85%83%e7%b4%a0">取队头元素</h4>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">SElemType <span class="hljs-title">GetHead</span><span class="hljs-params">(LinkQueue Q)</span></span>{
+    <span class="hljs-comment">// 返回Q的队头元素，不修改指针</span>
+    <span class="hljs-keyword">if</span>(Q.front!=Q.rear)                 <span class="hljs-comment">// 队列非空</span>
+        <span class="hljs-keyword">return</span> Q.front-&gt;next-&gt;data;     <span class="hljs-comment">// 返回队头元素的值，队头指针不变</span>
+}
+</div></code></pre>
+
+    </body>
+    </html>

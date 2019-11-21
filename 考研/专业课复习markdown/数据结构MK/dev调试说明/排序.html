@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>排序</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="%e6%8e%92%e5%ba%8f">排序</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="#%E5%BE%85%E6%8E%92%E5%BA%8F%E8%AE%B0%E5%BD%95%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F">待排序记录的存储方式</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">插入排序</a>
+<ul>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">直接插入排序</a></li>
+<li><a href="#%E6%8A%98%E5%8D%8A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">折半插入排序</a></li>
+<li><a href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F">希尔排序</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F">交换排序</a>
+<ul>
+<li><a href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">冒泡排序</a></li>
+<li><a href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">选择排序</a>
+<ul>
+<li><a href="#%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">简单选择排序</a></li>
+<li><a href="#%E5%A0%86%E6%8E%92%E5%BA%8F">堆排序</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%e5%be%85%e6%8e%92%e5%ba%8f%e8%ae%b0%e5%bd%95%e7%9a%84%e5%ad%98%e5%82%a8%e6%96%b9%e5%bc%8f">待排序记录的存储方式</h2>
+<hr>
+<pre><code class="language-c"><div>    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAXSIZE 20          <span class="hljs-comment">// 顺序表的最大长度</span></span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> KeyType;        <span class="hljs-comment">// 定义关键字类型为整形</span>
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        KeyType key;            <span class="hljs-comment">// 关键字项</span>
+        InfoType otherinfo;     <span class="hljs-comment">// 其他数据项</span>
+    }RedType;                   <span class="hljs-comment">// 记录类型</span>
+
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+        RedType r[MAXSIZE+<span class="hljs-number">1</span>];   <span class="hljs-comment">// r[0]闲置或用做哨兵单元</span>
+        <span class="hljs-keyword">int</span> length;             <span class="hljs-comment">// 顺序表长度</span>
+    }SqList;                    <span class="hljs-comment">// 顺序表类型</span>
+</div></code></pre>
+<h2 id="%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">插入排序</h2>
+<h3 id="%e7%9b%b4%e6%8e%a5%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">直接插入排序</h3>
+<ol>
+<li>设待排序的记录存放在数组r[1..n]中，r[1]是一个有序序列。</li>
+<li>循环n-1次，每次使用顺序查找法，查找r[i]（i=2，...，n）在已排好序的序列r[1，... i-1]中的插入位置，然后将r[i]插入表长为i-1的有序序列r[1...i-1]，直到将r[n]插入表长为n-1的有序序列r[1...n-1]，最后得到一个表长为n的有序序列。</li>
+</ol>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InsertSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做直接插入排序</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=L.length;i++){
+        <span class="hljs-keyword">if</span>(L.r[i].key&lt;L.r[i<span class="hljs-number">-1</span>].key){                <span class="hljs-comment">//“&lt;”，需将r[i]插入有序子表</span>
+            L.r[<span class="hljs-number">0</span>]=L.r[i];
+            L.r[i]=L.r[i<span class="hljs-number">-1</span>];
+            <span class="hljs-keyword">for</span>(j=i<span class="hljs-number">-2</span>;L.r[<span class="hljs-number">0</span>].key&lt;L.r[j].key;--j){   <span class="hljs-comment">// 将待插入的记录暂存在监视哨中</span>
+                L.r[j+<span class="hljs-number">1</span>]=L.r[j];                    <span class="hljs-comment">// r[i-1]后移</span>
+            }
+            L.r[j+<span class="hljs-number">1</span>]=L.r[<span class="hljs-number">0</span>];
+        }
+    }
+}
+
+<span class="hljs-comment">// 浙大</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insertion_Sort</span><span class="hljs-params">(ElementType A[],<span class="hljs-keyword">int</span> N)</span></span>{
+    <span class="hljs-keyword">for</span>(P=<span class="hljs-number">1</span>;P&lt;N;P++){
+        Tmp=A[P]; <span class="hljs-comment">/* 模下一张牌 */</span>
+        <span class="hljs-keyword">for</span>(i=P;i&gt;<span class="hljs-number">0</span>&amp;&amp;A[i<span class="hljs-number">-1</span>]&gt;Tmp;i--)
+            A[i]=A[i<span class="hljs-number">-1</span>];    <span class="hljs-comment">/* 移出空位 */</span>
+        A[i]=tmp;   <span class="hljs-comment">/* 新牌落位 */</span>
+    }
+}
+
+<span class="hljs-comment">// 最好情况：顺序T=O（N）</span>
+<span class="hljs-comment">// 最坏情况：逆序T=O（N方）</span>
+</div></code></pre>
+<h3 id="%e6%8a%98%e5%8d%8a%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f">折半插入排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BInsertSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做折半插入排序</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=L.length;++i){
+        L.r[<span class="hljs-number">0</span>]=L.r[i];          <span class="hljs-comment">// 将待插入的记录暂存到监视哨中</span>
+        low=<span class="hljs-number">1</span>;
+        high=i<span class="hljs-number">-1</span>;               <span class="hljs-comment">// 置查找区间初值</span>
+        <span class="hljs-keyword">while</span>(low&lt;=high){
+            m=(low+high/<span class="hljs-number">2</span>);     <span class="hljs-comment">// 折半</span>
+            <span class="hljs-keyword">if</span>(L.r[<span class="hljs-number">0</span>].key&lt;L.r[m].key)
+                high=m<span class="hljs-number">-1</span>;       <span class="hljs-comment">// 插入点在前一子表</span>
+            <span class="hljs-keyword">else</span>
+                low=m+<span class="hljs-number">1</span>;        <span class="hljs-comment">// 插入点在后一子表</span>
+        }
+        <span class="hljs-keyword">for</span>(j=i<span class="hljs-number">-1</span>;j&gt;=high+<span class="hljs-number">1</span>;--j)
+            L.r[j+<span class="hljs-number">1</span>]=L.r[j];    <span class="hljs-comment">// 记录后移</span>
+        L.r[high+<span class="hljs-number">1</span>]=L.r[<span class="hljs-number">0</span>];     <span class="hljs-comment">// 将r[0]即原r[i]，插入正确位置</span>
+    }
+}
+</div></code></pre>
+<h3 id="%e5%b8%8c%e5%b0%94%e6%8e%92%e5%ba%8f">希尔排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ShellInsert</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> dk)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做一趟增量是dk的希尔插入排序</span>
+    <span class="hljs-keyword">for</span>(i=dk+<span class="hljs-number">1</span>;i&lt;=L.length;i++){
+        <span class="hljs-keyword">if</span>(L.r[i].key&lt;L.r[i-dk].key){   <span class="hljs-comment">// 需将L.r[i]插入有序增量子表</span>
+            L.r[<span class="hljs-number">0</span>]=L.r[i];              <span class="hljs-comment">// 暂存在L.r[0]</span>
+            <span class="hljs-keyword">for</span>(j=i-dk;j&gt;<span class="hljs-number">0</span>&amp;&amp;L.r[<span class="hljs-number">0</span>].key&lt;L.r[j].key;j-=dk){
+                L.r[j+dk]=L.r[j];       <span class="hljs-comment">// 记录后移，直到找到插入位置</span>
+            }
+            L.r[j+dk]=L.r[<span class="hljs-number">0</span>];           <span class="hljs-comment">// 将r[0]即原r[i]，插入到正确位置</span>
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ShellSort</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> dt[],<span class="hljs-keyword">int</span> t)</span></span>{
+    <span class="hljs-comment">// 按增量序列dt[0..t-1]对顺序表L作t趟希尔排序</span>
+    <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>;k&lt;t;++k){
+        ShellInsert(L,dt[k]);           <span class="hljs-comment">// 一趟增量为dt[t]的希尔插入排序</span>
+    }
+}
+
+<span class="hljs-comment">// 主要思想：定义增量序列Dm&gt;Dm-1&gt;...&gt;D1=1</span>
+<span class="hljs-comment">// 对每个Dk进行"Dk-间隔"插入排序（k=M，M-1，...1）</span>
+<span class="hljs-comment">// Dk-间隔有序的序列，在执行“Dk-1-间隔”排序后，仍然是“Dk-间隔”有序的</span>
+
+<span class="hljs-comment">// 浙大</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Shell_sort</span><span class="hljs-params">(ElemType A[],<span class="hljs-keyword">int</span> N)</span></span>{
+    <span class="hljs-keyword">for</span>(D=N/<span class="hljs-number">2</span>;D&gt;<span class="hljs-number">0</span>;D/=<span class="hljs-number">2</span>){    <span class="hljs-comment">/* 希尔增量序列 */</span>
+        <span class="hljs-keyword">for</span>(P=D;P&lt;N;D/=<span class="hljs-number">2</span>){  <span class="hljs-comment">/* 插入排序 */</span>
+            Tmp=A[P];
+            <span class="hljs-keyword">for</span>(i=P;i&gt;=D&amp;&amp;A[i-D]&gt;Tmp;i-=D)
+                A[i]=A[i-D];
+            A[i]=Tmp;
+        }
+    }
+}
+
+</div></code></pre>
+<h2 id="%e4%ba%a4%e6%8d%a2%e6%8e%92%e5%ba%8f">交换排序</h2>
+<h3 id="%e5%86%92%e6%b3%a1%e6%8e%92%e5%ba%8f">冒泡排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// 严蔚敏版本</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BubbleSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做冒泡排序</span>
+    m=L.length<span class="hljs-number">-1</span>;
+    flag=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span>((m&gt;<span class="hljs-number">0</span>)&amp;&amp;(flag==<span class="hljs-number">1</span>)){
+        flag=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=m;j++){
+            <span class="hljs-keyword">if</span>(L.r[j].key&gt;L.r[i+<span class="hljs-number">1</span>].key){
+                flag=<span class="hljs-number">1</span>;
+                t=L.r[j];
+                L.r[j]=L.r[j+<span class="hljs-number">1</span>];
+                L.r[j+<span class="hljs-number">1</span>]=t;
+            }
+        }
+        --m;
+    }
+}
+
+<span class="hljs-comment">// 浙大版本</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BubbleSort</span><span class="hljs-params">(ElementType A[],<span class="hljs-keyword">int</span> N)</span></span>{
+    <span class="hljs-keyword">for</span>(P=N<span class="hljs-number">-1</span>;P&gt;=<span class="hljs-number">0</span>;P--){
+        flag=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;p;i++){
+            <span class="hljs-keyword">if</span>(A[i]&gt;A[i+<span class="hljs-number">1</span>]){
+                Swap(A[i],A[i+<span class="hljs-number">1</span>]);
+                flag=<span class="hljs-number">1</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">0</span>)
+            <span class="hljs-keyword">break</span>;
+    }
+}
+<span class="hljs-comment">// 最好情况：顺序T=O(N)</span>
+<span class="hljs-comment">// 最坏情况：最坏情况T=O（N方）</span>
+</div></code></pre>
+<h3 id="%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8f">快速排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Partition</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> low,<span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-comment">// 对顺序表L中的子表r[low..high]进行一趟排序，返回枢轴的位置</span>
+    L.r[<span class="hljs-number">0</span>]=L.r[low];                <span class="hljs-comment">// 用子表的第一个记录做枢轴记录</span>
+    pivotkey=L.r[low].key;          <span class="hljs-comment">// 枢轴记录关键字保存在pivotkey中</span>
+    <span class="hljs-keyword">while</span>(low&lt;high){
+        <span class="hljs-keyword">while</span>(low&lt;high&amp;&amp;L.r[high].key&gt;=pivotkey)
+            --high;
+        L.r[low]=L.r[high];         <span class="hljs-comment">// 将比枢轴记录小的记录移到低端</span>
+        <span class="hljs-keyword">while</span>(low&lt;high&amp;&amp;L.r[low].key&lt;=pivotkey)
+            ++low;
+        L.r[high]=L.r[low];         <span class="hljs-comment">// 将比枢轴记录大的记录移到高端</span>
+    }
+    L.r[low]=L.r[<span class="hljs-number">0</span>];                <span class="hljs-comment">// 枢轴记录到位</span>
+    <span class="hljs-keyword">return</span> low;                     <span class="hljs-comment">// 返回枢轴位置</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">QSort</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> low,<span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-comment">// 调用前置初值：low=1; high=L.length;</span>
+    <span class="hljs-comment">// 对顺序表L的子序列L.r[low..high]做快速排序</span>
+    <span class="hljs-keyword">if</span>(low&lt;high){                           <span class="hljs-comment">// 长度大于1</span>
+        pivotloc=Partition(L,low,high);     <span class="hljs-comment">// 将L.r[low..high]一分为二，pivotloc是枢轴位置</span>
+        QSort(L,low,pivotloc<span class="hljs-number">-1</span>);            <span class="hljs-comment">// 对左子表递归排序</span>
+        QSort(L,pivotloc+<span class="hljs-number">1</span>,high);           <span class="hljs-comment">// 对右子表递归排序</span>
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">QuickSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做快速排序</span>
+    QSort(L,<span class="hljs-number">1</span>,L.length);
+}
+</div></code></pre>
+<h2 id="%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f">选择排序</h2>
+<h3 id="%e7%ae%80%e5%8d%95%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f">简单选择排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SeletSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L做简单选择排序</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;L.length;++i){                <span class="hljs-comment">// 在L.r[i..L.length]中选最小的记录</span>
+        k=i;
+        <span class="hljs-keyword">for</span>(j=i+<span class="hljs-number">1</span>;j&lt;=L.length;++j)
+            <span class="hljs-keyword">if</span>(L.r[j].key&lt;L.r[k].key)
+                k=j;
+        <span class="hljs-keyword">if</span>(k!=i){
+            t=L.r[i];
+            L.r[i]=L.r[k];
+            L.r[k]=t;
+        }
+        <span class="hljs-comment">// 交换r[i]与r[k]</span>
+    }
+}
+
+<span class="hljs-comment">// 浙大</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Selection_Sort</span><span class="hljs-params">(ElemType A[],<span class="hljs-keyword">int</span> N)</span></span>{
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;N;i++){
+        MinPosition=ScanForMin(A,i,N<span class="hljs-number">-1</span>);
+        <span class="hljs-comment">/* 从A[i]到A[N-1]中找最小元，并将其位置赋给MinPosition */</span>
+        Swap(A[i],A[MinPosition]);
+        <span class="hljs-comment">/* 将未排序部分的最小单元换到有序部分的最后 */</span>
+    }
+}
+<span class="hljs-comment">// T=O（N方）</span>
+<span class="hljs-comment">// 无所谓最好情况最坏情况</span>
+</div></code></pre>
+<h3 id="%e5%a0%86%e6%8e%92%e5%ba%8f">堆排序</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// 堆调整</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HeapAdjust</span><span class="hljs-params">(SqList &amp;L,<span class="hljs-keyword">int</span> s,<span class="hljs-keyword">int</span> m)</span></span>{
+    <span class="hljs-comment">// 假设r[s+1..m]已经是堆，将r[s..m]调整成以r[s]为根的大根堆</span>
+    rc=L.r[s];
+    <span class="hljs-keyword">for</span>(j=<span class="hljs-number">2</span>*s;j&lt;=m;j*=<span class="hljs-number">2</span>){
+        <span class="hljs-keyword">if</span>(j&lt;m&amp;&amp;L.r[i].key&lt;L.r[j+<span class="hljs-number">1</span>].key)
+            j++;
+        <span class="hljs-keyword">if</span>(rc.key&gt;=L.r[j].key)
+            <span class="hljs-keyword">break</span>;
+        L.r[s]=L.r[j];
+        s=j;
+    }
+    L.r[s]=rc;
+}
+
+<span class="hljs-comment">// 创建堆</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CreateHeap</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 把无序列L.r[1..n]建成大根堆</span>
+    n=L.length;
+    <span class="hljs-keyword">for</span>(i=n/<span class="hljs-number">2</span>;i&gt;<span class="hljs-number">0</span>;--i)          <span class="hljs-comment">// 反复调用HeapAdjust</span>
+        HeapAdjust(L,i,n);
+}
+
+<span class="hljs-comment">// 堆排序</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HeapSort</span><span class="hljs-params">(SqList &amp;L)</span></span>{
+    <span class="hljs-comment">// 对顺序表L进行堆排序</span>
+    CreatHeap(L);               <span class="hljs-comment">// 把无序序列L.r[1..L.length]建成大根堆</span>
+    <span class="hljs-keyword">for</span>(i=L.length;i&gt;<span class="hljs-number">1</span>;--i){
+        x=L.r[<span class="hljs-number">1</span>];
+        L.r[<span class="hljs-number">1</span>]=L.r[i];
+        L.r[i]=x;
+        HeapAdjust(L,<span class="hljs-number">1</span>,i<span class="hljs-number">-1</span>);    <span class="hljs-comment">// 将L.r[1..i-1]重新调整为大根堆</span>
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Heap_Sort</span><span class="hljs-params">(ElementType A[],<span class="hljs-keyword">int</span> N)</span></span>{
+    BuildHeap(A);   <span class="hljs-comment">//</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;N;i++)
+        TmpA[i]=DeleteMin(A); <span class="hljs-comment">/* O(logN) */</span>
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;N;i++)    <span class="hljs-comment">/* O(N) */</span>
+        A[i]=TmpA[i];
+}
+</div></code></pre>
+<h2 id="%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f">归并排序</h2>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Merge</span><span class="hljs-params">(RedType R[],RedType T[],<span class="hljs-keyword">int</span> low,<span class="hljs-keyword">int</span> mid,<span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-comment">// 将有序表R[low..mid]和R[mid+1..high]归并为有序表T[low..high]</span>
+    i=low;
+    j=mid+<span class="hljs-number">1</span>;
+    k=low;
+    <span class="hljs-keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=high){
+            T[k++]=R[i++];
+        <span class="hljs-keyword">else</span>
+            T[k++]=R[j++];
+    }
+    <span class="hljs-keyword">while</span>(i&lt;=mid)
+        T[k++]=R[i++];
+    <span class="hljs-keyword">while</span>(j&lt;=high)
+        T[k++]=R[j++];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MSort</span><span class="hljs-params">(RedType R[],RedType T[],<span class="hljs-keyword">int</span> low,<span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-comment">// R[low..high]归并排序后放入T[low..high]中</span>
+    <span class="hljs-keyword">if</span>(low==high)
+        T[low]=R[low];
+    <span class="hljs-keyword">else</span>{
+        mid=(low+high)/<span class="hljs-number">2</span>;           <span class="hljs-comment">// 将当前序列一分为二，求出分裂点</span>
+        MSort(R,S,low,mid);         <span class="hljs-comment">// 对子序列R[low..mid]递归归并排序，结果放入S[low..mid]</span>
+        MSort(R,S,mid+<span class="hljs-number">1</span>,high);      <span class="hljs-comment">// 对子序列R[mid+1..high]递归归并排序，结果放入S[mid+1..high]</span>
+        Merge(S,T,low,mid,high);    <span class="hljs-comment">// 将S[low..mid]和S[mid+1..high]归并到T[low..high]</span>
+    }
+}
+</div></code></pre>
+
+    </body>
+    </html>

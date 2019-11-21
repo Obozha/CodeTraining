@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>查找</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="%e6%9f%a5%e6%89%be">查找</h1>
+<h2 id="%e7%ba%bf%e6%80%a7%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be">线性表的查找</h2>
+<h3 id="%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">顺序存储结构</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+    KeyType key;            <span class="hljs-comment">// 关键字域</span>
+    InfoType otherinfo;     <span class="hljs-comment">// 其他域</span>
+}ElemType;
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+    ElemType *R;            <span class="hljs-comment">// 存储空间基地址</span>
+    <span class="hljs-keyword">int</span> length;             <span class="hljs-comment">// 当前长度</span>
+}SSTable;
+</div></code></pre>
+<h3 id="%e9%a1%ba%e5%ba%8f%e6%9f%a5%e6%89%be">顺序查找</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Search_Seq</span><span class="hljs-params">(SSTable ST,KeyType key)</span></span>{
+    <span class="hljs-comment">// 在顺序表ST中顺序查找其关键字等于key的数据元素。若找到，则函数值为该元素表中的位置，否则为0</span>
+    <span class="hljs-keyword">for</span>(i=ST.length;i&gt;=<span class="hljs-number">1</span>;--i)
+        <span class="hljs-keyword">if</span>(ST.R[i].key==key)
+            <span class="hljs-keyword">return</span> i;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// 设置监视哨的顺序查找</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Search_Seq</span><span class="hljs-params">(SSTable ST,KeyType key)</span></span>{
+    <span class="hljs-comment">// 在顺序表ST中顺序查找其关键字等于key的数据元素。若找到，则函数值为该元素在表中的位置，否则为0</span>
+    ST.R[<span class="hljs-number">0</span>].key=key;
+    <span class="hljs-keyword">for</span>(i=ST.length;ST.R[i]!=key;--i);  <span class="hljs-comment">// 从后往前找</span>
+        <span class="hljs-keyword">return</span> i;
+}
+</div></code></pre>
+<h3 id="%e6%8a%98%e5%8d%8a%e6%9f%a5%e6%89%be-%e9%a1%ba%e5%ba%8f%e5%ad%98%e5%82%a8%e7%9a%84%e6%9c%89%e5%ba%8f%e8%a1%a8">折半查找 （顺序存储的有序表）</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Search_Bin</span><span class="hljs-params">(SSTable ST,KeyType key)</span></span>{
+    <span class="hljs-comment">// 在有序表ST中折半查找其关键字等于key的数据元素。若找到，则函数值为该元素在表中的位置，否则为0</span>
+    low=<span class="hljs-number">1</span>;
+    high=ST.length;
+    <span class="hljs-keyword">while</span>(low&lt;=high){
+        mid=(low+high)/<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(key==ST.R[mid].key)          <span class="hljs-comment">// 找到待查找元素</span>
+            <span class="hljs-keyword">return</span> mid;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key&lt;ST.R[mid].key)      <span class="hljs-comment">// 继续在前一子表进行查找</span>
+            high=mid<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">else</span>                            <span class="hljs-comment">// 继续在后一子表进行查找</span>
+            low=mid+<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;                           <span class="hljs-comment">// 表中不存在待查元素</span>
+}
+</div></code></pre>
+<h2 id="%e6%a0%91%e8%a1%a8%e7%9a%84%e6%9f%a5%e6%89%be">树表的查找</h2>
+<h3 id="%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84">二叉排序树的存储结构</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-comment">// - - - 二叉排序树的二叉链表存储表示 - - - -</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>{</span>
+    KeyType key;                        <span class="hljs-comment">// 关键字项</span>
+    InfoType otherinfo;                 <span class="hljs-comment">// 其他数据项</span>
+}ElemType;                              <span class="hljs-comment">// 每个结点的数据域的类型</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BSTNode</span>{</span>
+    ElemType data;                      <span class="hljs-comment">// 每个结点的数据域包括关键字项和其他数据项</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BSTNode</span> *<span class="hljs-title">lchild</span>,*<span class="hljs-title">rchild</span>;</span>     <span class="hljs-comment">// 左右孩子指针</span>
+}BSTNode,*BSTree;
+</div></code></pre>
+<h3 id="%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e9%80%92%e5%bd%92%e6%9f%a5%e6%89%be">二叉排序树的递归查找</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function">BSTree <span class="hljs-title">SearchBST</span><span class="hljs-params">(BSTree T,KeyType Key)</span></span>{
+    <span class="hljs-comment">// 在根指针T所指二叉排序树中递归地称查找某关键字等于key的数据元素</span>
+    <span class="hljs-comment">// 若查找成功，则返回指向该数据元素结点的指针，否则返回空指针</span>
+    <span class="hljs-keyword">if</span>((!T)||key==T-&gt;data.key)
+        <span class="hljs-keyword">return</span> T;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key&lt;T-&gt;data.key)
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;lchild,key);    <span class="hljs-comment">// 在左子树中继续查找</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> SearchBST(T-&gt;rchild,key);    <span class="hljs-comment">// 在右子树继续查找</span>
+}
+</div></code></pre>
+<h3 id="%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e6%8f%92%e5%85%a5">二叉排序树的插入</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InsertBST</span><span class="hljs-params">(BSTree &amp;T,ElemType e)</span></span>{
+    <span class="hljs-comment">// 当二叉排序树中不存在关键字等于e.key的数据元素时，则插入元素</span>
+    <span class="hljs-keyword">if</span>(!T){
+        S=<span class="hljs-keyword">new</span> BSTNode;                      <span class="hljs-comment">// 生成新结点*S</span>
+        S-&gt;data=e;                          <span class="hljs-comment">// 新结点*S的数据域置为e</span>
+        S-&gt;lchild=S-&gt;rchild=<span class="hljs-literal">NULL</span>;           <span class="hljs-comment">// 新结点*S作为叶子结点</span>
+        T=S;                                <span class="hljs-comment">// 把新结点*S链接到已找到的插入位置</span>
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e.key&lt;T-&gt;data.key)
+        InsertBST(T-&gt;lchild,e);             <span class="hljs-comment">// 将*S插入左子树</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e.key&gt;T-&gt;data.key)
+        InsertBST(T-&gt;rchild,e);             <span class="hljs-comment">// 将*S插入右子树</span>
+}
+</div></code></pre>
+<h3 id="%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%88%9b%e5%bb%ba">二叉排序树的创建</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CreateBST</span><span class="hljs-params">(BSTree &amp;T)</span></span>{
+    <span class="hljs-comment">// 依次读入一个关键字为key的结点，将此结点插入二叉排序树T中</span>
+    T=<span class="hljs-literal">NULL</span>;                                  <span class="hljs-comment">// 将二叉排序树T初始化为空树</span>
+    <span class="hljs-built_in">cin</span>&gt;&gt;e;
+    <span class="hljs-keyword">while</span>(e.key!=ENDFLAG){
+        <span class="hljs-comment">// ENDFLAG为自定义常量，作为输入结束标志</span>
+        InsertBST(T,e);                      <span class="hljs-comment">// 将此结点插入二叉排序树T中</span>
+        <span class="hljs-built_in">cin</span>&gt;&gt;e;
+    }
+}
+</div></code></pre>
+<h3 id="%e4%ba%8c%e5%8f%89%e6%8e%92%e5%ba%8f%e6%a0%91%e7%9a%84%e5%88%a0%e9%99%a4">二叉排序树的删除</h3>
+<hr>
+<pre><code class="language-c"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DeleteBST</span><span class="hljs-params">(BSTree &amp;T,KeyType key)</span></span>{
+    <span class="hljs-comment">// 从二叉排序树T中删除关键字等于key的结点</span>
+    p=T;
+    f=<span class="hljs-literal">NULL</span>;                                 <span class="hljs-comment">// 初始化</span>
+    <span class="hljs-comment">/* 从二叉树T中删除关键字等于key的结点 */</span>
+    p=T;
+    f=<span class="hljs-literal">NULL</span>;                                 <span class="hljs-comment">// 初始化</span>
+    <span class="hljs-comment">/* ------下面的while循环从根开始查找关键字等于key 的结点------ */</span>
+    <span class="hljs-keyword">while</span>(p){
+        <span class="hljs-keyword">if</span>(p-&gt;data.key==key)
+            <span class="hljs-keyword">break</span>;                          <span class="hljs-comment">// 找到关键字等于key的结点*p，结束循环</span>
+        f=p;                                <span class="hljs-comment">// *f为*p的双亲结点</span>
+        <span class="hljs-keyword">if</span>(p-&gt;data.key&gt;key)
+            p=p-&gt;lchild;                    <span class="hljs-comment">// 在*p的左子树中继续查找</span>
+        <span class="hljs-keyword">else</span>
+            p=p-&gt;rchild;                    <span class="hljs-comment">// 在*p的右子树中继续查找</span>
+    }
+
+    <span class="hljs-keyword">if</span>(!p)
+        <span class="hljs-keyword">return</span>;
+    <span class="hljs-comment">/* ------考虑3种情况实现p所指子树内部的处理：*p左右子树不空、无右子树、无左子树------ */</span>
+    q=p;
+    <span class="hljs-keyword">if</span>((p-&gt;lchild)&amp;&amp;(p-&gt;rchild)){
+        s=p-&gt;lchild;                        <span class="hljs-comment">// 在*p的左子树中继续查找其前驱结点，即最右下结点</span>
+        <span class="hljs-keyword">while</span>(s-&gt;rchild){
+            q=s;
+            s=s-&gt;rchild;                    <span class="hljs-comment">// 向右到尽头</span>
+        }
+        p-&gt;data=s-&gt;data;                    <span class="hljs-comment">// s指向被删结点的“前驱”</span>
+        <span class="hljs-keyword">if</span>(q!=p)
+            q-&gt;rchild=s-&gt;lchild;            <span class="hljs-comment">// 重接*q的右子树</span>
+        <span class="hljs-keyword">else</span>
+            q-&gt;lchild=s-&gt;lchild;            <span class="hljs-comment">// 重接*q的左子树</span>
+        <span class="hljs-keyword">delete</span> s;
+        <span class="hljs-keyword">return</span>;
+    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!p-&gt;rchild){
+        p=p-&gt;lchild;
+    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!p-&gt;lchild){
+        p=p-&gt;rchild;
+    }
+    <span class="hljs-comment">/* ------将p所指的子树挂接到其双亲结点*f相应的位置------ */</span>
+    <span class="hljs-keyword">if</span>(!T)                                  <span class="hljs-comment">// 被删结点为根结点</span>
+        T=p;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(q==f-&gt;lchild)
+        f=lchild=p;                         <span class="hljs-comment">// 挂接到*f的左子树位置</span>
+    <span class="hljs-keyword">else</span>
+        f=rchild=p;                         <span class="hljs-comment">// 挂接到*f的右子树位置</span>
+    <span class="hljs-keyword">delete</span> q;
+}
+
+</div></code></pre>
+
+    </body>
+    </html>
