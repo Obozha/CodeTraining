@@ -836,3 +836,525 @@ void DFS(AMGraph G,int v){
 		}
 	}
 } 
+
+typedef struct BiTNode{
+	TElemType data;
+	struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTree;
+
+InOrderTraverse(BiTree T){
+	if(T){
+		InOrderTraverse(T->lchild);
+		cout<<T->data;
+		InOrderTraverse(T->rchild);
+	}
+}
+
+InOrderTraverseDG(BiTree T){
+	InitStack(S);
+	p=T;
+	q=new BiTNode;
+	while(p||!StackEmpty(S)){
+		if(p){
+			Push(S,p);
+			p=p->lchild;
+		}else{
+			Pop(S,q);
+			cout<<q->data;
+			p=q->rchild;
+		}
+	}
+}
+
+void CreateBiTree(BiTree &T){
+	cin>>ch;
+	if(ch=='#'){
+		T=NULL;
+	}else{
+		T=new BiTNode;
+		T->data=e;
+		CreateBiTree(T->lchild);
+		CreateBiTree(T->rchild);
+	}
+}
+
+int Depth(BiTree T){
+	if(T==NULL){
+		return 0;
+	}else{
+		m=Depth(T->lchild);
+		n=Depth(T->rchild);
+		if(m>n){
+			return (m+1);
+		}else{
+			return (n+1);
+		}
+	}
+} 
+
+int CountNode(BiTree T){
+	if(T==NULL){
+		return 0;	
+	} else {
+		return CountNode(T->lchild)+CountNode(T->rchild)+1;
+	}
+}
+
+int CountLeafNode(BiTree T){
+	if(T==NULL){
+		return 0;
+	}else(T->rchild==NULL && T->lchild==NULL){
+		return 1;
+	}else{
+		return CountLeafNode(T->lchild)+CountLeafNode(T->rchild);
+	}
+}
+
+#define MAXINT 32767
+#define MVNum 100
+typedef char VerTexType;
+typedef int ArcType;
+typedef struct{
+	VerTexType vexs[MVNum];
+	ArcType arcs[MVNum][MVNum]; 
+}AMGraph;
+#define MVNum 100
+typedef struct ArcNode{
+	int adjvex;
+	struct ArcNode *nextarc;
+	Other info;
+}ArcNode;
+
+typedef struct VNode{
+	VerTexType data;
+	ArcNode *firstarc;	
+}VNode,AdjList[MVNum];
+
+typedef struct{
+	AdjList vertices;
+	int arcnum,vexnum;
+}ALGraph;
+
+
+void DFSTraverse(Graph G){
+	for(w=0;w<G.vexnum;w++){
+		visited[w]=false;
+	}
+	for(w=0;w<G.vexnum;w++){
+		if(!visited[w]){
+			DFS(G,v);
+		}
+	}
+}
+
+void DFS(AMGraph G,int v){
+	cout<<v;
+	visited[v]=true;
+	for(w=0;w<G.vexnum;w++){
+		if(G.arcs[v][w]!=0 && !visited[v]){
+			DFS(G,w);
+		}
+	}
+}
+
+void DFS(ALGraph G,int v){
+	cout<<v;
+	visited[v]=true;
+	p=G.vertices[v].firstarc;
+	while(p){
+		int w=p->adjvex;
+		if(!visited[w]){
+			DFS(G,w);
+		}
+		p=p->next;
+	}
+}
+
+void BFSTraverse(Graph G){
+	for(v=0;v<G.vernum;v++){
+		visited[v]=false;
+	}
+	for(v=0;v<G.vexnum;v++){
+		if(!visited[v]){
+			BFS(G,v);
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+		}
+	}
+}
+
+void BFSTraverse(Graph G){
+	for(v=0;v<G.vernum;v++){
+		visited[v]=false;
+	}
+	for(v=0;v<G.vexnum;v++){
+		if(!visited[v]){
+			BFS(G,v);
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[v]=true;
+				EnQueue(Q,w);
+			}
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueu(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w))
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout << v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w))
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,e);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(G,u);w>=0;w=NextAdjVex(G,u,w))
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+	}
+}
+
+void ShortestPath_DIJ(AMGraph G,int v0)
+	for(v=0;v<G.vexnum;++v){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt)
+			Path[v]=v0;
+		else
+			Path[v]=-1; 
+	}
+	S[v0]=true;
+	D[v0]=0;
+	// 初始化结束
+	for(i=1;i<n;++i){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		
+		for(w=0;w<n;++w){
+			if(!S[w]&&(D[w]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		}
+	} 
+}
+
+void ShortestPath_DIJ(AMGraph G,int v0){
+	n=G.vexnum;
+	for(v=0;v<n;v++){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;++i){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		for(w=0;w<n;++w){
+			if(!S[w]&&(D[w ]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		}
+	}
+}
+
+void ShortestPath(AMGraph G,int v0){
+	n=G.vexnum;
+	
+	for(v=0;v<n;v++){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt)
+			Path[v]=v0;
+		else
+			Path[v]=-1;
+	}
+	
+	S[v0]=true;
+	D[v0]=0;
+	
+	for(i=1;i<n;i++){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		
+		for(w=0;w<n;w++){
+			if(!S[w]&&(D[w]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			} 
+		}
+	}
+}
+
+
+void ShortestPath_DIJ(AMGraph G,int v0){
+	n=G.vexnum;
+	for(v=0;v<n;++v){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	S[v0]=0;
+	// 初始化结束
+	for(i=1;i<n;++i){
+		min=MaxInt;
+		for(w=0;w<n;++w){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		for(w=0;w<n;++w){
+			if(!S[w]&&(D[v]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		}
+	} 
+}
+
+void ShortestPath_DIJ(AMGraph G,int v0){
+	n=G.vexnum;
+	for(v=0;v<n;v++){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt)
+			Path[v]=v0;
+		else
+			Path[v]=-1;
+	}
+	
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;i++){
+		min=MaxInt;
+		for(w=0;w<n;++w){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		
+		for(w=0;w<n;++w){
+			if(!S[w]&&(D[w]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v; 
+			}
+		}
+	}
+}
+
+void ShortestPath_DIJ(AMGraph G,int v0){
+	for(v=0;v<n;++v){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;++i){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[v]+G.arcs[v][w]<D[w]){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		}
+	}
+}
+
+void ShotestPath_DIJ(Graph G,int v0){
+	for(v=0;v<G.vexnum;v++){
+		S[v]=false;
+		D[v]=G.arcs[v][v0];
+		if(D[v]<MaxInt){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;++i){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		for(w=0;w<n;++w){
+			if(!S[w]&&(D[v]+G.arcs[v][w]<D[w])){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		
+		}
+	}
+}
+
+void ShortestPath(Graph G,int v0){
+	n=G.vexnum;
+	for(v=0;v<n;v++){
+		S[v]=false;
+		D[v]=G.arcs[v][v0];
+		if(D[v]<MaxInt){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;i++){
+		Min=
+		for(w=0;w<n;w++){
+			if
+		}
+	}
+}
+
+#define MAXINT 32767
+#define MVNum 100
+
+typedef int ArcType;
+typedef char VerTexType;
+
+typedef struct{
+	ArcType arcs[MVNum][MVNum];
+	VerTexType vexs[MVNum];
+	int arcnum,vexnum;
+}AMGraph;
+
+
