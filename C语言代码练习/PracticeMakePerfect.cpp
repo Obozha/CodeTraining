@@ -1357,4 +1357,238 @@ typedef struct{
 	int arcnum,vexnum;
 }AMGraph;
 
+#define MVNum 100
+typedef struct ArcNode{
+	int adjvex;
+	struct ArcNode *nextarc;
+}ArcNode;
 
+typedef struct {
+	VertexType data;
+	ArcNode *firstarc;
+}VNode,AdjList[MVNum];
+
+typedef struct{
+	AdjList vertices;
+	int arcnum,vexnum;
+}ALGraph;
+
+void DFS(AMGraph G,int v){
+	cout<<v;
+	visited[v]=true;
+	for(w=0;w<G.vexnum;w++){
+		if(!visited[w] && G.arcs[v][w]!=0){
+			DFS(G,w);
+		}
+	}
+}
+
+void DFS(ALGraph G,int v){
+	cout<<v;
+	visited[v]=true;
+	p=G.vertices[v].firstarc;
+	while(p){
+		int w=p->adjvex;
+		if(!visited[v]){
+			DFS(G,w);
+		}
+		p=p->next;
+	}
+}
+
+void DFSTraverse(Graph G){
+	for(w=0;w<G.vexnum;w++){
+		visited[w]=false;
+	}
+	for(w=0;w<G.vexnum;w++){
+		if(!visited[w]){
+			DFS(G,w);
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q);
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(Q,u);w>=0;w=NextAdjVex(Q,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+		}
+	}
+}
+
+void BFS(Graph G,int v){
+	cout<<v;
+	visited[v]=true;
+	InitQueue(Q)
+	EnQueue(Q,v);
+	while(!QueueEmpty(Q)){
+		DeQueue(Q,u);
+		for(w=FirstAdjVex(Q,u);w>=0;w=NextAdjVex(G,u,w)){
+			if(!visited[w]){
+				cout<<w;
+				visited[w]=true;
+				EnQueue(Q,w);
+			}
+		} 
+	}
+}
+
+void ShortestPath_DIJ(AMGraph G,int v0){
+	n=G.vexnum;
+	for(v=0;v<0;v++){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]<MaxInt){
+			Path[v]=v0
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;i++){
+		min=MaxInt;
+		for(w=0;w<n;++w){
+			if(!S[w]&&D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		for(w=0;w<n;w++){
+			if(!S[w]&&(D[v]+G.arcs[v][w])<D[w]){
+				
+			}
+		}
+	}
+}
+
+void Shortest_DIJ(Graph G,int v0){
+	n=G.arcnum;
+	for(v=0;v<n;v++){
+		S[v]=false;
+		D[v]=G.arcs[v0][v];
+		if(D[v]!=0){
+			Path[v]=v0;
+		}else{
+			Path[v]=-1;
+		}
+	}
+	S[v0]=true;
+	D[v0]=0;
+	for(i=1;i<n;i++){
+		min=MaxInt;
+		for(w=0;w<n;w++){
+			if(!S[w] && D[w]<min){
+				v=w;
+				min=D[w];
+			}
+		}
+		
+		
+		for(w=0;w<n;w++){
+			if(!S[w]&&D[v]+G.arcs[v][w]<D[w]){
+				D[w]=D[v]+G.arcs[v][w];
+				Path[w]=v;
+			}
+		}
+	}
+
+}
+
+	
+int Search_Bin(SSTable ST,KeyType key){
+	low=1;
+	high=ST.length;
+	while(low<=high){
+		mid=(low+high)/2;
+		if(key==ST.R[mid].key)
+			return mid;
+		else if(key<ST.R[mid].key)
+			high=mid-1;
+		else
+			low=mid+1;
+	}
+	return 0;
+} 
+
+int Search_Bin(SSTable ST,KeyType key){
+	low=1;
+	high=ST.length;
+	while(low<=high){
+		mid=(low+high)/2;
+		if(key==ST.R[mid].key)
+			return mid;
+		else if(key<ST.R[mid].key)
+			high=mid-1;
+		else
+			low=mid+1;
+	}
+	return 0;
+}
+
+typedef struct{
+	KeyType key;
+	InfoType otherinfo;
+}ElemType;
+
+typedef struct BSTNode{
+	ElemType data;
+	struct BSTNode *lchild,*rchild;
+}BSTNode,*BSTree;
+
+BSTree SearchBST(BSTree T,KeyType key){
+	if((!T)||key==T->data.key)
+		return T;
+	else if(key<T->data.key)
+		return SearchBST(T->lchild,key);
+	else
+		return SearchBST(T->rchild,key);
+}
+
+void InsertBST(BSTree &T,ElemType e){
+	if(!T){
+		S=new BSTNode;
+		S->data=e;
+		S->lchild=S->rchild=NULL;
+		T=S;
+	}else if(e.key<T->data.key)
+		InsertBST(T->lchild,e);
+	else if(e.key>T->data.key)
+		InsertBST(T->rchild,e);
+}
+
+typedef struct{
+	KeyType key;
+	InfoType otherinfo;
+}ElemType;
+
+typedef struct{
+	ElemType *R;
+	int length;
+}SSTable;
+
+int Search_Bin(SSTable ST,KeyType Key){
+	low=1;
+	high=ST.length;
+	while(low<=high){
+		if(Key==ST.R[mid].key)
+			return mid;
+		else if(Key<ST.R[mid].key)
+			high=mid-1;
+		else 
+			low=mid+1;
+	}
+	return 0;
+}
+
+int Search_Bin(SSTable ST,KeyType key){
+	int low=0;
+}
